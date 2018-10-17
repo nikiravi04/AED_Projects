@@ -60,14 +60,12 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtUser" pref="173" max="32767" attributes="0"/>
-                      <Component id="txtPword" alignment="0" pref="173" max="32767" attributes="0"/>
-                      <Component id="txtRePword" alignment="0" pref="173" max="32767" attributes="0"/>
-                      <Component id="radioCustomer" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="displayCorSTxt" min="-2" pref="173" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="displayCorSTxt" alignment="0" pref="173" max="32767" attributes="0"/>
+                  <Component id="txtUser" pref="173" max="32767" attributes="0"/>
+                  <Component id="radioCustomer" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPword" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtRePword" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="336" max="-2" attributes="0"/>
           </Group>
@@ -91,13 +89,13 @@
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPword" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtRePword" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtRePword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="56" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -121,10 +119,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUser">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtPword">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtRePword">
     </Component>
     <Component class="javax.swing.JLabel" name="UsernameLabel">
       <Properties>
@@ -185,6 +179,10 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtPword">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtRePword">
     </Component>
   </SubComponents>
 </Form>
