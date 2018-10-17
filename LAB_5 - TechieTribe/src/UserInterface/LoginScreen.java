@@ -42,7 +42,6 @@ public class LoginScreen extends javax.swing.JPanel {
 
         txtPword = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
-        comboUser = new javax.swing.JComboBox<>();
         txtTitle = new javax.swing.JLabel();
 
         btnSubmit.setText("Login");
@@ -52,8 +51,6 @@ public class LoginScreen extends javax.swing.JPanel {
             }
         });
 
-        comboUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         txtTitle.setText("Supplier Login Screen");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -61,18 +58,15 @@ public class LoginScreen extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPword)
-                    .addComponent(comboUser, 0, 166, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(btnSubmit)
-                .addContainerGap(171, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtTitle)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(btnSubmit))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTitle))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -80,9 +74,7 @@ public class LoginScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(txtTitle)
-                .addGap(18, 18, 18)
-                .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(53, 53, 53)
                 .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSubmit)
@@ -100,14 +92,13 @@ public class LoginScreen extends javax.swing.JPanel {
         //text should either be "Supplier Login Screen" OR "Customer Login Screen"
         //Based on the selection
         txtTitle.setText("****** Login Screen");
-        comboUser.removeAllItems();
+        //comboUser.removeAllItems();
         //only customer or suppliers should be listed based on the selection
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JComboBox<Object> comboUser;
     private javax.swing.JTextField txtPword;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables

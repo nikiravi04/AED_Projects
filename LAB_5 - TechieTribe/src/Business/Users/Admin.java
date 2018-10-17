@@ -17,6 +17,10 @@ public class Admin extends User {
     
     public SupplierDirectory suppDir;
     public CustomerDirectory custDir;
+    public Customer customer;
+    public Supplier supplier;
+    public String password;
+    public String userName;
     
     public Admin() {
         super("", "", "Admin");
@@ -38,6 +42,18 @@ public class Admin extends User {
 
     public void setCustDir(CustomerDirectory custDir) {
         this.custDir = custDir;
+    }
+       
+    public Customer addCustomer(){
+        Customer newCustomer = new Customer(password,userName);
+        custDir.getCustomerList().add(newCustomer);
+        return newCustomer;  
+    }
+    
+    public Supplier addSupplier(){
+        Supplier newSupplier = new Supplier(password, userName);
+        suppDir.getSupplierList().add(newSupplier);
+        return newSupplier;
     }
     
     public boolean verify(String password){
