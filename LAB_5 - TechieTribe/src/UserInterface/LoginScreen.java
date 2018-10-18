@@ -117,13 +117,20 @@ public class LoginScreen extends javax.swing.JPanel {
             comboBox.addItem(user);
         }
 
-        User selectedItem = (User) comboBox.getSelectedItem();
-        if(selectedItem instanceof Customer){
-            txtTitle.setText("Customer Login Screen");  
+        for (Object obj : adminUser.getCustDir().getCustomerList()){
+            Customer c = (Customer) obj;
+            if(c.getUserName().equals(comboBox.getSelectedItem())){
+                txtTitle.setText("Customer Login Screen"); 
+            }
+            
         }
         
-        if(selectedItem instanceof Supplier){
-            txtTitle.setText("Supplier Login Screen");  
+        for (Object obj : adminUser.getSuppDir().getSupplierList()){
+            Supplier s = (Supplier) obj;
+            if(s.getUserName().equals(comboBox.getSelectedItem())){
+                txtTitle.setText("Supplier Login Screen"); 
+            }
+            
         }
 
     }
