@@ -10,6 +10,7 @@ import Business.Users.Admin;
 import Business.Users.Customer;
 import Business.Users.Supplier;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +30,7 @@ public class AdminMainScreen extends javax.swing.JPanel {
         this.panelRight = panelRight;
         this.admin = admin;
         populate();
+        populateCustomer();
     }
 
     /**
@@ -41,10 +43,10 @@ public class AdminMainScreen extends javax.swing.JPanel {
     private void initComponents() {
 
         btnCreate = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableCust = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableSup = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableCust = new javax.swing.JTable();
 
         btnCreate.setText("Create User >>");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -52,16 +54,6 @@ public class AdminMainScreen extends javax.swing.JPanel {
                 btnCreateActionPerformed(evt);
             }
         });
-
-        tableCust.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Customer Name", "Date Created"
-            }
-        ));
-        jScrollPane1.setViewportView(tableCust);
 
         tableSup.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,20 +65,44 @@ public class AdminMainScreen extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tableSup);
 
+        tableCust.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Customer", "Date"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tableCust);
+        if (tableCust.getColumnModel().getColumnCount() > 0) {
+            tableCust.getColumnModel().getColumn(0).setResizable(false);
+            tableCust.getColumnModel().getColumn(1).setResizable(false);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(585, Short.MAX_VALUE)
-                .addComponent(btnCreate)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(585, Short.MAX_VALUE)
+                        .addComponent(btnCreate))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,10 +110,10 @@ public class AdminMainScreen extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(btnCreate)
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,10 +138,23 @@ public class AdminMainScreen extends javax.swing.JPanel {
 
     }
     
+    public void populateCustomer(){
+        Date date = new Date();
+        DefaultTableModel dtm = (DefaultTableModel)tableCust.getModel();
+        dtm.setRowCount(0);
+        for(User u : admin.getCustDir().getCustomerList()){
+            Customer c = (Customer)u;
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0]=c;
+            row[1]=date;
+            dtm.addRow(row);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tableCust;
     private javax.swing.JTable tableSup;
     // End of variables declaration//GEN-END:variables

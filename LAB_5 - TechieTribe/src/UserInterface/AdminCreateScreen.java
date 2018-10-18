@@ -10,6 +10,7 @@ import Business.Users.Customer;
 import Business.Users.Supplier;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -136,6 +137,7 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 378, -1, -1));
 
         displayCorSTxt.setEditable(false);
+        displayCorSTxt.setEnabled(false);
         add(displayCorSTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 375, 173, -1));
         add(txtPword, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 189, 173, -1));
         add(txtRePword, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 323, 173, -1));
@@ -179,9 +181,10 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         {
             if (radioCustomer.isSelected())
             {
-                Customer cust = admin.addCustomer();
+                
                 if(passwordPatternCorrect())
                 {
+                    Customer cust = admin.addCustomer();
                     cust.setUserName(txtUser.getText());
                     cust.setPassword(txtPword.getText());
                     JOptionPane.showMessageDialog(null, "New Customer Account Created!");
@@ -197,14 +200,16 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                 txtUser.setText("");
                 txtPword.setText("");
                 txtRePword.setText("");
+                displayCorSTxt.setText("");
             }
             else
             {
-                Supplier supplier = admin.addSupplier();
+                
                 //if(admin.searchUsername(txtUser.getText()))
                 //{
                     if(passwordPatternCorrect())
                     {
+                        Supplier supplier = admin.addSupplier();
                         supplier.setUserName(txtUser.getText());
                         supplier.setPassword(txtPword.getText());
 
@@ -220,6 +225,7 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                     txtUser.setText("");
                     txtPword.setText("");
                     txtRePword.setText("");
+                    displayCorSTxt.setText("");
             }
                /* else
                 {
@@ -245,6 +251,18 @@ public class AdminCreateScreen extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // Mve back to previous page.
+        Component[] components= panelRight.getComponents();
+        for (Component c: components)
+        {
+            
+            if(c instanceof AdminMainScreen)
+            {
+                AdminMainScreen panel=(AdminMainScreen)c;
+                panel.populateCustomer();
+                panel.populate();
+            }
+        }
+        
         CardLayout layout = (CardLayout)panelRight.getLayout();
         panelRight.remove(this);
         layout.previous(panelRight);
