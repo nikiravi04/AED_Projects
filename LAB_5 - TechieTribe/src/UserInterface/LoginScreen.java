@@ -6,6 +6,7 @@
 package UserInterface;
 
 import Business.Abstract.User;
+import Business.Users.Admin;
 import Business.Users.Customer;
 import Business.Users.Supplier;
 import java.awt.CardLayout;
@@ -24,10 +25,13 @@ public class LoginScreen extends javax.swing.JPanel {
      */
     List<User> list;
     JPanel panelRight;
-    public LoginScreen(JPanel panelRight, List<User> list) {
+    private User user;
+    private Admin adminUser;
+    public LoginScreen(JPanel panelRight, List<User> list, Admin adminUser) {
         initComponents();
         this.list = list;
         this.panelRight = panelRight;
+        this.adminUser = adminUser;
         initialize();
     }
 
@@ -40,9 +44,10 @@ public class LoginScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtPword = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
         txtTitle = new javax.swing.JLabel();
+        comboBox = new javax.swing.JComboBox();
 
         btnSubmit.setText("Login");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -53,20 +58,25 @@ public class LoginScreen extends javax.swing.JPanel {
 
         txtTitle.setText("Supplier Login Screen");
 
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(btnSubmit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTitle))))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTitle))
+                .addContainerGap(150, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addComponent(btnSubmit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,32 +84,55 @@ public class LoginScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(txtTitle)
-                .addGap(53, 53, 53)
-                .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSubmit)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        
+        if(adminUser.verify(txtPassword.getText())){
+            SuccessScreen successScreen = new SuccessScreen(user);
+            panelRight.add("SuccessScreen",successScreen);
+            CardLayout layout = (CardLayout)panelRight.getLayout();
+            layout.next(panelRight);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please eneter correct password");
+            return;
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     
     private void initialize(){
         //text should either be "Supplier Login Screen" OR "Customer Login Screen"
         //Based on the selection
-        txtTitle.setText("****** Login Screen");
-        //comboUser.removeAllItems();
-        //only customer or suppliers should be listed based on the selection
+        for(Object obj : list ){
+            user = (User) obj;
+            comboBox.addItem(user);
+        }
+
+        User selectedItem = (User) comboBox.getSelectedItem();
+        if(selectedItem instanceof Customer){
+            txtTitle.setText("Customer Login Screen");  
+        }
+        
+        if(selectedItem instanceof Supplier){
+            txtTitle.setText("Supplier Login Screen");  
+        }
+
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JTextField txtPword;
+    private javax.swing.JComboBox comboBox;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 }

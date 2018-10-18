@@ -115,14 +115,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.add(new LoginScreen(panelRight, adminUser.getSuppDir().getSupplierList()));
+        panelRight.add(new LoginScreen(panelRight, adminUser.getSuppDir().getSupplierList(),adminUser));
         layout.next(panelRight);
     }//GEN-LAST:event_btnSupplierActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.add(new LoginScreen(panelRight, adminUser.getCustDir().getCustomerList()));
+        panelRight.add(new LoginScreen(panelRight, adminUser.getCustDir().getCustomerList(),adminUser));
         layout.next(panelRight);
     }//GEN-LAST:event_btnCustomerActionPerformed
 
