@@ -84,25 +84,18 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
-        add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 560, 173, -1));
-        add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 131, 173, -1));
 
         UsernameLabel.setText("username:");
-        add(UsernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 134, -1, -1));
 
         jLabel2.setText("password:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 192, -1, -1));
 
         jLabel3.setText("re-enter password :");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 326, -1, -1));
 
         buttonGroup1.add(radioCustomer);
         radioCustomer.setText("Customer");
@@ -111,7 +104,6 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                 radioCustomerActionPerformed(evt);
             }
         });
-        add(radioCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 78, -1, -1));
 
         buttonGroup1.add(radioSupplier);
         radioSupplier.setText("Supplier");
@@ -120,7 +112,6 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                 radioSupplierActionPerformed(evt);
             }
         });
-        add(radioSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 78, -1, -1));
 
         btnBack.setText("< BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -128,43 +119,144 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 13, -1, -1));
 
         jLabel4.setText("I am a :");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 82, -1, -1));
 
         jLabel5.setText("Creating A New");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 378, -1, -1));
 
         displayCorSTxt.setEditable(false);
         displayCorSTxt.setEnabled(false);
-        add(displayCorSTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 375, 173, -1));
-        add(txtPword, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 189, 173, -1));
-        add(txtRePword, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 323, 173, -1));
 
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Password must have: ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 300, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(204, 0, 0));
         jLabel6.setText("Minimum 8 characters.");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 326, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(204, 0, 0));
         jLabel7.setText("At least one Uppercase.");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 352, -1, -1));
 
         jLabel8.setForeground(new java.awt.Color(204, 0, 0));
         jLabel8.setText("At least one LowerCase.");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 378, -1, -1));
 
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
         jLabel9.setText("At least one Number.");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 401, -1, -1));
 
         jLabel10.setForeground(new java.awt.Color(204, 0, 0));
         jLabel10.setText("At least one Special Character.");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 424, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnBack))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(radioSupplier)))
+                .addGap(145, 145, 145)
+                .addComponent(radioCustomer))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(UsernameLabel)
+                .addGap(164, 164, 164)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jLabel2)
+                .addGap(166, 166, 166)
+                .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(362, 362, 362)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(txtRePword, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(101, 101, 101)
+                                .addComponent(displayCorSTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5))))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel7)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(btnBack)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel4))
+                    .addComponent(radioSupplier)
+                    .addComponent(radioCustomer))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(UsernameLabel))
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel2))
+                    .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel3))
+                            .addComponent(txtRePword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(displayCorSTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel5))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel6)))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel9))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel7)))
+                .addGap(103, 103, 103)
+                .addComponent(btnCreate))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -184,10 +276,16 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                 
                 if(passwordPatternCorrect())
                 {
-                    Customer cust = admin.addCustomer();
-                    cust.setUserName(txtUser.getText());
-                    cust.setPassword(txtPword.getText());
-                    JOptionPane.showMessageDialog(null, "New Customer Account Created!");
+                    if(txtPword.getText().equals(txtRePword.getText())){
+                        Customer cust = admin.addCustomer();
+                        cust.setUserName(txtUser.getText());
+                        cust.setPassword(txtPword.getText());
+                        JOptionPane.showMessageDialog(null, "New Customer Account Created!");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Passwords do not match");
+                        return;
+                    }
                 }
                 else
                 {
@@ -209,11 +307,17 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                 //{
                     if(passwordPatternCorrect())
                     {
-                        Supplier supplier = admin.addSupplier();
-                        supplier.setUserName(txtUser.getText());
-                        supplier.setPassword(txtPword.getText());
+                        if(txtPword.getText().equals(txtRePword.getText())){
+                            Supplier supplier = admin.addSupplier();
+                            supplier.setUserName(txtUser.getText());
+                            supplier.setPassword(txtPword.getText());
 
-                        JOptionPane.showMessageDialog(null, "New Supplier Account Created!");
+                            JOptionPane.showMessageDialog(null, "New Supplier Account Created!");
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Passwords do not match");
+                            return;
+                        }
                     }
                     else
                     {
