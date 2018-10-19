@@ -63,6 +63,13 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         this.roleLbl.setForeground(Color.RED);
     }
     
+    private void updateNotify() {
+        this.UsernameLbl.setForeground(Color.BLACK);
+        this.passwordLbl.setForeground(Color.BLACK);
+        this.reenterpasswordLbl.setForeground((Color.BLACK));
+        this.roleLbl.setForeground(Color.BLACK);
+    }
+    
     private boolean passwordPatternCorrect()
     {
         Pattern p = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
@@ -330,10 +337,11 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                 }
                 
 
-
+                updateNotify();
                 txtUser.setText("");
                 txtPword.setText("");
                 txtRePword.setText("");
+                displayCorSTxt.setText("");
             }
             else
             {
@@ -374,12 +382,12 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(null, "Username or Password does not comply with the requirements!");
                         return;
                     }
-                    
 
-
+                    updateNotify();
                     txtUser.setText("");
                     txtPword.setText("");
                     txtRePword.setText("");
+                    displayCorSTxt.setText("");
             }
    
         }

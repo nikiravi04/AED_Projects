@@ -44,10 +44,10 @@ public class LoginScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtPassword = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
         txtTitle = new javax.swing.JLabel();
         comboBox = new javax.swing.JComboBox();
+        txtPassword = new javax.swing.JPasswordField();
 
         btnSubmit.setText("Login");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -56,8 +56,6 @@ public class LoginScreen extends javax.swing.JPanel {
             }
         });
 
-        txtTitle.setText("Supplier Login Screen");
-
         comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -65,11 +63,9 @@ public class LoginScreen extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTitle))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE)
+                .addComponent(txtTitle)
+                .addContainerGap(197, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(181, 181, 181)
                 .addComponent(btnSubmit)
@@ -77,6 +73,10 @@ public class LoginScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,45 +92,54 @@ public class LoginScreen extends javax.swing.JPanel {
                 .addComponent(btnSubmit)
                 .addContainerGap(261, Short.MAX_VALUE))
         );
+
+        txtTitle.getAccessibleContext().setAccessibleName("for (Object obj : adminUser.getCustDir().getCustomerList()){\n            //Customer c = (Customer) obj;\n            user = (User) comboBox.getSelectedItem();\n            if(user instanceof Customer){\n                txtTitle.setText(\"Customer Login Screen\"); \n            }\n            \n        }\n  \n        for (Object obj : adminUser.getSuppDir().getSupplierList()){\n            user = (User) comboBox.getSelectedItem();\n            if(user instanceof Supplier){\n                txtTitle.setText(\"Supplier Login Screen\"); \n            }\n        }");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        if(adminUser.verify(txtPassword.getText())){
-            SuccessScreen successScreen = new SuccessScreen(user);
-            panelRight.add("SuccessScreen",successScreen);
-            CardLayout layout = (CardLayout)panelRight.getLayout();
-            layout.next(panelRight);
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "Please eneter correct password");
-            return;
-        }
+            if(!adminUser.verify(txtPassword.getText()) || !adminUser.verifySupplier(txtPassword.getText())){
+                SuccessScreen successScreen = new SuccessScreen(user);
+                panelRight.add("SuccessScreen",successScreen);
+                CardLayout layout = (CardLayout)panelRight.getLayout();
+                layout.next(panelRight);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Please eneter correct password");
+                return;
+            }
+        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     
     private void initialize(){
         //text should either be "Supplier Login Screen" OR "Customer Login Screen"
         //Based on the selection
-        for(Object obj : list ){
+        comboBox.removeAllItems();
+        for(Object obj : adminUser.getCustDir().getCustomerList() ){
             user = (User) obj;
             comboBox.addItem(user);
         }
-
+        
+        for(Object obj : adminUser.getSuppDir().getSupplierList()){
+            user = (User) obj;
+            comboBox.addItem(user);
+        }
+        
         for (Object obj : adminUser.getCustDir().getCustomerList()){
-            Customer c = (Customer) obj;
-            if(c.getUserName().equals(comboBox.getSelectedItem())){
+            //Customer c = (Customer) obj;
+            user = (User) comboBox.getSelectedItem();
+            if(user instanceof Customer){
                 txtTitle.setText("Customer Login Screen"); 
             }
             
         }
-        
+  
         for (Object obj : adminUser.getSuppDir().getSupplierList()){
-            Supplier s = (Supplier) obj;
-            if(s.getUserName().equals(comboBox.getSelectedItem())){
+            user = (User) comboBox.getSelectedItem();
+            if(user instanceof Supplier){
                 txtTitle.setText("Supplier Login Screen"); 
             }
-            
         }
 
     }
@@ -139,7 +148,7 @@ public class LoginScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox comboBox;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
 }

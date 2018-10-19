@@ -57,9 +57,21 @@ public class Admin extends User {
     }
     
     public boolean verify(String password){
-        if(password.equals(getPassword()))
-            return true;
-        return false;
+        for(User user : this.custDir.getCustomerList()){
+            if(user.getPassword().equalsIgnoreCase(password)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean verifySupplier(String password){
+        for(User user : this.suppDir.getSupplierList()){
+            if(user.getPassword().equalsIgnoreCase(password)){
+                return false;
+            }
+        }
+        return true;
     }
     
     public boolean searchCustomerUsername(String name){
