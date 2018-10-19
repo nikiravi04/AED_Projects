@@ -17,9 +17,17 @@ import java.util.List;
 public class CustomerDirectory {
     
     private List<User> customerList;
+    private static CustomerDirectory customerDirectory = null;
     
     public CustomerDirectory(){
         customerList = new ArrayList<>();
+    }
+    
+    public static CustomerDirectory getInstance() {
+        if (customerDirectory == null) {
+            customerDirectory = new CustomerDirectory();
+        }
+        return customerDirectory;
     }
 
     public List<User> getCustomerList() {
