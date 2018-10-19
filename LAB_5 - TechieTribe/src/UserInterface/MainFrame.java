@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        btnSupplier.setText("Supplier");
+        btnSupplier.setText("Login");
         btnSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSupplierActionPerformed(evt);
@@ -62,6 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnCustomer.setText("Customer");
+        btnCustomer.setEnabled(false);
         btnCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCustomerActionPerformed(evt);

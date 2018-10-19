@@ -101,7 +101,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnSupplier">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Supplier"/>
+                <Property name="text" type="java.lang.String" value="Login"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupplierActionPerformed"/>
@@ -110,6 +110,7 @@
             <Component class="javax.swing.JButton" name="btnCustomer">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Customer"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCustomerActionPerformed"/>
