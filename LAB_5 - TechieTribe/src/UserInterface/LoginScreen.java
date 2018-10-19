@@ -57,6 +57,11 @@ public class LoginScreen extends javax.swing.JPanel {
         });
 
         comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,6 +116,18 @@ public class LoginScreen extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
+        // TODO add your handling code here:
+       user = (User) comboBox.getSelectedItem();
+            if(user instanceof Supplier){
+                txtTitle.setText("Supplier Login Screen");  
+        }
+            else{
+                txtTitle.setText("Customer Login Screen");
+            }
+            
+    }//GEN-LAST:event_comboBoxActionPerformed
+
     
     private void initialize(){
         //text should either be "Supplier Login Screen" OR "Customer Login Screen"
@@ -126,22 +143,24 @@ public class LoginScreen extends javax.swing.JPanel {
             comboBox.addItem(user);
         }
         
-        for (Object obj : adminUser.getCustDir().getCustomerList()){
-            //Customer c = (Customer) obj;
-            user = (User) comboBox.getSelectedItem();
-            if(user instanceof Customer){
+        /*for (Object obj : adminUser.getCustDir().getCustomerList()){
+            Customer c = (Customer) obj;
+            //user = (User) comboBox.getSelectedItem();
+            if(comboBox.getSelectedItem().equals(c.getUserName())){
                 txtTitle.setText("Customer Login Screen"); 
+            }
+            else{
+                txtTitle.setText("Supplier Login Screen");
             }
             
         }
   
-        for (Object obj : adminUser.getSuppDir().getSupplierList()){
+        /*for (Object obj : adminUser.getSuppDir().getSupplierList()){
             user = (User) comboBox.getSelectedItem();
             if(user instanceof Supplier){
                 txtTitle.setText("Supplier Login Screen"); 
             }
-        }
-
+        }*/
     }
     
 
