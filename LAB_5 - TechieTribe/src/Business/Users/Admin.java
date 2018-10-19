@@ -62,7 +62,17 @@ public class Admin extends User {
         return false;
     }
     
-    public boolean searchUsername(String name){
+    public boolean searchCustomerUsername(String name){
+        for(User user : this.custDir.getCustomerList()){
+            if(user.getUserName().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public boolean searchSupplierUsername(String name){
         for(User user : this.suppDir.getSupplierList()){
             if(user.getUserName().equalsIgnoreCase(name)){
                 return false;

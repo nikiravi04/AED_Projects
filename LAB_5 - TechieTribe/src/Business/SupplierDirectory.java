@@ -17,9 +17,17 @@ import java.util.List;
 public class SupplierDirectory {
     
     private List<User> supplierList;
+    private static SupplierDirectory supplierDirectory = null;
     
     public SupplierDirectory(){
         supplierList = new ArrayList<>();
+    }
+     
+    public static SupplierDirectory getInstance() {
+        if (supplierDirectory == null) {
+            supplierDirectory = new SupplierDirectory();
+        }
+        return supplierDirectory;
     }
 
     public List<User> getSupplierList() {
