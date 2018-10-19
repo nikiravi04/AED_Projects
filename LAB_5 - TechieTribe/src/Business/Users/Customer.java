@@ -17,6 +17,7 @@ public class Customer extends User implements Comparable<Customer>{
     
     private ProductDirectory directory;
     
+    
     public Customer(String password, String userName) {
         super(password, userName, "CUSTOMER");
         directory = new ProductDirectory();
