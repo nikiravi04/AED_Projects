@@ -152,6 +152,52 @@ public class AnalysisHelper {
         }
     }
     
+    public void getFiveInactiveUsersOnPosts(){
+        
+        Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+        List<Comment> commentList = new ArrayList<>(comments.values());
+        
+        Collections.sort(commentList, new Comparator<Comment>(){
+        
+            @Override
+            public int compare(Comment o1, Comment o2){
+               return o1.getPostId()- o2.getPostId();
+
+            }
+        });
+        
+        System.out.println("Inactive user based on posts : ");
+        for(int i = 0;i < commentList.size() && i<10; i++){
+            System.out.println(commentList.get(i));
+        }
+
+    }
+    
+    public void getFiveInactiveUsersOnComments(){
+        
+        Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+        List<Comment> commentList = new ArrayList<>(comments.values());
+        
+        Collections.sort(commentList, new Comparator<Comment>(){
+        
+            @Override
+            public int compare(Comment o1, Comment o2){
+               return o1.getId()- o2.getId();
+
+            }
+        });
+        
+        System.out.println("Inactive user based on comments : ");
+        for(int i = 0;i < commentList.size() && i<10; i++){
+            System.out.println(commentList.get(i));
+        }
+
+    
+    }
+    
+    
+    
+    
     
     
     
