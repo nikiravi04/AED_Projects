@@ -92,6 +92,8 @@ public class Lab_8 {
         helper.getAverageLikesComments();
         helper.getFiveInactiveUsersOnPosts();
         helper.getFiveInactiveUsersOnComments();
+        helper.getFiveInactiveUsersOverall();
+        helper.getProactiveUsersOverall();
     }
     
 }

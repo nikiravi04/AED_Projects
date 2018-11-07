@@ -195,10 +195,73 @@ public class AnalysisHelper {
     
     }
     
+    public void getFiveInactiveUsersOverall(){
+        Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+        List<Comment> commentList = new ArrayList<>(comments.values());
+        Map<Integer,Integer> posts = new HashMap<Integer, Integer>();
+        
+        for(int i = 0;i < commentList.size(); i++){
+            Integer count = posts.get(comments.get(i).getPostId());
+            if(count == null){
+                posts.put(commentList.get(i).getPostId(), 1);        
+           }
+            else{
+                posts.put(commentList.get(i).getPostId(), count+1);                       
+            }
+        }
+        List<Map.Entry<Integer, Integer>> list =
+                new LinkedList<Map.Entry<Integer, Integer>>(posts.entrySet());
+        
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+            public int compare(Map.Entry<Integer, Integer> o1,
+                               Map.Entry<Integer, Integer> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+        
+        Map<Integer, Integer> sortedMap = new LinkedHashMap<Integer, Integer>();
+        for (Map.Entry<Integer, Integer> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        
+        System.out.println("Inactive User Overall :");
+        System.out.println(sortedMap);
+        //for(int i = 0; i<sortedMap.size() && i<5; i++){
+        //System.out.println(sortedMap.get(i));       
+    } 
     
-    
-    
-    
-    
-    
+    public void getProactiveUsersOverall(){
+        Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+        List<Comment> commentList = new ArrayList<>(comments.values());
+        Map<Integer,Integer> posts = new HashMap<Integer, Integer>();
+        
+        for(int i = 0;i < commentList.size(); i++){
+            Integer count = posts.get(comments.get(i).getPostId());
+            if(count == null){
+                posts.put(commentList.get(i).getPostId(), 1);        
+           }
+            else{
+                posts.put(commentList.get(i).getPostId(), count+1);                       
+            }
+        }
+        List<Map.Entry<Integer, Integer>> list =
+                new LinkedList<Map.Entry<Integer, Integer>>(posts.entrySet());
+        
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+            public int compare(Map.Entry<Integer, Integer> o1,
+                               Map.Entry<Integer, Integer> o2) {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+        
+        Map<Integer, Integer> sortedMap = new LinkedHashMap<Integer, Integer>();
+        for (Map.Entry<Integer, Integer> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        
+        System.out.println("Proactive User Overall :");
+        System.out.println(sortedMap);
+        //for(int i = 0; i<sortedMap.size() && i<5; i++){
+        //System.out.println(sortedMap.get(i));       
+    } 
 }
