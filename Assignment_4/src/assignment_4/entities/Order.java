@@ -16,7 +16,6 @@ public class Order {
     int orderId;
     int salesId;
     int customerId;
-    int supplierId;
     int itemId;
     private List<Item> items;
    
@@ -25,11 +24,10 @@ public class Order {
     String completionDate;
     String shippingDate;
     
-    public Order(int orderId, int salesId, int customerId,int supplierId, int itemId) {
+    public Order(int orderId, int salesId, int customerId,int itemId) {
         this.orderId = orderId;
         this.salesId = salesId;
         this.customerId = customerId;
-        this.supplierId = supplierId;
         this.itemId = itemId;
     }
     
@@ -39,14 +37,6 @@ public class Order {
 
     public void setItemId(int itemId) {
         this.itemId = itemId;
-    }
-    
-    public int getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
     }
 
     public String getStatus() {

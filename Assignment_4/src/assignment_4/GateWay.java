@@ -71,9 +71,8 @@ public class GateWay {
         int orderId = Integer.parseInt(row[0]);
         int salesId = Integer.parseInt(row[1]);
         int customerId = Integer.parseInt(row[2]);
-        int supplierId = Integer.parseInt(row[3]);
-        int productId = Integer.parseInt(row[4]);
-        Order order = new Order(orderId, salesId,customerId,supplierId,productId);
+        int productId = Integer.parseInt(row[3]);
+        Order order = new Order(orderId, salesId,customerId,productId);
         DataStore.getInstance().getOrder().put(orderId,order);
         
         Map<Integer,Item> items = DataStore.getInstance().getItem();
@@ -84,7 +83,8 @@ public class GateWay {
     
     private void generateProduct(String[] row){
         int productId = Integer.parseInt(row[0]);
-        Product product = new Product(productId, row[1], row[2],row[3]);
+        int productPrice = Integer.parseInt(row[4]);
+        Product product = new Product(productId, row[1], row[2],row[3],productPrice);
         DataStore.getInstance().getProduct().put(productId,product);
     }
     
@@ -105,6 +105,8 @@ public class GateWay {
     }
     
     private void runAnalysis(){
+        
+        
     
     }
     
