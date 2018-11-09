@@ -40,6 +40,8 @@ public class AnalysisHelper {
             }
         }
         
+        //System.out.println(userLikecount);
+        
         List<Map.Entry<Integer, Integer>> list =
                 new LinkedList<Map.Entry<Integer, Integer>>(userLikecount.entrySet());
         
@@ -55,10 +57,11 @@ public class AnalysisHelper {
             sortedMap.put(entry.getKey(), entry.getValue());
         }
         
-        System.out.println("User with most likes");
+        System.out.println("\nUser with most likes");
         System.out.println(sortedMap);
-        System.out.println(sortedMap.values().toArray()[0]+"\n");
-        System.out.println(sortedMap.keySet().toArray()[0]);
+        System.out.println("User ID :"+sortedMap.keySet().toArray()[0]);
+        System.out.println("Likes :"+sortedMap.values().toArray()[0]+"\n");
+        
 
 
     }
@@ -81,7 +84,6 @@ public class AnalysisHelper {
         for(int i = 0;i < commentList.size() && i<5; i++){
             System.out.println(commentList.get(i));
         }
-        
         System.out.println("\n");
     }
     
@@ -130,20 +132,11 @@ public class AnalysisHelper {
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
         List<Comment> commentList = new ArrayList<>(comments.values());
         
-//        Collections.sort(commentList, new Comparator<Comment>(){
-//        
-//            @Override
-//            public int compare(Comment o1, Comment o2){
-//               return o2.getPostId()- o1.getPostId();
-//
-//            }
-//        });
-        
         System.out.println("\nAverage likes per comment : ");
         for(int i = 0;i < commentList.size(); i++){
             if(comments.get(i).getPostId()!=0){
-                //int avg = comments.get(i).getLikes() / comments.get(i).getPostId() ;
-                System.out.println(commentList.get(i)+" Average likes :"+ comments.get(i).getLikes() / comments.get(i).getPostId());
+                int avg = (comments.get(i).getLikes() / comments.get(i).getPostId()) ;
+                System.out.println(commentList.get(i)+" Average likes :"+ avg);//(comments.get(i).getLikes() / comments.get(i).getPostId()));
             }
             else {
                 System.out.println(commentList.get(i)+" Average likes cannot be calculated");
@@ -166,7 +159,7 @@ public class AnalysisHelper {
             }
         });
         
-        System.out.println("Inactive user based on posts : ");
+        System.out.println("\nInactive user based on posts : ");
         for(int i = 0;i < commentList.size() && i<10; i++){
             System.out.println(commentList.get(i));
         }
@@ -187,7 +180,7 @@ public class AnalysisHelper {
             }
         });
         
-        System.out.println("Inactive user based on comments : ");
+        System.out.println("\nInactive user based on comments : ");
         for(int i = 0;i < commentList.size() && i<10; i++){
             System.out.println(commentList.get(i));
         }
@@ -201,13 +194,8 @@ public class AnalysisHelper {
         Map<Integer,Integer> posts = new HashMap<Integer, Integer>();
         
         for(int i = 0;i < commentList.size(); i++){
-            Integer count = posts.get(comments.get(i).getPostId());
-            if(count == null){
-                posts.put(commentList.get(i).getPostId(), 1);        
-           }
-            else{
-                posts.put(commentList.get(i).getPostId(), count+1);                       
-            }
+            Integer count = posts.containsKey(comments.get(i).getPostId())? posts.get(comments.get(i).getPostId()):0;
+            posts.put(comments.get(i).getPostId(),(count+1));
         }
         List<Map.Entry<Integer, Integer>> list =
                 new LinkedList<Map.Entry<Integer, Integer>>(posts.entrySet());
@@ -224,10 +212,12 @@ public class AnalysisHelper {
             sortedMap.put(entry.getKey(), entry.getValue());
         }
         
-        System.out.println("Inactive User Overall :");
-        System.out.println(sortedMap);
-        //for(int i = 0; i<sortedMap.size() && i<5; i++){
-        //System.out.println(sortedMap.get(i));       
+        System.out.println("\nInactive User Overall :");
+        //System.out.println(sortedMap);
+        for(int i = 0; i<sortedMap.keySet().toArray().length && i<5; i++){
+            System.out.println("User ID :"+sortedMap.keySet().toArray()[i]+"\tLikes :"+sortedMap.values().toArray()[i]);
+            //System.out.println(+"\n");      
+        }        
     } 
     
     public void getProactiveUsersOverall(){
@@ -236,13 +226,8 @@ public class AnalysisHelper {
         Map<Integer,Integer> posts = new HashMap<Integer, Integer>();
         
         for(int i = 0;i < commentList.size(); i++){
-            Integer count = posts.get(comments.get(i).getPostId());
-            if(count == null){
-                posts.put(commentList.get(i).getPostId(), 1);        
-           }
-            else{
-                posts.put(commentList.get(i).getPostId(), count+1);                       
-            }
+            Integer count = posts.containsKey(comments.get(i).getPostId())? posts.get(comments.get(i).getPostId()):0;
+            posts.put(comments.get(i).getPostId(),(count+1));
         }
         List<Map.Entry<Integer, Integer>> list =
                 new LinkedList<Map.Entry<Integer, Integer>>(posts.entrySet());
@@ -259,9 +244,11 @@ public class AnalysisHelper {
             sortedMap.put(entry.getKey(), entry.getValue());
         }
         
-        System.out.println("Proactive User Overall :");
-        System.out.println(sortedMap);
-        //for(int i = 0; i<sortedMap.size() && i<5; i++){
-        //System.out.println(sortedMap.get(i));       
-    } 
+        System.out.println("\nProactive User Overall :");
+        //System.out.println(sortedMap);
+        for(int i = 0; i<sortedMap.keySet().toArray().length && i<5; i++){
+            System.out.println("User ID :"+sortedMap.keySet().toArray()[i]+"\tLikes :"+sortedMap.values().toArray()[i]);
+            //System.out.println(+"\n");      
+        } 
+    }
 }
