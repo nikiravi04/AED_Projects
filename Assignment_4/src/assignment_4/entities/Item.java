@@ -15,7 +15,7 @@ public class Item {
     int productId;
     int salesPrice;
     int quantity;
-    private ArrayList<Item> items;
+    private ArrayList<Order> orders;
 
     public Item(int productId, int salesPrice, int quantity) {
         this.productId = productId;
@@ -47,13 +47,15 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
     }
+
+
     
     
     
