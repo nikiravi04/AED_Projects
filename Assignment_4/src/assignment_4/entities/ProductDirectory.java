@@ -27,11 +27,6 @@ public class ProductDirectory {
         this.productDirectory = productDirectory;
     }
     
-    public Product addProduct(){
-        Product newProduct = new Product();
-        productDirectory.add(newProduct);
-        return newProduct;
-    }
     
     public void deleteProduct(Product product){
         productDirectory.remove(product);
