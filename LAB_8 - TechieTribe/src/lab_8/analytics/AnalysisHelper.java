@@ -215,7 +215,7 @@ public class AnalysisHelper {
         System.out.println("\nInactive User Overall :");
         //System.out.println(sortedMap);
         for(int i = 0; i<sortedMap.keySet().toArray().length && i<5; i++){
-            System.out.println("User ID :"+sortedMap.keySet().toArray()[i]+"\tLikes :"+sortedMap.values().toArray()[i]);
+            System.out.println("Post ID :"+sortedMap.keySet().toArray()[i]+"\tLikes :"+sortedMap.values().toArray()[i]);
             //System.out.println(+"\n");      
         }        
     } 
@@ -247,7 +247,7 @@ public class AnalysisHelper {
         System.out.println("\nProactive User Overall :");
         //System.out.println(sortedMap);
         for(int i = 0; i<sortedMap.keySet().toArray().length && i<5; i++){
-            System.out.println("User ID :"+sortedMap.keySet().toArray()[i]+"\tLikes :"+sortedMap.values().toArray()[i]);
+            System.out.println("POst ID :"+sortedMap.keySet().toArray()[i]+"\tLikes :"+sortedMap.values().toArray()[i]);
             //System.out.println(+"\n");      
         } 
     }
