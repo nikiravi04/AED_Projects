@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  *
- * @author harshalneelkamal
+ * @author TechieTribe_Lab_8
  */
 public class DataGenerator {
         
@@ -101,7 +101,7 @@ public class DataGenerator {
             while(iterations > 0){
                 int likeCount = rand.nextInt(likeRange);
                 int commentingUserId = rand.nextInt(userIdsRange);
-                String comment = "Some Random Commen with Id "+commentId;
+                String comment = "Some Random Comment with Id "+commentId;
                 
                 String column = commentId+","+postId+","+postingUserId+","+likeCount+","+commentingUserId+","+comment;
                 
