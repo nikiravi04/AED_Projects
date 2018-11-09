@@ -5,6 +5,8 @@
  */
 package assignment_4.entities;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author harshalneelkamal
@@ -13,6 +15,7 @@ public class Item {
     int productId;
     int salesPrice;
     int quantity;
+    private ArrayList<Item> items;
 
     public Item(int productId, int salesPrice, int quantity) {
         this.productId = productId;
@@ -43,6 +46,15 @@ public class Item {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
+    }
+    
     
     
 }

@@ -15,6 +15,14 @@ public class Product {
     String avail;
     String productName;
     String description;
+    
+    public Product(int productId,String avail,String productName,String description){
+    
+        this.productId = productId;
+        this.avail = avail;
+        this.productName = productName;
+        this.description = description;
+    }
 
     public int getProductId() {
         return productId;
