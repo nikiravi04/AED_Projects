@@ -5,6 +5,9 @@
  */
 package assignment_4.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author harshalneelkamal
@@ -13,28 +16,27 @@ public class Order {
     int orderId;
     int salesId;
     int customerId;
-    int supplierId;
-    Item item;
-
+    int itemId;
+    private List<Item> items;
+   
     String status;
     String issueDate;
     String completionDate;
     String shippingDate;
     
-    public Order(int orderId, int salesId, int customerId,int supplierId, Item item) {
+    public Order(int orderId, int salesId, int customerId,int itemId) {
         this.orderId = orderId;
         this.salesId = salesId;
         this.customerId = customerId;
-        this.supplierId = supplierId;
-        this.item = item;
+        this.itemId = itemId;
     }
     
-    public int getSupplierId() {
-        return supplierId;
+    public int getItemId() {
+        return itemId;
     }
 
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
     public String getStatus() {
@@ -94,13 +96,14 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public Item getItem() {
-        return item;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
+
     
     
 }

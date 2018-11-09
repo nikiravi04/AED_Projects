@@ -15,6 +15,15 @@ public class Product {
     String avail;
     String productName;
     String description;
+    int productPrice;
+    public Product(int productId,String avail,String productName,String description,int productPrice){
+    
+        this.productId = productId;
+        this.avail = avail;
+        this.productName = productName;
+        this.description = description;
+        this.productPrice = productPrice;
+    }
 
     public int getProductId() {
         return productId;
@@ -46,6 +55,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(int productPrice) {
+        this.productPrice = productPrice;
     }
     
     
