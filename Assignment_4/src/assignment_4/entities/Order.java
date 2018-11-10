@@ -16,63 +16,28 @@ public class Order {
     int orderId;
     int salesId;
     int customerId;
-    int itemId;
+    int productId;
     private List<Item> items;
-   
-    String status;
-    String issueDate;
-    String completionDate;
-    String shippingDate;
-    
+    private List<Product> Product;
+  
     Item item = new Item();
     
-    public Order(int orderId, int salesId, int customerId,int itemId) {
+    public Order(int orderId, int salesId, int customerId,int productId) {
         this.orderId = orderId;
         this.salesId = salesId;
         this.customerId = customerId;
-        this.itemId = itemId;
-    }
-    
-    public int getItemId() {
-        return itemId;
+        this.productId = productId;
+        this.Product = new ArrayList<>();
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public int getProductId() {
+        return productId;
     }
 
-    public String getStatus() {
-        return status;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(String issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public String getCompletionDate() {
-        return completionDate;
-    }
-
-    public void setCompletionDate(String completionDate) {
-        this.completionDate = completionDate;
-    }
-
-    public String getShippingDate() {
-        return shippingDate;
-    }
-
-    public void setShippingDate(String shippingDate) {
-        this.shippingDate = shippingDate;
-    }
-    
+  
 
     public int getOrderId() {
         return orderId;
@@ -109,7 +74,7 @@ public class Order {
     public int orderTotal(){
     
         int sum=0;
-        for(Item i : items){
+        for(Product i : Product){
         
             sum = sum + i.getOrderItemTotal();
 
@@ -118,6 +83,14 @@ public class Order {
         return sum;
         
     
+    }
+
+    public List<Product> getProduct() {
+        return Product;
+    }
+
+    public void setProduct(List<Product> Product) {
+        this.Product = Product;
     }
          
     

@@ -60,9 +60,9 @@ public class Item {
 
     public int getOrderItemTotal(){
         
-        int orderTotal = 0;
-        orderTotal = getSalesPrice() * getQuantity();
-        return orderTotal;
+        int orderItemTotal = 0;
+        orderItemTotal = getSalesPrice() * getQuantity();
+        return orderItemTotal;
         
     }
     

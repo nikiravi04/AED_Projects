@@ -21,7 +21,22 @@ public class AnalysisHelper {
     
     public void threeBestCustomers(){
         
+        Map<Integer, Customer> customer = DataStore.getInstance().getCustomer();
+        List<Customer> customerList = new ArrayList<>(customer.values());
         
+        Collections.sort(customerList, new Comparator<Customer>(){
+        
+            @Override
+            public int compare(Customer o1, Customer o2){
+               return o1.getTotalRevenue()- o2.getTotalRevenue();
+
+            }
+        });
+        
+        System.out.println("Three Best Customers : ");
+        for(int i = 0;i < customerList.size() && i<3; i++){
+            System.out.println(customerList.get(i)+"\n");
+        }
         
     }
     
