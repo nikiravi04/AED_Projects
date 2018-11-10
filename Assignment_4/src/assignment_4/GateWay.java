@@ -23,12 +23,14 @@ public class GateWay {
     
     DataReader orderReader;
     DataReader productReader;
+    DataReader customerReader;
     AnalysisHelper helper;
     
     public GateWay() throws IOException {
         DataGenerator generator = DataGenerator.getInstance();
         productReader = new DataReader(generator.getProductCataloguePath());
         orderReader = new DataReader(generator.getOrderFilePath());
+        customerReader = new DataReader(generator.getOrderFilePath());
         helper = new AnalysisHelper();
     }
     
@@ -58,43 +60,58 @@ public class GateWay {
         while((prodRow = productReader.getNextRow()) != null){
             printRow(prodRow);
         }
+        
+        String[] row;
+        while((row = customerReader.getNextRow()) != null ){
+            generateCustomer(row);
+        }
+        while((row = orderReader.getNextRow()) != null ){
+            Product product = generateProduct(row);
+            generateOrder(row, product);
+        }
         runAnalysis();
     }
     
     private void generateCustomer(String[] row){
-        int customerId = Integer.parseInt(row[0]);
-        Customer cust = new Customer(customerId, row[1], row[2],row[3],row[4]);
+        int customerId = Integer.parseInt(row[5]);
+        Customer cust = new Customer(customerId);
         DataStore.getInstance().getCustomer().put(customerId,cust);
     }
     
-    private Order generateOrder(String[] row){
+    private void generateOrder(String[] row,Product product){
         int orderId = Integer.parseInt(row[0]);
-        int salesId = Integer.parseInt(row[1]);
-        int customerId = Integer.parseInt(row[2]);
-        int productId = Integer.parseInt(row[3]);
-        Order order = new Order(orderId, salesId,customerId,productId);
-        DataStore.getInstance().getOrder().put(orderId,order);
+        int salesId = Integer.parseInt(row[4]);
+        int customerId = Integer.parseInt(row[5]);
+        int productId = Integer.parseInt(row[2]);
+        //Order order = new Order(orderId, salesId,customerId,productId);
+        //DataStore.getInstance().getOrder().put(orderId,order);
         
-        Map<Integer,Item> items = DataStore.getInstance().getItem();
-        if(items.containsKey(productId))
-            items.get(productId).getOrders().add(order);
-        return order;
+        Map<Integer,Order> order = DataStore.getInstance().getOrder();
+        if(order.containsKey(productId))
+            order.get(productId).getProduct().add(product);
+        else {
+            Order orders = new Order(orderId, salesId,customerId,productId);
+            orders.getProduct().add(product);
+            order.put(productId, orders);
+        }
+        
     }
     
-    private void generateProduct(String[] row){
-        int productId = Integer.parseInt(row[0]);
-        int productPrice = Integer.parseInt(row[4]);
-        int sellingPrice = Integer.parseInt(row[5]);
-        Product product = new Product(productId, row[1], row[2],row[3],productPrice,sellingPrice);
+    private Product generateProduct(String[] row){
+        int productId = Integer.parseInt(row[2]);
+        int quan = Integer.parseInt(row[3]);
+        int sales = Integer.parseInt(row[6]);
+        Product product = new Product(productId, quan,sales);
         DataStore.getInstance().getProduct().put(productId,product);
+        return product;
     }
     
-    private void generateSalesPerson(String[] row){
-        int salesId = Integer.parseInt(row[0]);
-        int orderId = Integer.parseInt(row[1]);
-        SalesPerson salesperson = new SalesPerson(salesId,orderId,row[2],row[3],row[4],row[5]);
-        DataStore.getInstance().getSalesperson().put(salesId,salesperson);
-    }
+//    private void generateSalesPerson(String[] row){
+//        int salesId = Integer.parseInt(row[4]);
+//        int orderId = Integer.parseInt(row[0]);
+//        SalesPerson salesperson = new SalesPerson(salesId,orderId,row[2],row[3],row[4],row[5]);
+//        DataStore.getInstance().getSalesperson().put(salesId,salesperson);
+//    }
     
  
     public static void printRow(String[] row){
@@ -107,7 +124,7 @@ public class GateWay {
     
     private void runAnalysis(){
         
-        
+        helper.threeBestCustomers();
     
     }
     

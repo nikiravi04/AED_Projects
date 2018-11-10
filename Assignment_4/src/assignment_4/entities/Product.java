@@ -5,6 +5,8 @@
  */
 package assignment_4.entities;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author harshalneelkamal
@@ -12,20 +14,17 @@ package assignment_4.entities;
 public class Product {
     
     int productId;
-    String avail;
-    String productName;
-    String description;
-    int sellingPrice;
-    int actualPrice;
+    int salesPrice;
+    int quantity;
+    private ArrayList<Order> orders;
     
-    public Product(int productId,String avail,String productName,String description,int sellingPrice,int actualPrice){
+    public Product(int productId,int salesPrice, int quantity){
     
         this.productId = productId;
-        this.avail = avail;
-        this.productName = productName;
-        this.description = description;
-        this.sellingPrice = sellingPrice;
-        this.actualPrice = actualPrice;
+        this.salesPrice = salesPrice;
+        this.quantity = quantity;
+        
+
     }
 
     public int getProductId() {
@@ -36,44 +35,38 @@ public class Product {
         this.productId = productId;
     }
 
-    public String getAvail() {
-        return avail;
+    public int getSalesPrice() {
+        return salesPrice;
     }
 
-    public void setAvail(String avail) {
-        this.avail = avail;
+    public void setSalesPrice(int salesPrice) {
+        this.salesPrice = salesPrice;
     }
 
-    public String getProductName() {
-        return productName;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
+    
+
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
     }
 
-    public int getSellingPrice() {
-        return sellingPrice;
-    }
-
-    public void setSellingPrice(int sellingPrice) {
-        this.sellingPrice = sellingPrice;
-    }
-
-    public int getActualPrice() {
-        return actualPrice;
-    }
-
-    public void setActualPrice(int actualPrice) {
-        this.actualPrice = actualPrice;
+    public int getOrderItemTotal(){
+        
+        int orderItemTotal = 0;
+        orderItemTotal = getSalesPrice() * getQuantity();
+        return orderItemTotal;
+        
     }
 
     
