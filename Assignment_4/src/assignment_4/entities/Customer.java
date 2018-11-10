@@ -5,6 +5,8 @@
  */
 package assignment_4.entities;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author harshalneelkamal
@@ -12,6 +14,7 @@ package assignment_4.entities;
 public class Customer extends Person{
     
     int customerId;
+    private ArrayList<Order> order = new ArrayList<>();
 
     public Customer(int customerId,String fname,String lname,String address,String phone) {
         this.customerId = customerId;
@@ -63,6 +66,18 @@ public class Customer extends Person{
 
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
+    }
+    
+    public int getTotalRevenue(){
+        
+        int sum = 0;
+        for(Order o : order){
+            
+            sum = sum + o.orderTotal();
+
+        }
+        
+        return sum; 
     }
 
     

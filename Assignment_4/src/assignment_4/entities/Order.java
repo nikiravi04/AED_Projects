@@ -24,6 +24,8 @@ public class Order {
     String completionDate;
     String shippingDate;
     
+    Item item = new Item();
+    
     public Order(int orderId, int salesId, int customerId,int itemId) {
         this.orderId = orderId;
         this.salesId = salesId;
@@ -103,7 +105,21 @@ public class Order {
     public void setItems(List<Item> items) {
         this.items = items;
     }
+    
+    public int orderTotal(){
+    
+        int sum=0;
+        for(Item i : items){
+        
+            sum = sum + i.getOrderItemTotal();
 
+        }
+        
+        return sum;
+        
+    
+    }
+         
     
     
 }

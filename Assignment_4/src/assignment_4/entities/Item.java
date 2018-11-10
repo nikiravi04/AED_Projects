@@ -22,6 +22,9 @@ public class Item {
         this.salesPrice = salesPrice;
         this.quantity = quantity;
     }
+    public Item(){
+    
+    }
 
     public int getProductId() {
         return productId;
@@ -55,6 +58,15 @@ public class Item {
         this.orders = orders;
     }
 
+    public int getOrderItemTotal(){
+        
+        int orderTotal = 0;
+        orderTotal = getSalesPrice() * getQuantity();
+        return orderTotal;
+        
+    }
+    
+  
 
     
     
