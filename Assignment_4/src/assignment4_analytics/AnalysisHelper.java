@@ -9,8 +9,12 @@ import assignment_4.entities.Customer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import assignment_4.entities.Order;
+import assignment_4.entities.Product;
+import assignment_4.entities.Item;
 
 /**
  *
@@ -21,22 +25,12 @@ public class AnalysisHelper {
     
     public void threeBestCustomers(){
         
-        Map<Integer, Customer> customer = DataStore.getInstance().getCustomer();
-        List<Customer> customerList = new ArrayList<>(customer.values());
+        Map<Integer, Integer> revenue = new HashMap<Integer,Integer>();
+        Map<Integer,Order> orders = DataStore.getInstance().getOrder();
+        Map<Integer,Product> product = DataStore.getInstance().getProduct();
         
-        Collections.sort(customerList, new Comparator<Customer>(){
         
-            @Override
-            public int compare(Customer o1, Customer o2){
-               return o1.getTotalRevenue()- o2.getTotalRevenue();
-
-            }
-        });
         
-        System.out.println("Three Best Customers : ");
-        for(int i = 0;i < customerList.size() && i<3; i++){
-            System.out.println(customerList.get(i)+"\n");
-        }
         
     }
     
