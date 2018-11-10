@@ -15,14 +15,17 @@ public class Product {
     String avail;
     String productName;
     String description;
-    int productPrice;
-    public Product(int productId,String avail,String productName,String description,int productPrice){
+    int sellingPrice;
+    int actualPrice;
+    
+    public Product(int productId,String avail,String productName,String description,int sellingPrice,int actualPrice){
     
         this.productId = productId;
         this.avail = avail;
         this.productName = productName;
         this.description = description;
-        this.productPrice = productPrice;
+        this.sellingPrice = sellingPrice;
+        this.actualPrice = actualPrice;
     }
 
     public int getProductId() {
@@ -57,14 +60,22 @@ public class Product {
         this.description = description;
     }
 
-    public int getProductPrice() {
-        return productPrice;
+    public int getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
+    public void setSellingPrice(int sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
-    
+
+    public int getActualPrice() {
+        return actualPrice;
+    }
+
+    public void setActualPrice(int actualPrice) {
+        this.actualPrice = actualPrice;
+    }
+
     
     
 }

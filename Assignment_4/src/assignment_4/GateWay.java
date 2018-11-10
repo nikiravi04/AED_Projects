@@ -84,7 +84,8 @@ public class GateWay {
     private void generateProduct(String[] row){
         int productId = Integer.parseInt(row[0]);
         int productPrice = Integer.parseInt(row[4]);
-        Product product = new Product(productId, row[1], row[2],row[3],productPrice);
+        int sellingPrice = Integer.parseInt(row[5]);
+        Product product = new Product(productId, row[1], row[2],row[3],productPrice,sellingPrice);
         DataStore.getInstance().getProduct().put(productId,product);
     }
     
