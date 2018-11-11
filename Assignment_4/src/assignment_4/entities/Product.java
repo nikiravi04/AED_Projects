@@ -24,7 +24,7 @@ public class Product {
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.targetPrice = targetPrice;
-        
+
     }
     
     
@@ -39,6 +39,7 @@ public class Product {
 
     public int getMinPrice() {
         return minPrice;
+
     }
 
     public void setMinPrice(int minPrice) {
@@ -53,6 +54,7 @@ public class Product {
         this.maxPrice = maxPrice;
     }
 
+
     public int getTargetPrice() {
         return targetPrice;
     }
@@ -61,6 +63,5 @@ public class Product {
         this.targetPrice = targetPrice;
     }
 
-    
 
 }

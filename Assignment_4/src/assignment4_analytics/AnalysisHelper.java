@@ -26,6 +26,7 @@ public class AnalysisHelper {
     
     public void threeBestCustomers(){
         
+
         final Map<Integer, Integer> customerRevenue = new HashMap<Integer, Integer>();
         Map<Integer, Order> orders = DataStore.getInstance().getOrder();
         Map<Integer, Product> products = DataStore.getInstance().getProduct();
@@ -59,6 +60,7 @@ public class AnalysisHelper {
             System.out.println(id + " revenue: " + customerRevenue.get(id));
         }
     
+
     }
     
 }

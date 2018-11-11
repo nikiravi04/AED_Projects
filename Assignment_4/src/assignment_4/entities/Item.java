@@ -23,8 +23,6 @@ public class Item {
         this.salesPrice = salesPrice;
         this.quantity = quantity;
         this.products = new ArrayList<>();
-        //System.out.println("products" + products);
-        //System.out.println(productId);
     }
     public Item(){
     
@@ -71,7 +69,7 @@ public class Item {
         this.products = products;
     }
     
-    
+
 
     
     

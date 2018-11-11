@@ -20,6 +20,7 @@ public class Order {
     private ArrayList<Item> items;
     private List<Product> products;
 
+
     
     public Order(int orderId, int salesId, int customerId,int productId) {
         this.orderId = orderId;
@@ -80,6 +81,21 @@ public class Order {
         this.products = products;
     }
     
+    
+//    public int orderTotal(){
+//    
+//        int sum=0;
+//        for(Product i : Product){
+//        
+//            sum = sum + i.getOrderItemTotal();
+//
+//        }
+//        
+//        return sum;
+//        
+//    
+//    }
+
      public String toString(){
         return String.valueOf(orderId);//customerId;
     }

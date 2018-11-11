@@ -69,6 +69,7 @@ public class GateWay {
         }
         while((row = orderReader.getNextRow()) != null ){
             generateOrder(row);
+
         }
         runAnalysis();
     }
@@ -79,7 +80,9 @@ public class GateWay {
         DataStore.getInstance().getCustomer().put(customerId,cust);
     }
     
+
     private void generateOrder(String[] row){
+
         int orderId = Integer.parseInt(row[0]);
         int salesId = Integer.parseInt(row[4]);
         int customerId = Integer.parseInt(row[5]);
@@ -87,6 +90,7 @@ public class GateWay {
         Order order = new Order(orderId, salesId,customerId,productId);
         DataStore.getInstance().getOrder().put(orderId,order);
         
+
         int itemId = Integer.parseInt(row[1]);
         int quantity = Integer.parseInt(row[3]);
         int sales = Integer.parseInt(row[6]);
@@ -96,7 +100,10 @@ public class GateWay {
         
     }
     
+   
+    
     private void generateProduct(String[] row){
+
         int productId = Integer.parseInt(row[0]);
         int minPrice = Integer.parseInt(row[1]);
         int maxPrice = Integer.parseInt(row[2]);
@@ -107,6 +114,7 @@ public class GateWay {
         
     }
     
+
 //    private Item generateItem(String[] row){
 //        int itemId = Integer.parseInt(row[1]);
 //        int quantity = Integer.parseInt(row[3]);
@@ -126,6 +134,7 @@ public class GateWay {
         
        
 //    }
+
     
 //    private void generateSalesPerson(String[] row){
 //        int salesId = Integer.parseInt(row[4]);
