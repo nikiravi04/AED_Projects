@@ -63,4 +63,20 @@ public class AnalysisHelper {
 
     }
     
+    public void getTotalRevenue() {
+        int totalRevenue = 0;
+        Map<Integer, Order> orders = DataStore.getInstance().getOrder();
+        Map<Integer, Product> products = DataStore.getInstance().getProduct();
+        Map<Integer, Item> items = DataStore.getInstance().getItem();
+        
+        for(Order order : orders.values()) {
+            int productId = order.getProductId();
+            int min = products.get(productId).getMinPrice();
+            int selling = items.get(productId).getSalesPrice();
+            int quantity = items.get(productId).getQuantity();
+            int revenue = selling * quantity;
+            totalRevenue += revenue;
+        }
+        System.out.println("\nTotal revenue for the year: " + totalRevenue);
+    }
 }

@@ -155,6 +155,7 @@ public class GateWay {
     private void runAnalysis(){
         
        helper.threeBestCustomers();
+       helper.getTotalRevenue();
     
     }
     
