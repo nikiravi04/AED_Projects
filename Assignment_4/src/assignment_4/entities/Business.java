@@ -14,9 +14,29 @@ import java.util.ArrayList;
 public class Business {
     
    private ArrayList<Customer> customer = new ArrayList<>();
+   private ArrayList<Item> item = new ArrayList<>();
    private ArrayList<SalesPerson> salesPerson = new ArrayList<>();
    private ArrayList<Order> order = new ArrayList<>();
+   private ArrayList<Product> products = new ArrayList<>();
 
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+   
+    
+
+    public ArrayList<Item> getItem() {
+        return item;
+    }
+
+    public void setItem(ArrayList<Item> item) {
+        this.item = item;
+    }
+    
     public ArrayList<Customer> getCustomer() {
         return customer;
     }

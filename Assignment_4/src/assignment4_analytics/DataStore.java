@@ -5,6 +5,7 @@
  */
 package assignment4_analytics;
 
+import assignment_4.entities.Business;
 import assignment_4.entities.Customer;
 import assignment_4.entities.Item;
 import assignment_4.entities.Order;
@@ -26,6 +27,7 @@ public class DataStore {
     private Map<Integer, SalesPerson> salesperson;
     private Map<Integer, Product> product;
     private Map<Integer, Item> item;
+    private Map<Integer, Business> business;
 
     
     
@@ -34,6 +36,8 @@ public class DataStore {
         order = new HashMap<>();
         salesperson = new HashMap<>();
         product = new HashMap<>();
+        item = new HashMap<>();
+        business = new HashMap<>();
     }
     
     public static DataStore getInstance(){
@@ -49,6 +53,15 @@ public class DataStore {
     public static void setDatastore(DataStore datastore) {
         DataStore.datastore = datastore;
     }
+
+    public Map<Integer, Business> getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Map<Integer, Business> business) {
+        this.business = business;
+    }
+    
     
     public Map<Integer, Item> getItem() {
         return item;
@@ -90,8 +103,5 @@ public class DataStore {
         this.product = product;
     }
     
-    
-    
-    
-    
+  
 }

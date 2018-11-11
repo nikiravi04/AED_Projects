@@ -60,14 +60,16 @@ public class Item {
         return orderItemTotal;
         
     }
-    
+
     public ArrayList<Product> getProducts() {
         return products;
     }
 
-    public void setItems(ArrayList<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
+    
+
 
     
     

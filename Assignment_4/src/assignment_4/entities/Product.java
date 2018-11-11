@@ -6,6 +6,7 @@
 package assignment_4.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Product {
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.targetPrice = targetPrice;
+
     }
     
     
@@ -37,6 +39,7 @@ public class Product {
 
     public int getMinPrice() {
         return minPrice;
+
     }
 
     public void setMinPrice(int minPrice) {
@@ -51,6 +54,7 @@ public class Product {
         this.maxPrice = maxPrice;
     }
 
+
     public int getTargetPrice() {
         return targetPrice;
     }
@@ -58,5 +62,6 @@ public class Product {
     public void setTargetPrice(int targetPrice) {
         this.targetPrice = targetPrice;
     }
+
 
 }

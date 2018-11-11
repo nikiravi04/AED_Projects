@@ -17,7 +17,9 @@ public class Order {
     int salesId;
     int customerId;
     int productId;
-    private List<Item> items;
+    private ArrayList<Item> items;
+    private List<Product> products;
+
 
     
     public Order(int orderId, int salesId, int customerId,int productId) {
@@ -26,6 +28,8 @@ public class Order {
         this.customerId = customerId;
         this.productId = productId;
         this.items = new ArrayList<>();
+        this.products = new ArrayList<>();
+        //System.out.println("items" +items);
     }
 
     public int getProductId() {
@@ -61,13 +65,22 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public List<Item> getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+    
     
 //    public int orderTotal(){
 //    
@@ -83,8 +96,6 @@ public class Order {
 //    
 //    }
 
-
-         
      public String toString(){
         return String.valueOf(orderId);//customerId;
     }
