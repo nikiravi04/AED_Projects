@@ -20,15 +20,17 @@ public class Order {
     private ArrayList<Item> items;
     private List<Product> products;
 
+    Item item;
 
     
-    public Order(int orderId, int salesId, int customerId,int productId) {
+    public Order(int orderId, int salesId, int customerId,Item item) {
         this.orderId = orderId;
         this.salesId = salesId;
         this.customerId = customerId;
         this.productId = productId;
         this.items = new ArrayList<>();
         this.products = new ArrayList<>();
+        this.item = item;
         //System.out.println("items" +items);
     }
 
