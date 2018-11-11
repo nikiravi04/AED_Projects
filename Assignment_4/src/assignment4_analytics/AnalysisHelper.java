@@ -112,5 +112,30 @@ public class AnalysisHelper {
         System.out.println("\nTotal revenue for the year: " + totalRevenue +"\n");
     }
     
+    public void getThreeMostPopularProduct(){
+        Map<Integer, Integer> productQuantityCount = new HashMap<Integer, Integer>();
+        Map<Integer, Order> orders = DataStore.getInstance().getOrders();
+        for(Order order : orders.values()) {
+            int totalQuantity = 0;
+            if(productQuantityCount.containsKey(order.getItem().getProductId()))
+                totalQuantity = productQuantityCount.get(order.getItem().getProductId());
+            totalQuantity += order.getItem().getQuantity();
+            productQuantityCount.put(order.getItem().getProductId(), totalQuantity);
+        }
+        List<Integer> productList = new ArrayList<>(productQuantityCount.keySet());
+        Collections.sort(productList, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer productId1, Integer productId2) {
+                //so as to get descending list
+                return productQuantityCount.get(productId2) - productQuantityCount.get(productId1);
+            }
+        });
+        
+        System.out.println("\n3 most popular products: ");
+        for(int i=0; i<productList.size() && i<3; i++) {
+            int id = productList.get(i);
+            System.out.println(id + " quantity: " + productQuantityCount.get(id));
+        }
+    }
     
 }

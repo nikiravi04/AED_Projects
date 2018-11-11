@@ -160,6 +160,7 @@ public class GateWay {
        helper.threeBestCustomers();
        helper.threeBestSalesPersons();
        helper.getTotalRevenue();
+       helper.getThreeMostPopularProduct();
     
     }
     
