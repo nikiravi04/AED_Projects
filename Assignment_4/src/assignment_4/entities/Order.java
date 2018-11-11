@@ -34,6 +34,15 @@ public class Order {
         //System.out.println("items" +items);
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    
     public int getProductId() {
         return productId;
     }
