@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  *
- * @author harshalneelkamal
+ * @author TechieTribe (ravindran.n@husky.neu.edu , varmavimal.v@husky.neu.edu, gubballi.s@husky.neu.edu)
  */
 public class GateWay {
     
@@ -158,6 +158,7 @@ public class GateWay {
     private void runAnalysis(){
         
        helper.threeBestCustomers();
+       helper.threeBestSalesPersons();
        helper.getTotalRevenue();
     
     }
