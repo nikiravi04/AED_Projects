@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author harshalneelkamal
+ * @author TechieTribe (ravindran.n@husky.neu.edu , varmavimal.v@husky.neu.edu, gubballi.s@husky.neu.edu)
  */
 public class Customer extends Person{
     

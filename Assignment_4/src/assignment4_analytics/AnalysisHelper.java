@@ -19,7 +19,7 @@ import assignment_4.entities.Item;
 
 /**
  *
- * @author nikitaravindran
+ * @author TechieTribe (ravindran.n@husky.neu.edu , varmavimal.v@husky.neu.edu, gubballi.s@husky.neu.edu)
  */
 public class AnalysisHelper {
     
@@ -32,10 +32,10 @@ public class AnalysisHelper {
         Map<Integer, Product> products = DataStore.getInstance().getProduct();
         for(Order order : orders.values()) {
             int productId = order.getItem().getProductId();
-            int min = products.get(productId).getMinPrice();
+            //int min = products.get(productId).getMinPrice();
             int selling = order.getItem().getSalesPrice();
             int quantity = order.getItem().getQuantity();
-            int revenue = (selling - min) * quantity;
+            int revenue = (selling) * quantity;
             int totalRevenue = 0;
             if(customerRevenue.containsKey(order.getCustomerId()))
                 totalRevenue = customerRevenue.get(order.getCustomerId());
@@ -55,9 +55,42 @@ public class AnalysisHelper {
         System.out.println("\n3 best customers: ");
         for(int i=0; i<customerList.size() && i<3; i++) {
             int id = customerList.get(i);
-            System.out.println(id + " revenue: " + customerRevenue.get(id));
+            System.out.println("Customer ID - "+id + ", Revenue - " + customerRevenue.get(id));
         }
 
+    }
+    
+    public void threeBestSalesPersons(){
+        final Map<Integer, Integer> salesRevenue = new HashMap<Integer, Integer>();
+        Map<Integer, Order> orders = DataStore.getInstance().getOrder();
+        Map<Integer, Product> products = DataStore.getInstance().getProduct();
+        for(Order order : orders.values()) {
+            int productId = order.getItem().getProductId();
+            //int min = products.get(productId).getMin();
+            int selling = order.getItem().getSalesPrice();
+            int quantity = order.getItem().getQuantity();
+            int revenue = (selling) * quantity;
+            int totalRevenue = 0;
+            if(salesRevenue.containsKey(order.getSalesId()))
+                totalRevenue = salesRevenue.get(order.getSalesId());
+            totalRevenue += revenue;
+            salesRevenue.put(order.getSalesId(), totalRevenue);
+        }
+        
+        List<Integer> salesList = new ArrayList<>(salesRevenue.keySet());
+        Collections.sort(salesList, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer salesId1, Integer salesId2) {
+                //so as to get descending list
+                return salesRevenue.get(salesId2) - salesRevenue.get(salesId1);
+            }
+        });
+        
+        System.out.println("\n3 Best sales people: ");
+        for(int i=0; i<salesList.size() && i<3; i++) {
+            int id = salesList.get(i);
+            System.out.println("Sales Persons ID - "+id + ", Revenue - " + salesRevenue.get(id));
+        }
     }
     
     public void getTotalRevenue() {
@@ -68,13 +101,15 @@ public class AnalysisHelper {
         
         for(Order order : orders.values()) {
             int productId = order.getProductId();
-            int min = products.get(productId).getMinPrice();
-            int selling = items.get(productId).getSalesPrice();
-            int quantity = items.get(productId).getQuantity();
+            //int min = products.get(productId).getMinPrice();
+            //int selling = items.get(productId).getSalesPrice();
+            int selling = order.getItem().getSalesPrice();
+            //int quantity = items.get(productId).getQuantity();
+            int quantity = order.getItem().getQuantity();
             int revenue = selling * quantity;
             totalRevenue += revenue;
         }
-        System.out.println("\nTotal revenue for the year: " + totalRevenue);
+        System.out.println("\nTotal revenue for the year: " + totalRevenue +"\n");
     }
     
     
