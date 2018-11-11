@@ -30,14 +30,12 @@ public class AnalysisHelper {
         final Map<Integer, Integer> customerRevenue = new HashMap<Integer, Integer>();
         Map<Integer, Order> orders = DataStore.getInstance().getOrder();
         Map<Integer, Product> products = DataStore.getInstance().getProduct();
-        Map<Integer, Item> items = DataStore.getInstance().getItem();
-        
         for(Order order : orders.values()) {
-            int productId = order.getProductId();
+            int productId = order.getItem().getProductId();
             int min = products.get(productId).getMinPrice();
-            int selling = items.get(productId).getSalesPrice();
-            int quantity = items.get(productId).getQuantity();
-            int revenue = selling * quantity;
+            int selling = order.getItem().getSalesPrice();
+            int quantity = order.getItem().getQuantity();
+            int revenue = (selling - min) * quantity;
             int totalRevenue = 0;
             if(customerRevenue.containsKey(order.getCustomerId()))
                 totalRevenue = customerRevenue.get(order.getCustomerId());
@@ -59,7 +57,6 @@ public class AnalysisHelper {
             int id = customerList.get(i);
             System.out.println(id + " revenue: " + customerRevenue.get(id));
         }
-    
 
     }
     
