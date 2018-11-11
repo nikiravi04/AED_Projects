@@ -6,6 +6,7 @@
 package assignment_4.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,18 +15,19 @@ import java.util.ArrayList;
 public class Product {
     
     int productId;
-    int salesPrice;
-    int quantity;
-    private ArrayList<Order> orders;
-    
-    public Product(int productId,int salesPrice, int quantity){
-    
-        this.productId = productId;
-        this.salesPrice = salesPrice;
-        this.quantity = quantity;
-        
+    int minPrice;
+    int maxPrice;
+    int targetPrice;
 
+    public Product(int productId, int minPrice, int maxPrice, int targetPrice) {
+        this.productId = productId;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+        this.targetPrice = targetPrice;
+        
     }
+    
+    
 
     public int getProductId() {
         return productId;
@@ -35,40 +37,30 @@ public class Product {
         this.productId = productId;
     }
 
-    public int getSalesPrice() {
-        return salesPrice;
+    public int getMinPrice() {
+        return minPrice;
     }
 
-    public void setSalesPrice(int salesPrice) {
-        this.salesPrice = salesPrice;
+    public void setMinPrice(int minPrice) {
+        this.minPrice = minPrice;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getMaxPrice() {
+        return maxPrice;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setMaxPrice(int maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
-    
-
-    public ArrayList<Order> getOrders() {
-        return orders;
+    public int getTargetPrice() {
+        return targetPrice;
     }
 
-    public void setOrders(ArrayList<Order> orders) {
-        this.orders = orders;
-    }
-
-    public int getOrderItemTotal(){
-        
-        int orderItemTotal = 0;
-        orderItemTotal = getSalesPrice() * getQuantity();
-        return orderItemTotal;
-        
+    public void setTargetPrice(int targetPrice) {
+        this.targetPrice = targetPrice;
     }
 
     
-    
+
 }

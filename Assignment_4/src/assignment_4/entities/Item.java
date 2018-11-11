@@ -6,6 +6,7 @@
 package assignment_4.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,12 +16,15 @@ public class Item {
     int productId;
     int salesPrice;
     int quantity;
-    private ArrayList<Order> orders;
+    private ArrayList<Product> products;
 
     public Item(int productId, int salesPrice, int quantity) {
         this.productId = productId;
         this.salesPrice = salesPrice;
         this.quantity = quantity;
+        this.products = new ArrayList<>();
+        //System.out.println("products" + products);
+        //System.out.println(productId);
     }
     public Item(){
     
@@ -50,14 +54,7 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public ArrayList<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(ArrayList<Order> orders) {
-        this.orders = orders;
-    }
-
+    
     public int getOrderItemTotal(){
         
         int orderItemTotal = 0;
@@ -65,8 +62,16 @@ public class Item {
         return orderItemTotal;
         
     }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
     
-  
+    
 
     
     

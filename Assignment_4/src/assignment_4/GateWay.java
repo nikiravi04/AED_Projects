@@ -24,6 +24,7 @@ public class GateWay {
     DataReader orderReader;
     DataReader productReader;
     DataReader customerReader;
+    DataReader itemReader;
     AnalysisHelper helper;
     
     public GateWay() throws IOException {
@@ -31,6 +32,7 @@ public class GateWay {
         productReader = new DataReader(generator.getProductCataloguePath());
         orderReader = new DataReader(generator.getOrderFilePath());
         customerReader = new DataReader(generator.getOrderFilePath());
+        itemReader = new DataReader(generator.getOrderFilePath());
         helper = new AnalysisHelper();
     }
     
@@ -47,27 +49,26 @@ public class GateWay {
         //Below is the sample for how you can use reader. you might wanna 
         //delete it once you understood.
         
-        DataReader orderReader = new DataReader(generator.getOrderFilePath());
-        String[] orderRow;
-        printRow(orderReader.getFileHeader());
-        while((orderRow = orderReader.getNextRow()) != null){
-            printRow(orderRow);
-        }
-        System.out.println("_____________________________________________________________");
-        DataReader productReader = new DataReader(generator.getProductCataloguePath());
-        String[] prodRow;
-        printRow(productReader.getFileHeader());
-        while((prodRow = productReader.getNextRow()) != null){
-            printRow(prodRow);
-        }
+//        DataReader orderReader = new DataReader(generator.getOrderFilePath());
+//        String[] orderRow;
+//        printRow(orderReader.getFileHeader());
+//        while((orderRow = orderReader.getNextRow()) != null){
+//            printRow(orderRow);
+//        }
+//        System.out.println("_____________________________________________________________");
+//        DataReader productReader = new DataReader(generator.getProductCataloguePath());
+//        String[] prodRow;
+//        printRow(productReader.getFileHeader());
+//        while((prodRow = productReader.getNextRow()) != null){
+//            printRow(prodRow);
+//        }
         
         String[] row;
-        while((row = customerReader.getNextRow()) != null ){
-            generateCustomer(row);
+        while((row = productReader.getNextRow()) != null ){
+            generateProduct(row);
         }
         while((row = orderReader.getNextRow()) != null ){
-            Product product = generateProduct(row);
-            generateOrder(row, product);
+            generateOrder(row);
         }
         runAnalysis();
     }
@@ -78,33 +79,53 @@ public class GateWay {
         DataStore.getInstance().getCustomer().put(customerId,cust);
     }
     
-    private void generateOrder(String[] row,Product product){
+    private void generateOrder(String[] row){
         int orderId = Integer.parseInt(row[0]);
         int salesId = Integer.parseInt(row[4]);
         int customerId = Integer.parseInt(row[5]);
         int productId = Integer.parseInt(row[2]);
-        //Order order = new Order(orderId, salesId,customerId,productId);
-        //DataStore.getInstance().getOrder().put(orderId,order);
+        Order order = new Order(orderId, salesId,customerId,productId);
+        DataStore.getInstance().getOrder().put(orderId,order);
         
-        Map<Integer,Order> order = DataStore.getInstance().getOrder();
-        if(order.containsKey(productId))
-            order.get(productId).getProduct().add(product);
-        else {
-            Order orders = new Order(orderId, salesId,customerId,productId);
-            orders.getProduct().add(product);
-            order.put(productId, orders);
-        }
+        int itemId = Integer.parseInt(row[1]);
+        int quantity = Integer.parseInt(row[3]);
+        int sales = Integer.parseInt(row[6]);
+        Item item = new Item(itemId,quantity,sales);
+        DataStore.getInstance().getItem().put(itemId,item);
+   
         
     }
     
-    private Product generateProduct(String[] row){
-        int productId = Integer.parseInt(row[2]);
-        int quan = Integer.parseInt(row[3]);
-        int sales = Integer.parseInt(row[6]);
-        Product product = new Product(productId, quan,sales);
+    private void generateProduct(String[] row){
+        int productId = Integer.parseInt(row[0]);
+        int minPrice = Integer.parseInt(row[1]);
+        int maxPrice = Integer.parseInt(row[2]);
+        int targetPrice = Integer.parseInt(row[3]);
+        
+        Product product = new Product(productId, minPrice,maxPrice,targetPrice);
         DataStore.getInstance().getProduct().put(productId,product);
-        return product;
+        
     }
+    
+//    private Item generateItem(String[] row){
+//        int itemId = Integer.parseInt(row[1]);
+//        int quantity = Integer.parseInt(row[3]);
+//        int sales = Integer.parseInt(row[6]);
+//        Item item = new Item(itemId, quan,sales);
+//        DataStore.getInstance().getItem().put(itemId,item);
+        
+//        Map<Integer,Item> items = DataStore.getInstance().getItem();
+//        if(items.containsKey(itemId))
+//            items.get(itemId).getProducts().add(product);
+//        else {
+//            Item item = new Item(itemId,quantity,sales);
+//            item.getProducts().add(itemId);
+//            items.put(itemId,item);
+//            return item; 
+//        }
+        
+       
+//    }
     
 //    private void generateSalesPerson(String[] row){
 //        int salesId = Integer.parseInt(row[4]);
@@ -124,7 +145,7 @@ public class GateWay {
     
     private void runAnalysis(){
         
-        helper.threeBestCustomers();
+       helper.threeBestCustomers();
     
     }
     

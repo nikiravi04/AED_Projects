@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Customer extends Person{
     
     int customerId;
-    private ArrayList<Order> order = new ArrayList<>();
+
 
     public Customer(int customerId) {
         this.customerId = customerId;
@@ -32,17 +32,17 @@ public class Customer extends Person{
         this.customerId = customerId;
     }
     
-    public int getTotalRevenue(){
-        
-        int sum = 0;
-        for(Order o : order){
-            
-            sum = sum + o.orderTotal();
-
-        }
-        
-        return sum; 
-    }
+//    public int getTotalRevenue(){
+//        
+//        int sum = 0;
+//        for(Order o : order){
+//            
+//            sum = sum + o.orderTotal();
+//
+//        }
+//        
+//        return sum; 
+//    }
 
     @Override
     public String toString(){
