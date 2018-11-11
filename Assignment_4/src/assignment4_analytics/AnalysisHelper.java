@@ -109,12 +109,12 @@ public class AnalysisHelper {
             int revenue = selling * quantity;
             totalRevenue += revenue;
         }
-        System.out.println("\nTotal revenue for the year: " + totalRevenue +"\n");
+        System.out.println("\nTotal revenue for the year: " + totalRevenue);
     }
     
     public void getThreeMostPopularProduct(){
-        Map<Integer, Integer> productQuantityCount = new HashMap<Integer, Integer>();
-        Map<Integer, Order> orders = DataStore.getInstance().getOrders();
+        final Map<Integer, Integer> productQuantityCount = new HashMap<Integer, Integer>();
+        Map<Integer, Order> orders = DataStore.getInstance().getOrder();
         for(Order order : orders.values()) {
             int totalQuantity = 0;
             if(productQuantityCount.containsKey(order.getItem().getProductId()))
@@ -134,8 +134,9 @@ public class AnalysisHelper {
         System.out.println("\n3 most popular products: ");
         for(int i=0; i<productList.size() && i<3; i++) {
             int id = productList.get(i);
-            System.out.println(id + " quantity: " + productQuantityCount.get(id));
+            System.out.println("Product ID - "+id + ", Quantity - " + productQuantityCount.get(id));
         }
+        System.out.println("\n");
     }
     
 }
