@@ -21,7 +21,8 @@ public class DataReader {
     private String[] header;
     
     public DataReader(String fileName) throws FileNotFoundException {
-        File file = new File(fileName);
+        //fileName = '/Users/nikitaravindran/Downloads/Archive/SalesData.csv';
+        File file = new File("/Users/nikitaravindran/Downloads/Archive/SalesData.csv");
         if(!file.exists())
             throw new FileNotFoundException("File not found at the path specified: "+fileName);
         reader = new BufferedReader(new FileReader(file));

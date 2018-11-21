@@ -117,9 +117,10 @@ public class AnalysisHelper {
         Map<Integer, Order> orders = DataStore.getInstance().getOrder();
         for(Order order : orders.values()) {
             int totalQuantity = 0;
+            int selling = order.getItem().getSalesPrice(); 
             if(productQuantityCount.containsKey(order.getItem().getProductId()))
-                totalQuantity = productQuantityCount.get(order.getItem().getProductId());
-            totalQuantity += order.getItem().getQuantity();
+                totalQuantity = productQuantityCount.get(order.getItem().getProductId()) * selling;
+            totalQuantity += order.getItem().getQuantity() * selling ;
             productQuantityCount.put(order.getItem().getProductId(), totalQuantity);
         }
         List<Integer> productList = new ArrayList<>(productQuantityCount.keySet());
