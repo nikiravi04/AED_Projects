@@ -8,6 +8,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.PatientAccount.PatientAccount;
 import javax.swing.JPanel;
 
 /**
@@ -41,7 +42,8 @@ public abstract class Role {
             UserAccount account, 
             Organization organization, 
             Enterprise enterprise, 
-            EcoSystem business);
+            EcoSystem business,
+            PatientAccount patientAccount);
 
     @Override
     public String toString() {
