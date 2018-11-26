@@ -5,6 +5,8 @@
  */
 package UserInterface.SignUpScreenLoginScreen;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Vishaka
@@ -14,7 +16,7 @@ public class LoginScreen extends javax.swing.JPanel {
     /**
      * Creates new form LoginScreen
      */
-    public LoginScreen() {
+    public LoginScreen(JPanel userProcessContainer) {
         initComponents();
     }
 
