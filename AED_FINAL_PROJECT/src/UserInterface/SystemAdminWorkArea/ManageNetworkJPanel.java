@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.SystemAdminWorkArea;
+package UserInterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
 import Business.Network.Network;
