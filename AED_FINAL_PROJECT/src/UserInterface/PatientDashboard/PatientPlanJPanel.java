@@ -3,23 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.DoctorRole;
-
-import Business.Enterprise.Enterprise;
-import Business.UserAccount.UserAccount;
-import javax.swing.JPanel;
+package UserInterface.PatientDashboard;
 
 /**
  *
  * @author nikitaravindran
  */
-public class RequestLabTestJPanel extends javax.swing.JPanel {
+public class PatientPlanJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form RequestLabTestJPanel
+     * Creates new form PatientPlanJPanel
      */
-
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise) {
+    public PatientPlanJPanel() {
         initComponents();
     }
 
@@ -36,11 +31,11 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 335, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
