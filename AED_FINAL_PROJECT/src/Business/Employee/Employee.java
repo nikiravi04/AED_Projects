@@ -14,11 +14,22 @@ public class Employee {
     private int id;
     private String phone;
     private String address;
+    private String type;
+
+    
     private static int count = 1;
 
     public Employee() {
         id = count;
         count++;
+    }
+    
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPhone() {
@@ -36,8 +47,6 @@ public class Employee {
     public void setAddress(String address) {
         this.address = address;
     }
-    
-    
 
     public int getId() {
         return id;

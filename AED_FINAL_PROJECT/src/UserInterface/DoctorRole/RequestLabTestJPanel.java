@@ -52,7 +52,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         requestTestJButton = new javax.swing.JButton();
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("Patient:");
+        enterpriseLabel.setText("EnterPrise:");
 
         valueLabel.setText("<value>");
 

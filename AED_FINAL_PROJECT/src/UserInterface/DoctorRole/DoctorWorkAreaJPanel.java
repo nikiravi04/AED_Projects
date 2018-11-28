@@ -7,6 +7,7 @@ package UserInterface.DoctorRole;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
+import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.PatientAccount.PatientAccount;
@@ -30,6 +31,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private PatientAccount patientAccount;
+    private OrganizationDirectory directory;
     
     public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, DoctorOrganization organization, Enterprise enterprise) {
         initComponents();
@@ -37,8 +39,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
-        this.patientAccount=patientAccount;
-        valueLabel.setText(patientAccount.getPatientName());
+        //this.patientAccount=patientAccount;
+        valueLabel.setText(enterprise.getName());
         populateRequestTable();
     }
     
@@ -73,11 +75,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         requestTestJButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        viewPatientDetailsBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        secondOpinionBtn = new javax.swing.JButton();
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("Patient :");
+        enterpriseLabel.setText("EnterPrise:");
 
         valueLabel.setText("<value>");
 
@@ -123,10 +126,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("View Patient Details");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewPatientDetailsBtn.setText("View Patient Details");
+        viewPatientDetailsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewPatientDetailsBtnActionPerformed(evt);
             }
         });
 
@@ -134,6 +137,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        secondOpinionBtn.setText("Ask Second Opinion");
+        secondOpinionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                secondOpinionBtnActionPerformed(evt);
             }
         });
 
@@ -150,9 +160,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(requestTestJButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(secondOpinionBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viewPatientDetailsBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(requestTestJButton)))
                         .addGap(25, 25, 25))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -177,9 +190,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(requestTestJButton)
-                    .addComponent(jButton1)
+                    .addComponent(viewPatientDetailsBtn)
                     .addComponent(jButton2))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(secondOpinionBtn)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,23 +212,31 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void viewPatientDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPatientDetailsBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_viewPatientDetailsBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void secondOpinionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondOpinionBtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("SecondOpinionDoctorJPanel", new SecondOpinionDoctorJPanel(userProcessContainer,directory,enterprise));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_secondOpinionBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
+    private javax.swing.JButton secondOpinionBtn;
     private javax.swing.JLabel valueLabel;
+    private javax.swing.JButton viewPatientDetailsBtn;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }
