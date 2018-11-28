@@ -34,11 +34,9 @@ public class PatientAccountDirectory {
         return null;
     }
     
-    public PatientAccount createPatientAccount(String username, String password, Role role){
+    public PatientAccount createPatientAccount(String username){
         PatientAccount patientAccount = new PatientAccount();
         patientAccount.setPatientName(username);
-        patientAccount.setPatientPassword(password);
-        patientAccount.setRole(role);
         patientAccountList.add(patientAccount);
         return patientAccount;
     }
