@@ -37,10 +37,10 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         organizationJComboBox.removeAllItems();
         int i=organizationDir.getOrganizationList().size();
         for (Organization organization : organizationDir.getOrganizationList()){
-            int j=0;
-            if(j<i && organizationDir.getOrganizationList().get(i).toString() == "Doctor Organization")
+//            int j=0;
+//            if(j<i && organizationDir.getOrganizationList().get(i).toString() == "Doctor Organization")
                 organizationJComboBox.addItem(organization);
-                j--;
+               // j--;
         } 
     }
     
