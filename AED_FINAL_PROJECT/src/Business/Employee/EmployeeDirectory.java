@@ -4,6 +4,7 @@
  */
 package Business.Employee;
 
+import Business.PatientAccount.PatientAccount;
 import java.util.ArrayList;
 
 /**
@@ -13,14 +14,22 @@ import java.util.ArrayList;
 public class EmployeeDirectory {
     
     private ArrayList<Employee> employeeList;
+    private ArrayList<PatientAccount> patientAccountList;
 
     public EmployeeDirectory() {
         employeeList = new ArrayList();
+        patientAccountList = new ArrayList();
     }
 
     public ArrayList<Employee> getEmployeeList() {
         return employeeList;
     }
+
+    public ArrayList<PatientAccount> getPatientAccountList() {
+        return patientAccountList;
+    }
+    
+    
     
     public Employee createEmployee(String name){
         Employee employee = new Employee();

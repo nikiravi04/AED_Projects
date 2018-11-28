@@ -146,21 +146,24 @@ public class MainJFrame extends javax.swing.JFrame {
 
         //Step1: Check in the system admin user account directory if you have the user
         UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
+        UserAccount userAccount1=system.getUserAccountDirectory().authenticatePatient(userName, password);
         //PatientAccount patientAccount=system.ge
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
 
-        if(userAccount==null){
+        if(userAccount==null || userAccount1==null){
             //Step 2: Go inside each network and check each enterprise
             for(Network network:system.getNetworkList()){
                 //Step 2.a: check against each enterprise
                 for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
                     userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                    if(userAccount==null){
+                    userAccount1=enterprise.getUserAccountDirectory().authenticatePatient(userName, password);
+                    if(userAccount==null || userAccount1==null){
                         //Step 3:check against each organization for each enterprise
                         for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
                             userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
-                            if(userAccount!=null){
+                            userAccount=organization.getUserAccountDirectory().authenticatePatient(userName, password);
+                            if(userAccount!=null || userAccount1!=null ){
                                 inEnterprise=enterprise;
                                 inOrganization=organization;
                                 break;
@@ -182,7 +185,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
 
-        if(userAccount==null){
+        if(userAccount==null || userAccount1==null){
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
         }

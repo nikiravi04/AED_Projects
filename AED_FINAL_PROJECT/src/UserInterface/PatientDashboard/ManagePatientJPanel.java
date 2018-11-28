@@ -1,50 +1,54 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.AdministrativeRole;
+package UserInterface.PatientDashboard;
 
 import Business.Employee.Employee;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.PatientAccount.PatientAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author Srikanth Reddy
  */
-public class ManageEmployeeJPanel extends javax.swing.JPanel {
+public class ManagePatientJPanel extends javax.swing.JPanel {
 
     private OrganizationDirectory organizationDir;
     private JPanel userProcessContainer;
-    
+    private Object enterprise;
     /**
-     * Creates new form ManageOrganizationJPanel
+     * Creates new form ManagePatientJPanel
      */
-    public ManageEmployeeJPanel(JPanel userProcessContainer,OrganizationDirectory organizationDir) {
-        initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.organizationDir = organizationDir;
-        
-        populateOrganizationComboBox();
-        populateOrganizationEmpComboBox();
+    public ManagePatientJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDirectory) {
+            initComponents();
+            this.userProcessContainer = userProcessContainer;
+            this.organizationDir = organizationDirectory;
+            populateOrganizationComboBox();
+            
     }
     
     public void populateOrganizationComboBox(){
         organizationJComboBox.removeAllItems();
-        
+        int i=organizationDir.getOrganizationList().size();
         for (Organization organization : organizationDir.getOrganizationList()){
-            organizationJComboBox.addItem(organization);
-        }
+            int j=0;
+            if(j<i && organizationDir.getOrganizationList().get(i).toString() == "Doctor Organization")
+                organizationJComboBox.addItem(organization);
+                j--;
+        } 
     }
     
-    public void populateOrganizationEmpComboBox(){
+    public void populateEmployeeComboBox(Organization organization){
         organizationEmpJComboBox.removeAllItems();
         
-        for (Organization organization : organizationDir.getOrganizationList()){
-            organizationEmpJComboBox.addItem(organization);
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+            organizationEmpJComboBox.addItem(employee);
         }
     }
 
@@ -53,10 +57,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+        for (PatientAccount patientAccount : organization.getPatientAccountDirectory().getPatientAccountList()){
             Object[] row = new Object[2];
-            row[0] = employee.getId();
-            row[1] = employee.getName();
+            row[0] = patientAccount.getId();
+            row[1] = patientAccount.getPatientName();
             model.addRow(row);
         }
     }
@@ -69,16 +73,16 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        nameJTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
-        addJButton = new javax.swing.JButton();
-        organizationJComboBox = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
-        backJButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        nameJTextField = new javax.swing.JTextField();
-        organizationEmpJComboBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
+        organizationEmpJComboBox = new javax.swing.JComboBox();
+        organizationJComboBox = new javax.swing.JComboBox();
+        addJButton = new javax.swing.JButton();
+        backJButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,15 +111,15 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(organizationJTable);
-        if (organizationJTable.getColumnModel().getColumnCount() > 0) {
-            organizationJTable.getColumnModel().getColumn(0).setResizable(false);
-            organizationJTable.getColumnModel().getColumn(1).setResizable(false);
-        }
 
-        addJButton.setText("Create Employee");
-        addJButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Name");
+
+        jLabel3.setText("Organization");
+
+        organizationEmpJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        organizationEmpJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addJButtonActionPerformed(evt);
+                organizationEmpJComboBoxActionPerformed(evt);
             }
         });
 
@@ -126,7 +130,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Organization");
+        addJButton.setText("Create Patient");
+        addJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addJButtonActionPerformed(evt);
+            }
+        });
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,16 +144,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("Name");
-
-        organizationEmpJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        organizationEmpJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                organizationEmpJComboBoxActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Organization");
+        jLabel1.setText("Organization");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -175,7 +175,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(organizationEmpJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +186,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(organizationEmpJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -202,14 +202,26 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
+
+    private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
+        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        if (organization != null){
+            populateEmployeeComboBox(organization);
+            //populateRoleComboBox(organization);
+        }
+    }//GEN-LAST:event_organizationJComboBoxActionPerformed
+
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-        
+
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
-        
+
         organization.getEmployeeDirectory().createEmployee(name);
         populateTable(organization);
-        
+
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -219,16 +231,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-        if (organization != null){
-            populateTable(organization);
-        }
-    }//GEN-LAST:event_organizationJComboBoxActionPerformed
-
-    private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;

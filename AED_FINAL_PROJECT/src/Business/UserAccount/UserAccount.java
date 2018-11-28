@@ -5,6 +5,7 @@
 package Business.UserAccount;
 
 import Business.Employee.Employee;
+import Business.PatientAccount.PatientAccount;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
 
@@ -17,6 +18,7 @@ public class UserAccount {
     private String username;
     private String password;
     private Employee employee;
+    private PatientAccount patientAccount;
     private Role role;
     private WorkQueue workQueue;
 
@@ -62,6 +64,15 @@ public class UserAccount {
         return workQueue;
     }
 
+    public PatientAccount getPatientAccount() {
+        return patientAccount;
+    }
+
+    public void setPatientAccount(PatientAccount patientAccount) {
+        this.patientAccount = patientAccount;
+    }
+
+    
     
     
     @Override

@@ -22,11 +22,24 @@ public class PatientAccount {
     private String isACorporateEmployee;
     private Role role;
     private WorkQueue workQueue;
+    private int id;
+    private static int count = 1;
     
     public PatientAccount(){
         workQueue = new WorkQueue();
+        id = count;
+        count++;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public String getPatientName() {
         return patientName;
     }
