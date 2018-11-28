@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public abstract class Organization {
 
     private String name;
+    private String orgName;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private PatientAccountDirectory patientAccountDirectory;
@@ -39,6 +40,7 @@ public abstract class Organization {
 
     public Organization(String name) {
         this.name = name;
+        //this.orgName = orgName;
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
@@ -51,6 +53,14 @@ public abstract class Organization {
     
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
     public int getOrganizationID() {
