@@ -209,6 +209,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         
         organization.getEmployeeDirectory().createEmployee(name);
         populateTable(organization);
+      
         
     }//GEN-LAST:event_addJButtonActionPerformed
 
