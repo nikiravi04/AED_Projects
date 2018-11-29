@@ -7,6 +7,7 @@ package UserInterface.DoctorRole;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
+import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccount;
@@ -33,6 +34,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private PatientAccount patientAccount;
     private OrganizationDirectory directory;
+    private LabOrganization labOrganization;
     
     public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, DoctorOrganization organization, Enterprise enterprise) {
         initComponents();
@@ -43,22 +45,22 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         //this.directory = directory;
         //this.patientAccount=patientAccount;
         valueLabel.setText(enterprise.getName());
-        populateRequestTable();
+        //populateRequestTable();
         populateCombo();
     }
     
-    public void populateRequestTable(){
+    public void populateRequestTable(LabOrganization labOrganization){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : labOrganization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
             String result = ((LabTestWorkRequest) request).getTestResult();
             row[3] = result == null ? "Waiting" : result;
-            //row[4]=request.
+            //row[4]=organization.getSupportedRole();
             
             model.addRow(row);
         }
@@ -235,14 +237,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
 
-        populateRequestTable();
+        //populateRequestTable();
 
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise));
+        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise, labOrganization));
         layout.next(userProcessContainer);
 
     }//GEN-LAST:event_requestTestJButtonActionPerformed
@@ -264,10 +266,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void labComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labComboBoxActionPerformed
         // TODO add your handling code here:
-//        Organization organization = (Organization)labComboBox.getSelectedItem();
-//        if (organization != null){
-//            populateRequestTable();
-//        }
+        LabOrganization labOrganization = (LabOrganization)labComboBox.getSelectedItem();
+        if (labOrganization != null){
+            populateRequestTable(labOrganization);
+        }
     }//GEN-LAST:event_labComboBoxActionPerformed
 
 
