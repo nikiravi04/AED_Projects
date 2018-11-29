@@ -46,11 +46,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         //this.directory = directory;
         //this.patientAccount=patientAccount;
         valueLabel.setText(enterprise.getName());
-        populateRequestTable();
+        //populateRequestTable();
         populateCombo();
     }
     
-    public void populateRequestTable(){
+
+    public void populateRequestTable(Organization organization){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
@@ -61,7 +62,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             row[2] = request.getStatus();
             String result = ((LabTestWorkRequest) request).getTestResult();
             row[3] = result == null ? "Waiting" : result;
-            //row[4]=organization.getSupportedRole();
             
             model.addRow(row);
         }
@@ -73,10 +73,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             
             labComboBox.addItem(organization);
+
         
       } 
-    } 
-
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -240,7 +240,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
 
-        populateRequestTable();
+        populateRequestTable(organization);
 
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
@@ -268,11 +268,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_secondOpinionBtnActionPerformed
 
     private void labComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labComboBoxActionPerformed
-        // TODO add your handling code here:
-//        Organization organization = (Organization)labComboBox.getSelectedItem();
-//        if (organization != null){
-//            populateRequestTable();
-//        }
+
+//        // TODO add your handling code here:
+        Organization organization = (Organization)labComboBox.getSelectedItem();
+        if (organization != null){
+            populateRequestTable(organization);
+        }
+
     }//GEN-LAST:event_labComboBoxActionPerformed
 
 
