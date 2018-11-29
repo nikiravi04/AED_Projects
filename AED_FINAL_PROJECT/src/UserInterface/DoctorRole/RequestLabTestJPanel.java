@@ -6,6 +6,7 @@
 package UserInterface.DoctorRole;
 
 import Business.Enterprise.Enterprise;
+import Business.Organization.DoctorOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -26,14 +27,15 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private UserAccount userAccount;
-    private Organization organization;
+    private LabOrganization organization;
     
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise) {
+    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, LabOrganization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         valueLabel.setText(enterprise.getName());
+        this.organization = organization;
     }
 
     /**
@@ -128,7 +130,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateRequestTable();
+        dwjp.populateRequestTable(organization);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
 

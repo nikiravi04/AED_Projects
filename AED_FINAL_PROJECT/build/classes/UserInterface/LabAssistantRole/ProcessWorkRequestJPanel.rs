@@ -1,3 +1,0 @@
-userinterface.LabAssistantRole.ProcessWorkRequestJPanel
-userinterface.LabAssistantRole.ProcessWorkRequestJPanel$2
-userinterface.LabAssistantRole.ProcessWorkRequestJPanel$1
