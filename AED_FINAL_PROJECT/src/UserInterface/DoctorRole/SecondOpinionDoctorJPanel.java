@@ -30,7 +30,7 @@ public class SecondOpinionDoctorJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.organizationDir = organizationDir;
         this.enterprise = enterprise;
-        valueLabel.setText(enterprise.getName());
+        //valueLabel.setText(enterprise.getName());
     }
     
     
