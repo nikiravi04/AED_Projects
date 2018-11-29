@@ -9,6 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
+import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
@@ -45,15 +46,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         //this.directory = directory;
         //this.patientAccount=patientAccount;
         valueLabel.setText(enterprise.getName());
-        //populateRequestTable();
+        populateRequestTable();
         populateCombo();
     }
     
-    public void populateRequestTable(LabOrganization labOrganization){
+    public void populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : labOrganization.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
@@ -68,10 +69,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     
     private void populateCombo(){
         labComboBox.removeAllItems();
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            labComboBox.addItem(organization);
-        }
         
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            
+            labComboBox.addItem(organization);
+        
+      } 
     } 
 
     /**
@@ -156,7 +159,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        secondOpinionBtn.setText("Ask Second Opinion");
+        secondOpinionBtn.setText("Second Opinion");
         secondOpinionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 secondOpinionBtnActionPerformed(evt);
@@ -186,7 +189,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshTestJButton)
                         .addGap(103, 103, 103))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -237,14 +240,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
 
-        //populateRequestTable();
+        populateRequestTable();
 
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise, labOrganization));
+        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise, organization));
         layout.next(userProcessContainer);
 
     }//GEN-LAST:event_requestTestJButtonActionPerformed
@@ -260,16 +263,16 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void secondOpinionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondOpinionBtnActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("SecondOpinionDoctorJPanel", new SecondOpinionDoctorJPanel(userProcessContainer,directory,enterprise));
+        userProcessContainer.add("SecondOpinionMainJPanel", new SecondOpinionMainJPanel(userProcessContainer,directory,enterprise));
         layout.next(userProcessContainer);
     }//GEN-LAST:event_secondOpinionBtnActionPerformed
 
     private void labComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labComboBoxActionPerformed
         // TODO add your handling code here:
-        LabOrganization labOrganization = (LabOrganization)labComboBox.getSelectedItem();
-        if (labOrganization != null){
-            populateRequestTable(labOrganization);
-        }
+//        Organization organization = (Organization)labComboBox.getSelectedItem();
+//        if (organization != null){
+//            populateRequestTable();
+//        }
     }//GEN-LAST:event_labComboBoxActionPerformed
 
 

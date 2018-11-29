@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -27,9 +28,9 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private UserAccount userAccount;
-    private LabOrganization organization;
+    private DoctorOrganization organization;
     
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, LabOrganization organization) {
+    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, DoctorOrganization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -130,7 +131,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateRequestTable(organization);
+        dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
 
@@ -156,6 +157,8 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             org.getWorkQueue().getWorkRequestList().add(request);
             userAccount.getWorkQueue().getWorkRequestList().add(request);
         }
+        
+        JOptionPane.showMessageDialog(null,"Request Sent to Lab!");
 
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
