@@ -6,6 +6,7 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
 import Business.PatientAccount.PatientAccount;
 import Business.UserAccount.UserAccount;
@@ -20,7 +21,7 @@ public class LabAssistantRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, (LabOrganization)organization, business);
     }
     
 }
