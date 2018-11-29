@@ -192,7 +192,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="secondOpinionBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ask Second Opinion"/>
+        <Property name="text" type="java.lang.String" value="Second Opinion"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="secondOpinionBtnActionPerformed"/>
