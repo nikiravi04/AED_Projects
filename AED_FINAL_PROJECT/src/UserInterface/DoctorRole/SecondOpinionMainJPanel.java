@@ -51,6 +51,11 @@ public class SecondOpinionMainJPanel extends javax.swing.JPanel {
         });
 
         viewSecondOpinionBtn.setText("View Second Opinion Requests");
+        viewSecondOpinionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSecondOpinionBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -61,13 +66,13 @@ public class SecondOpinionMainJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(167, 167, 167)
+                .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(viewSecondOpinionBtn)
-                    .addComponent(askSecondOpinionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(askSecondOpinionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(135, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(118, 118, 118))
         );
@@ -90,6 +95,14 @@ public class SecondOpinionMainJPanel extends javax.swing.JPanel {
         userProcessContainer.add("SecondOpinionDoctorJPanel", new SecondOpinionDoctorJPanel(userProcessContainer,organizationDir,enterprise));
         layout.next(userProcessContainer);
     }//GEN-LAST:event_askSecondOpinionBtnActionPerformed
+
+    private void viewSecondOpinionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSecondOpinionBtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("ViewSecondOpinionRequests", new ViewSecondOpinionRequestsJPanel(userProcessContainer,organizationDir,enterprise));
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_viewSecondOpinionBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
