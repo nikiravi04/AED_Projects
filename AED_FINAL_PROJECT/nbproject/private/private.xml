@@ -3,27 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Employee/EmployeeDirectory.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Role/LabAssistantRole.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/UserInterface/PatientDashboard/PatientDashboard.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Role/Role.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/UserInterface/AdministrativeRole/AdminWorkAreaJPanel.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/UserInterface/MainJFrame/MainJFrame.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/UserInterface/SignUpScreenLoginScreen/LoginScreen.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/EcoSystem.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/UserInterface/DoctorRole/RequestLabTestJPanel.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/PatientAccount/PatientAccount.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/UserAccount/UserAccount.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/UserInterface/DoctorRole/DoctorWorkAreaJPanel.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Organization/Organization.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Role/SystemAdminRole.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/UserInterface/SignUpScreenLoginScreen/SignUpPanel.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Role/DoctorRole.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Network/Network.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/DB4OUtil/DB4OUtil.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Role/AdminRole.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/UserInterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
-            <file>file:/Users/nikitaravindran/NetBeansProjects/AED_FINAL_PROJECT/src/Business/Employee/Employee.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/Business/Role/LabAssistantRole.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/UserInterface/PatientDashboard/ManagePatientJPanel.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/UserInterface/MainJFrame/MainJFrame.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/Business/Role/PatientRole.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/Business/Role/DoctorRole.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/UserInterface/LabAssistantRole/LabAssistantWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/UserInterface/AdministrativeRole/ManageUserAccountJPanel.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/UserInterface/DoctorRole/DoctorWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/Business/Role/Role.java</file>
+            <file>file:/C:/Users/vish1/AED_Assignment/group_assignment_techietribe/AED_FINAL_PROJECT/src/UserInterface/PatientDashboard/PatientDashboard.java</file>
         </group>
     </open-files>
 </project-private>

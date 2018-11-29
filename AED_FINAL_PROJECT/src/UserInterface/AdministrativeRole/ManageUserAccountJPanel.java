@@ -67,7 +67,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
-                Object row[] = new Object[2];
+                Object row[] = new Object[3];
                 row[0] = ua;
                 row[1] = ua.getRole();
                 row[2] = ua.getEmployee();
@@ -130,7 +130,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false
@@ -145,6 +145,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(userJTable);
+        if (userJTable.getColumnModel().getColumnCount() > 0) {
+            userJTable.getColumnModel().getColumn(0).setResizable(false);
+            userJTable.getColumnModel().getColumn(1).setResizable(false);
+            userJTable.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Manage User Account");
