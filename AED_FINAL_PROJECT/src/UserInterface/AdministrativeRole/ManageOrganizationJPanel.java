@@ -200,11 +200,6 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
-//        Type type = (Type) organizationJComboBox.getSelectedItem();
-//        directory.createOrganization(type);
-//        String name = nameOfOrgTextField.getText();
-//        
-//        populateTable();
         
         Type type = (Type) organizationJComboBox.getSelectedItem();
         Organization o =directory.createOrganization(type);
