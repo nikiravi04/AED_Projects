@@ -34,7 +34,15 @@ public class OrganizationDirectory {
             organizationList.add(organization);
         }
         else if (type.getValue().equals(Type.Patient.getValue())){
-            organization = new LabOrganization();
+            organization = new PatientOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.CancerLab.getValue())){
+            organization = new CancerLabOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.NeuroLab.getValue())){
+            organization = new NeurologyLabOrganization();
             organizationList.add(organization);
         }
         return organization;
