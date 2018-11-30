@@ -70,7 +70,7 @@ public class SecondOpinionMainJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(viewSecondOpinionBtn)
                     .addComponent(askSecondOpinionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,7 +85,7 @@ public class SecondOpinionMainJPanel extends javax.swing.JPanel {
                 .addComponent(askSecondOpinionBtn)
                 .addGap(57, 57, 57)
                 .addComponent(viewSecondOpinionBtn)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -98,10 +98,10 @@ public class SecondOpinionMainJPanel extends javax.swing.JPanel {
 
     private void viewSecondOpinionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSecondOpinionBtnActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("ViewSecondOpinionRequests", new ViewSecondOpinionRequestsJPanel(userProcessContainer,organizationDir,enterprise));
-        layout.next(userProcessContainer);
-        
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        userProcessContainer.add("ViewSecondOpinionRequests", new ViewSecondOpinionRequestsJPanel(userProcessContainer,organizationDir,enterprise));
+//        layout.next(userProcessContainer);
+//        
     }//GEN-LAST:event_viewSecondOpinionBtnActionPerformed
 
 
