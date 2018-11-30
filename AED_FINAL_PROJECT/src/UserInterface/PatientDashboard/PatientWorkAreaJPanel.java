@@ -35,9 +35,9 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
     private Organization organization;
     private Enterprise enterprise;
     private UserAccount userAccount;
-    private PatientAccount patientAccount;
-    private OrganizationDirectory directory;
-    private LabOrganization labOrganization;
+    //private PatientAccount patientAccount;
+    //private OrganizationDirectory directory;
+    //private LabOrganization labOrganization;
     
     public PatientWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
         initComponents();
@@ -107,6 +107,8 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         refreshTestJButton = new javax.swing.JButton();
         labComboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        messageJTextField = new javax.swing.JTextField();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,22 +166,34 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Choose Lab:");
 
+        jLabel2.setText("Message");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(335, 335, 335)
-                        .addComponent(refreshTestJButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                        .addGap(131, 131, 131)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(335, 335, 335)
+                                .addComponent(refreshTestJButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jLabel2)
+                        .addGap(76, 76, 76)
+                        .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(requestTestJButton)))
+                .addContainerGap(403, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -189,12 +203,9 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                             .addGap(30, 30, 30)
                             .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(484, 484, 484)
-                            .addComponent(requestTestJButton))
-                        .addGroup(layout.createSequentialGroup()
                             .addGap(103, 103, 103)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(507, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +216,15 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addGap(198, 198, 198)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(14, 14, 14))
+                    .addComponent(messageJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(requestTestJButton)
+                .addContainerGap(206, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -214,17 +233,45 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(96, 96, 96)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(requestTestJButton)
-                    .addContainerGap(85, Short.MAX_VALUE)))
+                    .addContainerGap(426, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
 
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new PatientLabTestRequestJPanel(userProcessContainer, userAccount, enterprise, organization));
-        layout.next(userProcessContainer);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        userProcessContainer.add("RequestLabTestJPanel", new PatientLabTestRequestJPanel(userProcessContainer, userAccount, enterprise, organization));
+//        layout.next(userProcessContainer);
+        
+        String message = messageJTextField.getText();
+
+        CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
+        NeuroLabWorkRequest neuroRequest = new NeuroLabWorkRequest();
+
+        Organization org = (Organization) labComboBox.getSelectedItem();
+        //for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (org instanceof CancerLabOrganization ){
+                //org = organization;
+                cancerRequest.setMessage(message);
+                cancerRequest.setSender(userAccount);
+                cancerRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(cancerRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(cancerRequest);
+                populateRequestTable(org);
+                //break;
+            }
+            if (org instanceof NeurologyLabOrganization ){
+                org = organization;
+                neuroRequest.setMessage(message);
+                neuroRequest.setSender(userAccount);
+                neuroRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(neuroRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(neuroRequest);
+                populateRequestTable(org);
+                //break;
+            }
+
+        //}
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
@@ -252,8 +299,10 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox labComboBox;
+    private javax.swing.JTextField messageJTextField;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;

@@ -113,6 +113,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         secondOpinionBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         labComboBox = new javax.swing.JComboBox();
+        messageJTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise:");
@@ -184,6 +186,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Message");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,7 +217,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(requestTestJButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(124, 124, 124)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel2)
+                        .addGap(76, 76, 76)
+                        .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,7 +245,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(secondOpinionBtn)
                     .addComponent(viewPatientDetailsBtn)
                     .addComponent(requestTestJButton))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(14, 14, 14))
+                    .addComponent(messageJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -255,10 +270,37 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
 
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise, organization));
-        layout.next(userProcessContainer);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise, organization));
+//        layout.next(userProcessContainer);
 
+        String message = messageJTextField.getText();
+
+        CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
+        NeuroLabWorkRequest neuroRequest = new NeuroLabWorkRequest();
+
+        Organization org = (Organization) labComboBox.getSelectedItem();
+        //for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (org instanceof CancerLabOrganization ){
+                //org = organization;
+                cancerRequest.setMessage(message);
+                cancerRequest.setSender(userAccount);
+                cancerRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(cancerRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(cancerRequest);
+                populateRequestTable(org);
+                //break;
+            }
+            if (org instanceof NeurologyLabOrganization ){
+                org = organization;
+                neuroRequest.setMessage(message);
+                neuroRequest.setSender(userAccount);
+                neuroRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(neuroRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(neuroRequest);
+                populateRequestTable(org);
+                //break;
+            }
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void viewPatientDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPatientDetailsBtnActionPerformed
@@ -286,8 +328,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox labComboBox;
+    private javax.swing.JTextField messageJTextField;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JButton secondOpinionBtn;
