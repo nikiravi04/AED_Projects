@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class CancerLabOrganization extends Organization{
    public CancerLabOrganization() {
-        super(Organization.Type.Lab.getValue());
+        super(Organization.Type.CancerLab.getValue());
     }
     
     @Override

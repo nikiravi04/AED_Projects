@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class NeurologyLabOrganization extends Organization{
    public NeurologyLabOrganization() {
-        super(Organization.Type.Lab.getValue());
+        super(Organization.Type.NeuroLab.getValue());
     }
     
     @Override
