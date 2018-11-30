@@ -6,6 +6,7 @@
 package UserInterface.DoctorRole;
 
 import Business.Enterprise.Enterprise;
+import Business.Organization.CancerLabOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
@@ -51,11 +52,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }
     
 
-    public void populateRequestTable(Organization organization){
+    public void populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
@@ -68,14 +69,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }
     
     private void populateCombo(){
-        labComboBox.removeAllItems();
-        
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            
-            labComboBox.addItem(organization);
-
-        
-      } 
+      labComboBox.removeAllItems();
+      Organization org = null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof LabOrganization){
+                org = organization;
+                labComboBox.addItem(organization);
+                populateRequestTable();
+            }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -225,7 +227,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
 
-        populateRequestTable(organization);
+        populateRequestTable();
 
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
@@ -250,11 +252,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void labComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labComboBoxActionPerformed
 
-//        // TODO add your handling code here:
-        Organization organization = (Organization)labComboBox.getSelectedItem();
-        if (organization != null){
-            populateRequestTable(organization);
-        }
+        // TODO add your handling code here:
+//        Organization organization = (Organization)labComboBox.getSelectedItem();
+//        if (organization instanceof CancerLabOrganization){
+//            populateRequestTable(organization);
+//        }
 
     }//GEN-LAST:event_labComboBoxActionPerformed
 
