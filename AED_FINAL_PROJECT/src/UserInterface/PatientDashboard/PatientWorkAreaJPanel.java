@@ -7,11 +7,13 @@ package UserInterface.PatientDashboard;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.CancerLabOrganization;
+import Business.Organization.CardiologyLabOrganization;
 import Business.Organization.PatientOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.NeurologyLabOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Organization.RadiologyLabOrganization;
 import Business.PatientAccount.PatientAccount;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
@@ -83,7 +85,8 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
       labComboBox.removeAllItems();
       Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization){
+            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization 
+                    || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 labComboBox.addItem(org);
                 //populateRequestTable(org);
@@ -112,20 +115,20 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result", "Lab"
+                "Message", "Receiver", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -278,7 +281,8 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization){
+            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization
+                    || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 //labComboBox.addItem(org);
                 populateRequestTable(org);
@@ -290,9 +294,11 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
         // TODO add your handling code here:
         Organization organization = (Organization)labComboBox.getSelectedItem();
-        if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization){
+        if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization
+                || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
             populateRequestTable(organization);
         }
+
     }//GEN-LAST:event_labComboBoxActionPerformed
 
 

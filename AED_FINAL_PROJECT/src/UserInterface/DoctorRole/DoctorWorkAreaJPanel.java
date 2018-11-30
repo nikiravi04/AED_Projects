@@ -18,8 +18,10 @@ import Business.Organization.RadiologyLabOrganization;
 import Business.UserAccount.UserAccount;
 import Business.PatientAccount.PatientAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
+import Business.WorkQueue.CardioLabWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.NeuroLabWorkRequest;
+import Business.WorkQueue.RadioLabWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -79,7 +81,16 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 String result = ((NeuroLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
             }
-            
+            else if(organization instanceof RadiologyLabOrganization)
+            {
+                String result = ((RadioLabWorkRequest) request).getTestResult();
+                row[3] = result == null ? "Waiting" : result;
+            }
+            else if(organization instanceof CardiologyLabOrganization)
+            {
+                String result = ((CardioLabWorkRequest) request).getTestResult();
+                row[3] = result == null ? "Waiting" : result;
+            }
             
             
             model.addRow(row);
@@ -134,20 +145,20 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result", "Lab"
+                "Message", "Receiver", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -283,6 +294,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
         NeuroLabWorkRequest neuroRequest = new NeuroLabWorkRequest();
+        RadioLabWorkRequest radioRequest = new RadioLabWorkRequest();
+        CardioLabWorkRequest cardioRequest = new CardioLabWorkRequest();
 
         Organization org = (Organization) labComboBox.getSelectedItem();
         //for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
@@ -306,6 +319,26 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 populateRequestTable(org);
                 //break;
             }
+            if (org instanceof RadiologyLabOrganization ){
+                org = organization;
+                radioRequest.setMessage(message);
+                radioRequest.setSender(userAccount);
+                radioRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(radioRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(radioRequest);
+                populateRequestTable(org);
+                //break;
+            }
+            if (org instanceof CardiologyLabOrganization ){
+                org = organization;
+                cardioRequest.setMessage(message);
+                cardioRequest.setSender(userAccount);
+                cardioRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(cardioRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(cardioRequest);
+                populateRequestTable(org);
+                //break;
+            }
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void viewPatientDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPatientDetailsBtnActionPerformed
@@ -323,7 +356,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         // TODO add your handling code here:
         Organization organization = (Organization)labComboBox.getSelectedItem();
-        if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization){
+        if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization
+                || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
             populateRequestTable(organization);
         }
 
