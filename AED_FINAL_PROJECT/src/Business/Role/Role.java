@@ -22,6 +22,9 @@ public abstract class Role {
         Doctor("Doctor"),
         LabAssistant("Lab Assistant"),
         CancerLabAssistant("Cancer Lab Assistant"),
+        NeuroLabAssistant("Neuro Lab Assistant"),
+        RadioLabAssistant("Radio Lab Assistant"),
+        CardioLabAssistant("Cardio Lab Assistant"),
         Patient("Patient");
         
         private String value;
