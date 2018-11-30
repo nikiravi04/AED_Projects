@@ -5,12 +5,19 @@
  */
 package UserInterface.DoctorRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Organization.DoctorOrganization;
+import Business.Organization.LabOrganization;
+import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import UserInterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,15 +29,43 @@ public class ViewSecondOpinionRequestsJPanel extends javax.swing.JPanel {
      * Creates new form ViewSecondOpinionRequests
      */
     private OrganizationDirectory organizationDir;
+    private Organization organization;
     private JPanel userProcessContainer;
     private Enterprise enterprise;
-    public ViewSecondOpinionRequestsJPanel(JPanel userProcessContainer, OrganizationDirectory organizationDir, Enterprise enterprise) {
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private DoctorOrganization doctorOrganization;
+    
+    public ViewSecondOpinionRequestsJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.organizationDir = organizationDir;
+        this.userAccount = userAccount;
+        //this.business = business;
+        this.organization = organization;
         this.enterprise = enterprise;
+        //this.doctorOrganization = (DoctorOrganization)organization;
+        
+        populateTable();
     }
-
+    
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            if (organization instanceof DoctorOrganization){
+            row[0] = request;
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[3] = request.getStatus();
+            
+            model.addRow(row);
+            }
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
