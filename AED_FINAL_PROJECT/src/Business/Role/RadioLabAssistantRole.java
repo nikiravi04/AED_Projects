@@ -7,22 +7,22 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.LabOrganization;
 import Business.Organization.NeurologyLabOrganization;
 import Business.Organization.Organization;
+import Business.Organization.RadiologyLabOrganization;
 import Business.UserAccount.UserAccount;
-import UserInterface.LabAssistantRole.NeuroLabAssistantWorkAreaJPanel;
+import UserInterface.LabAssistantRole.LabAssistantWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
  *
- * @author nikitaravindran
+ * @author Srikanth Reddy
  */
-public class NeuroLabAssistantRole extends Role {
+public class RadioLabAssistantRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new NeuroLabAssistantWorkAreaJPanel(userProcessContainer, account, (NeurologyLabOrganization)organization, business);
+        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, (RadiologyLabOrganization)organization, business);
     }
     
 }

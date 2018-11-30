@@ -7,12 +7,14 @@ package UserInterface.DoctorRole;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.CancerLabOrganization;
+import Business.Organization.CardiologyLabOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.NeurologyLabOrganization;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
+import Business.Organization.RadiologyLabOrganization;
 import Business.UserAccount.UserAccount;
 import Business.PatientAccount.PatientAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
@@ -21,6 +23,7 @@ import Business.WorkQueue.NeuroLabWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicBorders;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -87,7 +90,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
       labComboBox.removeAllItems();
       Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization){
+            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization 
+                    || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 labComboBox.addItem(org);
                 //populateRequestTable(org);
@@ -259,7 +263,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization){
+            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization
+                    || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 //labComboBox.addItem(org);
                 populateRequestTable(org);
