@@ -41,7 +41,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         this.labOrganization = (LabOrganization)organization;
         
         populateTable();
-            }
+    }
     
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
