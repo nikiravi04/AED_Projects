@@ -6,11 +6,15 @@
 package UserInterface.DoctorRole;
 
 import Business.Enterprise.Enterprise;
+import Business.Organization.CancerLabOrganization;
+import Business.Organization.NeurologyLabOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.CancerLabWorkRequest;
+import Business.WorkQueue.NeuroLabWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -28,9 +32,10 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private UserAccount userAccount;
-    private DoctorOrganization organization;
+    //private DoctorOrganization organization;
+    private Organization organization;
     
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, DoctorOrganization organization) {
+    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
@@ -44,9 +49,10 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
       labComboBox.removeAllItems();
       Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof LabOrganization){
+            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization){
                 org = organization;
-                labComboBox.addItem(organization);
+                labComboBox.addItem(org);
+                //populateRequestTable(org);
             }
         }
    
@@ -163,7 +169,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateRequestTable();
+        dwjp.populateRequestTable(organization);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
 
@@ -172,23 +178,36 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
 
         String message = messageJTextField.getText();
-
-        LabTestWorkRequest request = new LabTestWorkRequest();
-        request.setMessage(message);
-        request.setSender(userAccount);
-        request.setStatus("Sent");
+        
+        CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
+        NeuroLabWorkRequest neuroRequest = new NeuroLabWorkRequest();
 
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof LabOrganization){
+            if (organization instanceof CancerLabOrganization ){
                 org = organization;
+                cancerRequest.setMessage(message);
+                cancerRequest.setSender(userAccount);
+                cancerRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(cancerRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(cancerRequest);
                 break;
             }
+            if (organization instanceof NeurologyLabOrganization ){
+                org = organization;
+                neuroRequest.setMessage(message);
+                neuroRequest.setSender(userAccount);
+                neuroRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(neuroRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(neuroRequest);
+                break;
+            }
+            
         }
-        if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(request);
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-        }
+//        if (org!=null){
+//            
+//         }
+       
         
         JOptionPane.showMessageDialog(null,"Request Sent to Lab!");
 
