@@ -41,9 +41,13 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     }
     
     private void populateCombo(){
-        labComboBox.removeAllItems();
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            labComboBox.addItem(organization);
+      labComboBox.removeAllItems();
+      Organization org = null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof LabOrganization){
+                org = organization;
+                labComboBox.addItem(organization);
+            }
         }
    
     } 
@@ -159,7 +163,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateRequestTable(organization);
+        dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
 
