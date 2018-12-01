@@ -39,7 +39,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    
     private JPanel userProcessContainer;
     //private DoctorOrganization organization;
     private Organization organization;
