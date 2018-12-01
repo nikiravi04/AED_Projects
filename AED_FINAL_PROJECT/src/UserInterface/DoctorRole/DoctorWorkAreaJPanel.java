@@ -61,6 +61,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         //populateRequestTable();
         populateCombo();
         populateDocCombo();
+        populateSecOpinion();
     }
     
     private void populateCombo(){
@@ -126,23 +127,49 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             if (organization instanceof DoctorOrganization){
                 org = organization;
                 doctorComboBox.addItem(org);
-                //populateRequestTable(org);
+                populateEmp(org);
             }
         }
     }
      
-     private void populateTable(Organization organization){
-        DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
+     public void populateEmp(Organization organization){
+     docNameCombo.removeAllItems();
+        
+       // for (UserAccount employee : organization.getEmployeeDirectory().getEmployeeList()){
+       for (UserAccount employee : organization.getUserAccountDirectory().getUserAccountList()){
+            docNameCombo.addItem(employee);
+        }
+     }
+     public void populateSecOpinion(){
+         DefaultTableModel model = (DefaultTableModel)workRequestJTable1.getModel();
         
         model.setRowCount(0);
         
-        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
-            Object[] row = new Object[2];
-            row[0] = employee.getId();
-            row[1] = employee.getName();
+        for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            if (organization instanceof DoctorOrganization){
+            row[0] = request.getMessage();
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[3] = request.getStatus();
+            
             model.addRow(row);
+            }
         }
-    }
+     }
+     
+//     private void populateTable(Organization organization){
+//        DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
+//        
+//        model.setRowCount(0);
+//        
+//        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+//            Object[] row = new Object[2];
+//            row[0] = employee.getId();
+//            row[1] = employee.getName();
+//            model.addRow(row);
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,13 +191,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         labComboBox = new javax.swing.JComboBox();
         messageJTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        organizationJTable = new javax.swing.JTable();
         doctorComboBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        secOpinionMessage = new javax.swing.JTextField();
         viewSecondOpinionBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        docNameCombo = new javax.swing.JComboBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        workRequestJTable1 = new javax.swing.JTable();
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise:");
@@ -244,22 +273,49 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Message");
 
-        organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
+        doctorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        doctorComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Doctor ORganization :");
+
+        jLabel4.setText("Message :");
+
+        viewSecondOpinionBtn.setText("View Second Opinion Requests");
+        viewSecondOpinionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSecondOpinionBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Doctor Name :");
+
+        docNameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        docNameCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                docNameComboActionPerformed(evt);
+            }
+        });
+
+        workRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Name"
+                "Message", "Sender", "Receiver", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -270,25 +326,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(organizationJTable);
-
-        doctorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        doctorComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doctorComboBoxActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("To :");
-
-        jLabel4.setText("Message :");
-
-        viewSecondOpinionBtn.setText("View Second Opinion Requests");
-        viewSecondOpinionBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewSecondOpinionBtnActionPerformed(evt);
-            }
-        });
+        jScrollPane3.setViewportView(workRequestJTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -316,29 +354,39 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addComponent(requestTestJButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(182, 182, 182)
                         .addComponent(jLabel2)
                         .addGap(76, 76, 76)
                         .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(secondOpinionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viewSecondOpinionBtn)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(339, 339, 339)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(jLabel3)
+                                .addGap(40, 40, 40)
+                                .addComponent(doctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(secOpinionMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel5)
+                                .addGap(28, 28, 28)
+                                .addComponent(docNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(273, 273, 273)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(32, 32, 32)
+                        .addGap(124, 124, 124)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(doctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(123, 123, 123)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(secondOpinionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(viewSecondOpinionBtn)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -366,25 +414,24 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addGap(14, 14, 14))
                     .addComponent(messageJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(61, 118, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(doctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                         .addComponent(secondOpinionBtn)
                         .addGap(29, 29, 29)
-                        .addComponent(viewSecondOpinionBtn)
-                        .addGap(212, 212, 212))))
+                        .addComponent(viewSecondOpinionBtn)))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(doctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(docNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(secOpinionMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -469,22 +516,31 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 //        userProcessContainer.add("SecondOpinionMainJPanel", new SecondOpinionMainJPanel(userProcessContainer,directory,enterprise));
 //        layout.next(userProcessContainer);
         
-        String message = messageJTextField.getText();
+        String message = secOpinionMessage.getText();
 
         DoctorWorkRequest docWork = new DoctorWorkRequest();
+        //WorkRequest request : userAccount.getWorkQueue().getWorkRequestList();
         Organization org = (Organization) doctorComboBox.getSelectedItem();
+        //UserAccount user = (UserAccount) doctorComboBox.getSelectedItem();
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
             if (org instanceof DoctorOrganization ){
                 //org = organization;
+//                int selectRow = organizationJTable.getSelectedRow();
+//                if (selectRow < 0){
+//                    return;
+//                }
                 docWork.setMessage(message);
-                docWork.setSender(userAccount);
+                //UserAccount userAccount = (userAccount) organizationJTable.getValueAt(selectRow, 0);
+                docWork.setSender(userAccount) ;
+                docWork.setReceiver((UserAccount) docNameCombo.getSelectedItem());
                 docWork.setStatus("Sent");
                 org.getWorkQueue().getWorkRequestList().add(docWork);
                 userAccount.getWorkQueue().getWorkRequestList().add(docWork);
-                ViewSecondOpinionRequestsJPanel viewSecPanel = new ViewSecondOpinionRequestsJPanel(userProcessContainer, userAccount, organization, enterprise);
-                viewSecPanel.populateTable();
+//                ViewSecondOpinionRequestsJPanel viewSecPanel = new ViewSecondOpinionRequestsJPanel(userProcessContainer, userAccount, organization, enterprise);
+//                viewSecPanel.populateTable();
+                    populateSecOpinion();
 //                populateTable(org);
-                //break;
+                break;
             }
         }
 //            if (org instanceof NeurologyLabOrganization ){
@@ -515,7 +571,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         Organization organization = (Organization)doctorComboBox.getSelectedItem();
         if (organization instanceof DoctorOrganization){
             //populateRequestTable(organization);
-            populateTable(organization);
+            populateEmp(organization);
         }
     }//GEN-LAST:event_doctorComboBoxActionPerformed
 
@@ -527,26 +583,32 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_viewSecondOpinionBtnActionPerformed
 
+    private void docNameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docNameComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_docNameComboActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox docNameCombo;
     private javax.swing.JComboBox doctorComboBox;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox labComboBox;
     private javax.swing.JTextField messageJTextField;
-    private javax.swing.JTable organizationJTable;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
+    private javax.swing.JTextField secOpinionMessage;
     private javax.swing.JButton secondOpinionBtn;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JButton viewPatientDetailsBtn;
     private javax.swing.JButton viewSecondOpinionBtn;
     private javax.swing.JTable workRequestJTable;
+    private javax.swing.JTable workRequestJTable1;
     // End of variables declaration//GEN-END:variables
 }
