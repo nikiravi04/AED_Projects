@@ -121,6 +121,12 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("User Name");
 
+        employeeJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeeJComboBoxActionPerformed(evt);
+            }
+        });
+
         userJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -273,6 +279,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);
     }//GEN-LAST:event_backJButtonActionPerformed
+
+    private void employeeJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_employeeJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;

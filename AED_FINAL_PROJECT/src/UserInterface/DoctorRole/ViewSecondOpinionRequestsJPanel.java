@@ -49,20 +49,26 @@ public class ViewSecondOpinionRequestsJPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
+//        
+        
         DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
         
         model.setRowCount(0);
         
         for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+            //if(request.getReceiver().getEmployee().getName() == userAccount.getEmployee().getName()){
+            //if(!request.getStatus().equalsIgnoreCase("Sent")){
             Object[] row = new Object[4];
             if (organization instanceof DoctorOrganization){
-            row[0] = request;
+                
+            row[0] = request.getMessage();
             row[1] = request.getSender().getEmployee().getName();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
             row[3] = request.getStatus();
             
             model.addRow(row);
             }
+            //}
         }
     }
     
@@ -87,7 +93,7 @@ public class ViewSecondOpinionRequestsJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Message", "Sender", "Receiver", "Result"
             }
         ) {
             Class[] types = new Class [] {
