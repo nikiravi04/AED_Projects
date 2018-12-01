@@ -52,7 +52,7 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
       labComboBox.removeAllItems();
       Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization 
+            if (organization instanceof NeurologyLabOrganization 
                     || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 labComboBox.addItem(org);
@@ -65,37 +65,32 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+        Organization org = (Organization) labComboBox.getSelectedItem();
+        if(org instanceof NeurologyLabOrganization)
+            {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[5];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
-            if (organization instanceof CancerLabOrganization)
-            {
-                String result = ((CancerLabWorkRequest) request).getTestResult();
-                row[3] = result == null ? "Waiting" : result;
-            
-            }
-            else if(organization instanceof NeurologyLabOrganization)
-            {
                 String result = ((NeuroLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
             }
-            
-            else if(organization instanceof RadiologyLabOrganization)
+                
+            }
+            else if(org instanceof RadiologyLabOrganization)
             {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver();
+            row[2] = request.getStatus();
                 String result = ((RadioLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
             }
-            else if(organization instanceof CardiologyLabOrganization)
-            {
-                String result = ((CardioLabWorkRequest) request).getTestResult();
-                row[3] = result == null ? "Waiting" : result;
             }
-            
-            
-            model.addRow(row);
-        }
     }
     
 
@@ -260,23 +255,14 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
 
         String message = messageJTextField.getText();
 
-        CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
+//        CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
         NeuroLabWorkRequest neuroRequest = new NeuroLabWorkRequest();
         RadioLabWorkRequest radioRequest = new RadioLabWorkRequest();
         CardioLabWorkRequest cardioRequest = new CardioLabWorkRequest();
 
         Organization org = (Organization) labComboBox.getSelectedItem();
         //for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (org instanceof CancerLabOrganization ){
-                //org = organization;
-                cancerRequest.setMessage(message);
-                cancerRequest.setSender(userAccount);
-                cancerRequest.setStatus("Sent");
-                org.getWorkQueue().getWorkRequestList().add(cancerRequest);
-                userAccount.getWorkQueue().getWorkRequestList().add(cancerRequest);
-                populateRequestTable(org);
-                //break;
-            }
+            
             if (org instanceof NeurologyLabOrganization ){
                 //org = organization;
                 neuroRequest.setMessage(message);
