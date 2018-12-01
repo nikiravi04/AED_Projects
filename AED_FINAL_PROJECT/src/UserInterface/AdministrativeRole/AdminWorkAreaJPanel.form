@@ -36,7 +36,6 @@
                               </Group>
                           </Group>
                           <Component id="userJButton" alignment="1" min="-2" pref="283" max="-2" attributes="0"/>
-                          <Component id="manageEmployeeJButton1" alignment="1" min="-2" pref="283" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -65,9 +64,7 @@
               <Component id="manageEmployeeJButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
               <Component id="userJButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="manageEmployeeJButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="95" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,7 +88,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="manageEmployeeJButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Employee"/>
+        <Property name="text" type="java.lang.String" value="Create User"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageEmployeeJButtonActionPerformed"/>
@@ -117,14 +114,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;value&gt;"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="manageEmployeeJButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Patient"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageEmployeeJButton1ActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
