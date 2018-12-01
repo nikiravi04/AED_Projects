@@ -8,6 +8,7 @@ package UserInterface.PatientDashboard;
 import Business.Enterprise.Enterprise;
 import Business.Organization.CancerLabOrganization;
 import Business.Organization.CardiologyLabOrganization;
+import Business.Organization.DoctorOrganization;
 import Business.Organization.PatientOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.NeurologyLabOrganization;
@@ -17,8 +18,10 @@ import Business.Organization.RadiologyLabOrganization;
 import Business.PatientAccount.PatientAccount;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
+import Business.WorkQueue.CardioLabWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.NeuroLabWorkRequest;
+import Business.WorkQueue.RadioLabWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -44,7 +47,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
     public PatientWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.organization = organization;
+        this.organization = (Organization)organization;
         this.enterprise = enterprise;
         this.userAccount = account;
         //this.directory = directory;
@@ -58,28 +61,113 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+        Organization org = (Organization) labComboBox.getSelectedItem();
+        
+            if (org instanceof CancerLabOrganization)
+            {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[5];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
-            if (organization instanceof CancerLabOrganization)
-            {
                 String result = ((CancerLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
+            }
+                
             
             }
-            else if(organization instanceof NeurologyLabOrganization)
+            if(org instanceof NeurologyLabOrganization)
             {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver();
+            row[2] = request.getStatus();
                 String result = ((NeuroLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
             }
+                
+            }
+            else if(org instanceof RadiologyLabOrganization)
+            {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver();
+            row[2] = request.getStatus();
+                String result = ((RadioLabWorkRequest) request).getTestResult();
+                row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
+            }
+            }
+            else if(org instanceof CardiologyLabOrganization)
+            {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver();
+            row[2] = request.getStatus();
+                String result = ((CardioLabWorkRequest) request).getTestResult();
+                row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
+            }
+            }
+//            else if(organization instanceof CardiologyLabOrganization)
+//            {
+//                String result = ((CardioLabWorkRequest) request).getTestResult();
+//                row[3] = result == null ? "Waiting" : result;
+//            }
             
             
-            
-            model.addRow(row);
-        }
+            //model.addRow(row);
+        
     }
+    
+    /*
+    Combo Box and Table for Second Opinion
+    */
+    
+    
+//     private void populateDocCombo(){
+//      doctorComboBox.removeAllItems();
+//      Organization org = null;
+//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+//            if (organization instanceof DoctorOrganization){
+//                org = organization;
+//                doctorComboBox.addItem(org);
+//                populateEmp(org);
+//            }
+//        }
+//        
+//     }
+        
+//        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+//        
+//        model.setRowCount(0);
+//        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+//            Object[] row = new Object[5];
+//            row[0] = request.getMessage();
+//            row[1] = request.getReceiver();
+//            row[2] = request.getStatus();
+//            if (organization instanceof CancerLabOrganization)
+//            {
+//                String result = ((CancerLabWorkRequest) request).getTestResult();
+//                row[3] = result == null ? "Waiting" : result;
+//            
+//            }
+//            else if(organization instanceof NeurologyLabOrganization)
+//            {
+//                String result = ((NeuroLabWorkRequest) request).getTestResult();
+//                row[3] = result == null ? "Waiting" : result;
+//            }
+//            
+//            
+//            
+//            model.addRow(row);
+//        }
+ 
     
     private void populateCombo(){
       labComboBox.removeAllItems();
@@ -178,25 +266,23 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(335, 335, 335)
-                                .addComponent(refreshTestJButton))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69))))
+                        .addGap(466, 466, 466)
+                        .addComponent(refreshTestJButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
+                        .addGap(177, 177, 177)
                         .addComponent(jLabel2)
-                        .addGap(76, 76, 76)
+                        .addGap(39, 39, 39)
                         .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
-                        .addComponent(requestTestJButton)))
-                .addContainerGap(403, Short.MAX_VALUE))
+                        .addComponent(requestTestJButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)
+                        .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111)))
+                .addContainerGap(415, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -219,15 +305,13 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(198, 198, 198)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(14, 14, 14))
-                    .addComponent(messageJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(193, 193, 193)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addComponent(requestTestJButton)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -250,26 +334,50 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
         CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
         NeuroLabWorkRequest neuroRequest = new NeuroLabWorkRequest();
+        RadioLabWorkRequest radioRequest = new RadioLabWorkRequest();
+        CardioLabWorkRequest cardioRequest = new CardioLabWorkRequest();
 
         Organization org = (Organization) labComboBox.getSelectedItem();
         //for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+       
             if (org instanceof CancerLabOrganization ){
-                //org = organization;
+                 //org = organization;
                 cancerRequest.setMessage(message);
                 cancerRequest.setSender(userAccount);
                 cancerRequest.setStatus("Sent");
                 org.getWorkQueue().getWorkRequestList().add(cancerRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(cancerRequest);
                 populateRequestTable(org);
-                //break;
+                 //break;
             }
             if (org instanceof NeurologyLabOrganization ){
-                org = organization;
+                
+                //org = organization;
                 neuroRequest.setMessage(message);
                 neuroRequest.setSender(userAccount);
                 neuroRequest.setStatus("Sent");
                 org.getWorkQueue().getWorkRequestList().add(neuroRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(neuroRequest);
+                populateRequestTable(org);
+                //break;
+            }
+            if (org instanceof RadiologyLabOrganization ){
+                //org = organization;
+                radioRequest.setMessage(message);
+                radioRequest.setSender(userAccount);
+                radioRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(radioRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(radioRequest);
+                populateRequestTable(org);
+                //break;
+            }
+            if (org instanceof CardiologyLabOrganization ){
+                //org = organization;
+                cardioRequest.setMessage(message);
+                cardioRequest.setSender(userAccount);
+                cardioRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(cardioRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(cardioRequest);
                 populateRequestTable(org);
                 //break;
             }
