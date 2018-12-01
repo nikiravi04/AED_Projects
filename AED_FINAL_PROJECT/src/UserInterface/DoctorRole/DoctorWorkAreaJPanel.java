@@ -52,7 +52,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.organization = organization;
+        this.organization = (Organization)organization;
         this.enterprise = enterprise;
         this.userAccount = account;
         //this.directory = directory;
@@ -81,36 +81,54 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+        Organization org = (Organization) labComboBox.getSelectedItem();
+        
+            if (org instanceof CancerLabOrganization)
+            {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[5];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
-            if (organization instanceof CancerLabOrganization)
-            {
                 String result = ((CancerLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
+            }
+                
             
             }
-            else if(organization instanceof NeurologyLabOrganization)
+            if(org instanceof NeurologyLabOrganization)
             {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver();
+            row[2] = request.getStatus();
                 String result = ((NeuroLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
             }
-            
-            else if(organization instanceof RadiologyLabOrganization)
+                
+            }
+            else if(org instanceof RadiologyLabOrganization)
             {
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver();
+            row[2] = request.getStatus();
                 String result = ((RadioLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
+                model.addRow(row);
             }
-            else if(organization instanceof CardiologyLabOrganization)
-            {
-                String result = ((CardioLabWorkRequest) request).getTestResult();
-                row[3] = result == null ? "Waiting" : result;
-            }
+//            else if(organization instanceof CardiologyLabOrganization)
+//            {
+//                String result = ((CardioLabWorkRequest) request).getTestResult();
+//                row[3] = result == null ? "Waiting" : result;
+//            }
             
             
-            model.addRow(row);
+            //model.addRow(row);
         }
     }
     
@@ -144,7 +162,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
          DefaultTableModel model = (DefaultTableModel)workRequestJTable1.getModel();
         
         model.setRowCount(0);
-        
+        Organization org = (Organization) doctorComboBox.getSelectedItem();
+        if (org instanceof DoctorOrganization ){
         for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             if (organization instanceof DoctorOrganization){
@@ -155,6 +174,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             
             model.addRow(row);
             }
+        }
         }
      }
      
@@ -475,7 +495,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 //break;
             }
             if (org instanceof NeurologyLabOrganization ){
-                org = organization;
+                //org = organization;
                 neuroRequest.setMessage(message);
                 neuroRequest.setSender(userAccount);
                 neuroRequest.setStatus("Sent");
@@ -485,7 +505,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 //break;
             }
             if (org instanceof RadiologyLabOrganization ){
-                org = organization;
+                //org = organization;
                 radioRequest.setMessage(message);
                 radioRequest.setSender(userAccount);
                 radioRequest.setStatus("Sent");
@@ -495,7 +515,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 //break;
             }
             if (org instanceof CardiologyLabOrganization ){
-                org = organization;
+                //org = organization;
                 cardioRequest.setMessage(message);
                 cardioRequest.setSender(userAccount);
                 cardioRequest.setStatus("Sent");
@@ -559,8 +579,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         // TODO add your handling code here:
         Organization organization = (Organization)labComboBox.getSelectedItem();
-        if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization
-                || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
+        if (organization instanceof CancerLabOrganization){
+            populateRequestTable(organization);
+        }
+        else if(organization instanceof NeurologyLabOrganization    || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
             populateRequestTable(organization);
         }
 
