@@ -22,7 +22,7 @@ public class CancerLabAssistantRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new CancerLabAssistantWorkAreaJPanel(userProcessContainer, account, (CancerLabOrganization)organization, business);
+        return new CancerLabAssistantWorkAreaJPanel(userProcessContainer, account, (CancerLabOrganization)organization, enterprise,business);
     }
     
 }
