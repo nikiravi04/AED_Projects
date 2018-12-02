@@ -10,6 +10,8 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.CardiologyLabOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import UserInterface.LabAssistantRole.CardioLabAssistantWorkAreaJPanel;
+import UserInterface.LabAssistantRole.CardioSendRequestsLabJPanel;
 import UserInterface.LabAssistantRole.LabAssistantWorkAreaJPanel;
 import javax.swing.JPanel;
 
@@ -21,7 +23,7 @@ public class CardioLabAssistantRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new LabAssistantWorkAreaJPanel(userProcessContainer, account, (CardiologyLabOrganization)organization, business);
+        return new CardioLabAssistantWorkAreaJPanel(userProcessContainer, account, (CardiologyLabOrganization)organization,enterprise, business);
     }
     
 }
