@@ -23,7 +23,7 @@ public class RadioLabAssistantRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new RadioLabAssistantWorkAreaJPanel(userProcessContainer, account, (RadiologyLabOrganization)organization, business);
+        return new RadioLabAssistantWorkAreaJPanel(userProcessContainer, account, (RadiologyLabOrganization)organization,enterprise, business);
     }
     
 }

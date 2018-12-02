@@ -53,7 +53,7 @@ public class CardioSendRequestsLabJPanel extends javax.swing.JPanel {
       Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
             if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization 
-                    || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
+                     || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 labComboBox.addItem(org);
                 //populateRequestTable(org);

@@ -33,7 +33,7 @@ public class RadioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private Organization organization;
     private Enterprise enterprise;
 
-    public RadioLabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public RadioLabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
@@ -117,7 +117,7 @@ public class RadioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private void viewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestsActionPerformed
         // TODO add your handling code here:
         RadioViewRequestsLabJPanel viewRequestJPanel = new RadioViewRequestsLabJPanel(userProcessContainer, userAccount, organization, business);
-        userProcessContainer.add("radioviewRequestJPanel", viewRequestJPanel);
+        userProcessContainer.add("RadioViewRequestsLabJPanel", viewRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_viewRequestsActionPerformed
@@ -125,7 +125,7 @@ public class RadioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private void sendRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRequestsActionPerformed
         // TODO add your handling code here:
         RadioSendRequestsLabJPanel sendRequestJPanel = new RadioSendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
-        userProcessContainer.add("radiosendRequestJPanel", sendRequestJPanel);
+        userProcessContainer.add("RadioSendRequestsLabJPanel", sendRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_sendRequestsActionPerformed

@@ -33,9 +33,9 @@ public class CardioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private Organization organization;
     private Enterprise enterprise;
     
-    public CardioLabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-         initComponents();
-         this.userProcessContainer = userProcessContainer;
+    public CardioLabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise, EcoSystem business) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.cardioLabOrganization = (CardiologyLabOrganization) organization;

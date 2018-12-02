@@ -52,7 +52,7 @@ public class CancerSendRequestsLabJPanel extends javax.swing.JPanel {
       labComboBox.removeAllItems();
       Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization 
+            if (organization instanceof NeurologyLabOrganization 
                     || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 labComboBox.addItem(org);
