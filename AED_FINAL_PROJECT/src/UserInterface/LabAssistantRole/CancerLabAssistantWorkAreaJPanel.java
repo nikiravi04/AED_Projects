@@ -97,16 +97,16 @@ public class CancerLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     private void sendRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRequestsActionPerformed
         // TODO add your handling code here:
-        SendRequestsLabJPanel sendRequestJPanel = new SendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
-        userProcessContainer.add("sendRequestJPanel", sendRequestJPanel);
+        CancerSendRequestsLabJPanel sendRequestJPanel = new CancerSendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
+        userProcessContainer.add("cancersendRequestJPanel", sendRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_sendRequestsActionPerformed
 
     private void viewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestsActionPerformed
         // TODO add your handling code here:
-        ViewRequestsLabJPanel viewRequestJPanel = new ViewRequestsLabJPanel(userProcessContainer, userAccount, organization, business);
-        userProcessContainer.add("viewRequestJPanel", viewRequestJPanel);
+        CancerViewRequestsLabJPanel viewRequestJPanel = new CancerViewRequestsLabJPanel(userProcessContainer, userAccount, organization, business);
+        userProcessContainer.add("cancerviewRequestJPanel", viewRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_viewRequestsActionPerformed

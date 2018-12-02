@@ -6,10 +6,10 @@
 package UserInterface.LabAssistantRole;
 
 import Business.EcoSystem;
-import Business.Organization.CancerLabOrganization;
+import Business.Organization.CardiologyLabOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.CancerLabWorkRequest;
+import Business.WorkQueue.CardioLabWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -17,25 +17,24 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Srikanth Reddy
+ * @author nikitaravindran
  */
-public class ViewRequestsLabJPanel extends javax.swing.JPanel {
+public class CardioViewRequestsLabJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ViewRequestsLabJPanel
+     * Creates new form CardioViewRequestsLabJPanel
      */
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private CancerLabOrganization cancerLabOrganization;
+    private CardiologyLabOrganization cardioLabOrganization;
     
-    public ViewRequestsLabJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem business) {
+    public CardioViewRequestsLabJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.business = business;
-        this.cancerLabOrganization = (CancerLabOrganization) organization;
-        populateTable();
+        this.cardioLabOrganization = (CardiologyLabOrganization) organization;
     }
     
     public void populateTable(){
@@ -43,7 +42,7 @@ public class ViewRequestsLabJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for(WorkRequest request : cancerLabOrganization.getWorkQueue().getWorkRequestList()){
+        for(WorkRequest request : cardioLabOrganization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getSender().getEmployee().getName();
@@ -53,6 +52,7 @@ public class ViewRequestsLabJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,12 +62,19 @@ public class ViewRequestsLabJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        refreshJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        refreshJButton = new javax.swing.JButton();
-        processJButton = new javax.swing.JButton();
         assignJButton = new javax.swing.JButton();
+        processJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+
+        refreshJButton.setText("Refresh");
+        refreshJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshJButtonActionPerformed(evt);
+            }
+        });
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,10 +104,10 @@ public class ViewRequestsLabJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        refreshJButton.setText("Refresh");
-        refreshJButton.addActionListener(new java.awt.event.ActionListener() {
+        assignJButton.setText("Assign to me");
+        assignJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshJButtonActionPerformed(evt);
+                assignJButtonActionPerformed(evt);
             }
         });
 
@@ -108,13 +115,6 @@ public class ViewRequestsLabJPanel extends javax.swing.JPanel {
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processJButtonActionPerformed(evt);
-            }
-        });
-
-        assignJButton.setText("Assign to me");
-        assignJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignJButtonActionPerformed(evt);
             }
         });
 
@@ -130,65 +130,40 @@ public class ViewRequestsLabJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(270, 270, 270)
+                .addGap(122, 122, 122)
                 .addComponent(backJButton)
-                .addContainerGap(275, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(298, 298, 298)
-                            .addComponent(refreshJButton))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
-                            .addComponent(assignJButton)
-                            .addGap(208, 208, 208)
-                            .addComponent(processJButton)))
-                    .addContainerGap(67, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(145, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(refreshJButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(assignJButton)
+                        .addGap(49, 49, 49)
+                        .addComponent(processJButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(139, 139, 139))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(276, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addComponent(refreshJButton)
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(processJButton)
+                    .addComponent(assignJButton))
+                .addGap(99, 99, 99)
                 .addComponent(backJButton)
-                .addGap(38, 38, 38))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(27, 27, 27)
-                    .addComponent(refreshJButton)
-                    .addGap(7, 7, 7)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(61, 61, 61)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(assignJButton)
-                        .addComponent(processJButton))
-                    .addContainerGap(82, Short.MAX_VALUE)))
+                .addGap(39, 39, 39))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
         populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
-
-    private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
-
-        int selectedRow = workRequestJTable.getSelectedRow();
-
-        if (selectedRow < 0){
-            return;
-        }
-
-        CancerLabWorkRequest request = (CancerLabWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        request.setStatus("Processing");
-
-        CancerLabProcessWorkRequestJPanel processWorkRequestJPanel = new CancerLabProcessWorkRequestJPanel(userProcessContainer, request);
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_processJButtonActionPerformed
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
 
@@ -203,6 +178,24 @@ public class ViewRequestsLabJPanel extends javax.swing.JPanel {
         request.setStatus("Pending");
         populateTable();
     }//GEN-LAST:event_assignJButtonActionPerformed
+
+    private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
+
+        int selectedRow = workRequestJTable.getSelectedRow();
+
+        if (selectedRow < 0){
+            return;
+        }
+
+        CardioLabWorkRequest request = (CardioLabWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
+        request.setStatus("Processing");
+
+        CardioLabProcessWorkRequestJPanel processWorkRequestJPanel = new CardioLabProcessWorkRequestJPanel(userProcessContainer, request);
+        userProcessContainer.add("cardioprocessWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_processJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 

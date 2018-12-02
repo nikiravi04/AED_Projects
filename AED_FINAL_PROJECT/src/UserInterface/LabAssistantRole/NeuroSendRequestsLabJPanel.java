@@ -24,23 +24,24 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Srikanth Reddy
+ * @author nikitaravindran
  */
-public class SendRequestsLabJPanel extends javax.swing.JPanel {
+public class NeuroSendRequestsLabJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form SendRequestsLabJPanel
+     * Creates new form NeuroSendRequestsLabJPanel
      */
+    
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private CancerLabOrganization cancerLabOrganization;
+    private NeurologyLabOrganization neuroLabOrganization;
     private Enterprise enterprise;
-
-    public SendRequestsLabJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise) {
+    
+    public NeuroSendRequestsLabJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.cancerLabOrganization = (CancerLabOrganization)organization;
+        this.neuroLabOrganization = (NeurologyLabOrganization)organization;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         
@@ -52,7 +53,7 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
       labComboBox.removeAllItems();
       Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof NeurologyLabOrganization 
+            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization 
                     || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 labComboBox.addItem(org);
@@ -65,36 +66,38 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        Organization org = (Organization) labComboBox.getSelectedItem();
-        if(org instanceof NeurologyLabOrganization)
-            {
-                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[5];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();
             row[2] = request.getStatus();
+            if (organization instanceof CancerLabOrganization)
+            {
+                String result = ((CancerLabWorkRequest) request).getTestResult();
+                row[3] = result == null ? "Waiting" : result;
+            
+            }
+            else if(organization instanceof NeurologyLabOrganization)
+            {
                 String result = ((NeuroLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
-                model.addRow(row);
             }
-                
-            }
-            else if(org instanceof RadiologyLabOrganization)
+            
+            else if(organization instanceof RadiologyLabOrganization)
             {
-                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[5];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
                 String result = ((RadioLabWorkRequest) request).getTestResult();
                 row[3] = result == null ? "Waiting" : result;
-                model.addRow(row);
             }
+            else if(organization instanceof CardiologyLabOrganization)
+            {
+                String result = ((CardioLabWorkRequest) request).getTestResult();
+                row[3] = result == null ? "Waiting" : result;
             }
+            
+            
+            model.addRow(row);
+        }
     }
-    
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,38 +108,22 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        messageJTextField = new javax.swing.JTextField();
-        labComboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        viewPatientDetailsBtn = new javax.swing.JButton();
-        requestTestJButton = new javax.swing.JButton();
+        labComboBox = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        viewPatientDetailsBtn = new javax.swing.JButton();
+        requestTestJButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        messageJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
 
-        jLabel2.setText("Message");
+        jLabel1.setText("Choose Lab:");
 
         labComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         labComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labComboBoxActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Choose Lab:");
-
-        viewPatientDetailsBtn.setText("View Patient Details");
-        viewPatientDetailsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewPatientDetailsBtnActionPerformed(evt);
-            }
-        });
-
-        requestTestJButton.setText("Request Test");
-        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestTestJButtonActionPerformed(evt);
             }
         });
 
@@ -168,6 +155,22 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        viewPatientDetailsBtn.setText("View Patient Details");
+        viewPatientDetailsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPatientDetailsBtnActionPerformed(evt);
+            }
+        });
+
+        requestTestJButton.setText("Request Test");
+        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestTestJButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Message");
+
         backJButton.setText("Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,57 +182,49 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(428, Short.MAX_VALUE)
-                .addComponent(backJButton)
-                .addGap(267, 267, 267))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(341, 341, 341)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(96, 96, 96)
-                            .addComponent(viewPatientDetailsBtn)
-                            .addGap(20, 20, 20)
-                            .addComponent(requestTestJButton))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(58, 58, 58)
-                            .addComponent(jLabel2)
-                            .addGap(76, 76, 76)
-                            .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(backJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(viewPatientDetailsBtn)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(requestTestJButton)))))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(287, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(viewPatientDetailsBtn)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(requestTestJButton)
+                .addGap(55, 55, 55)
                 .addComponent(backJButton)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
-                    .addGap(30, 30, 30)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(viewPatientDetailsBtn)
-                        .addComponent(requestTestJButton))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(14, 14, 14))
-                        .addComponent(messageJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(42, 42, 42))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,7 +232,7 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
 
         // TODO add your handling code here:
         Organization organization = (Organization)labComboBox.getSelectedItem();
-        if (organization instanceof NeurologyLabOrganization
+        if (organization instanceof CancerLabOrganization
             || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
             populateRequestTable(organization);
         }
@@ -255,14 +250,23 @@ public class SendRequestsLabJPanel extends javax.swing.JPanel {
 
         String message = messageJTextField.getText();
 
-//        CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
+        CancerLabWorkRequest cancerRequest = new CancerLabWorkRequest();
         NeuroLabWorkRequest neuroRequest = new NeuroLabWorkRequest();
         RadioLabWorkRequest radioRequest = new RadioLabWorkRequest();
         CardioLabWorkRequest cardioRequest = new CardioLabWorkRequest();
 
         Organization org = (Organization) labComboBox.getSelectedItem();
         //for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            
+            if (org instanceof CancerLabOrganization ){
+                //org = organization;
+                cancerRequest.setMessage(message);
+                cancerRequest.setSender(userAccount);
+                cancerRequest.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(cancerRequest);
+                userAccount.getWorkQueue().getWorkRequestList().add(cancerRequest);
+                populateRequestTable(org);
+                //break;
+            }
             if (org instanceof NeurologyLabOrganization ){
                 //org = organization;
                 neuroRequest.setMessage(message);
