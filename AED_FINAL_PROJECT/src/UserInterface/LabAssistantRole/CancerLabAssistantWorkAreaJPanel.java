@@ -14,6 +14,8 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,8 +43,11 @@ public class CancerLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         this.cancerLabOrganization = (CancerLabOrganization) organization;
         this.organization = organization;
         this.enterprise = enterprise;
-        
-        //populateTable();
+        setImage();
+    }
+    
+    public void setImage(){
+        jLabel2.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\vish1\\Downloads\\analysis.png").getImage().getScaledInstance(600, 500, Image.SCALE_DEFAULT)));
     }
     
   
@@ -58,7 +63,12 @@ public class CancerLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
         viewRequests = new javax.swing.JButton();
         sendRequests = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        viewRequests.setBackground(new java.awt.Color(255, 255, 255));
+        viewRequests.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         viewRequests.setText("View Requests");
         viewRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +76,8 @@ public class CancerLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        sendRequests.setBackground(new java.awt.Color(255, 255, 255));
+        sendRequests.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         sendRequests.setText("Send Requests");
         sendRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,20 +90,25 @@ public class CancerLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(viewRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(sendRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(sendRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(421, 421, 421)
+                        .addComponent(jLabel2))
+                    .addComponent(viewRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(675, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewRequests)
-                    .addComponent(sendRequests))
-                .addContainerGap(400, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(viewRequests)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sendRequests)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(550, 550, 550))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -113,6 +130,7 @@ public class CancerLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton sendRequests;
     private javax.swing.JButton viewRequests;
     // End of variables declaration//GEN-END:variables
