@@ -7,6 +7,9 @@ package UserInterface.AdministrativeRole;
 import Business.Employee.Employee;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Organization.PatientOrganization;
+import Business.PatientAccount.PatientAccount;
+import Business.Role.Role;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -35,16 +38,18 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     public void populateOrganizationComboBox(){
         organizationJComboBox.removeAllItems();
         
-        for (Organization organization : organizationDir.getOrganizationList()){
-            organizationJComboBox.addItem(organization);
+        for (Organization organization : organizationDir.getOrganizationList()) {
+            if (!(organization instanceof PatientOrganization))
+                organizationJComboBox.addItem(organization);
         }
     }
     
     public void populateOrganizationEmpComboBox(){
         organizationEmpJComboBox.removeAllItems();
         
-        for (Organization organization : organizationDir.getOrganizationList()){
-            organizationEmpJComboBox.addItem(organization);
+        for (Organization organization : organizationDir.getOrganizationList()) {
+            if (!(organization instanceof PatientOrganization))
+                organizationJComboBox.addItem(organization);
         }
     }
 
@@ -52,12 +57,21 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
         
         model.setRowCount(0);
-        
-        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
-            Object[] row = new Object[2];
-            row[0] = employee.getId();
-            row[1] = employee.getName();
-            model.addRow(row);
+        if (organization instanceof PatientOrganization){
+            for (PatientAccount patientAccount : organization.getPatientAccountDirectory().getPatientAccountList()){
+                Object[] row = new Object[2];
+                row[0] = patientAccount.getId();
+                row[1] = patientAccount.getPatientName();
+                model.addRow(row);
+            }
+        }
+        else{
+            for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+                Object[] row = new Object[2];
+                row[0] = employee.getId();
+                row[1] = employee.getName();
+                model.addRow(row);
+            }
         }
     }
     /**
@@ -206,9 +220,16 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
-        
-        organization.getEmployeeDirectory().createEmployee(name);
-        populateTable(organization);
+        if (organization instanceof PatientOrganization){
+            organization.getPatientAccountDirectory().createPatientAccount(name);
+            populateTable(organization);
+        }
+        else {
+            organization.getEmployeeDirectory().createEmployee(name);
+            populateTable(organization);
+        }
+//        organization.getEmployeeDirectory().createEmployee(name);
+//        populateTable(organization);
       
         
     }//GEN-LAST:event_addJButtonActionPerformed

@@ -170,6 +170,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             docNameCombo.addItem(employee);
         }
      }
+     
      public void populateSecOpinion(){
          DefaultTableModel model = (DefaultTableModel)workRequestJTable1.getModel();
         
