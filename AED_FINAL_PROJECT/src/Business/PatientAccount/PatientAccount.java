@@ -20,23 +20,19 @@ public class PatientAccount {
     private String patientEmail; //Use as the username for logging in.
     private String patientPassword;
     private String isACorporateEmployee;
-    private Role role;
-    private WorkQueue workQueue;
+    //private Role role;
+    //private WorkQueue workQueue;
     private int id;
     private static int count = 1;
     
     public PatientAccount(){
-        workQueue = new WorkQueue();
+        //workQueue = new WorkQueue();
         id = count;
         count++;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     
@@ -88,21 +84,21 @@ public class PatientAccount {
         this.isACorporateEmployee = isACorporateEmployee;
     }
 
-    public Role getRole() {
-        return role;
-    }
+//    public Role getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(Role role) {
+//        this.role = role;
+//    }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public WorkQueue getWorkQueue() {
-        return workQueue;
-    }
-
-    public void setWorkQueue(WorkQueue workQueue) {
-        this.workQueue = workQueue;
-    }
+//    public WorkQueue getWorkQueue() {
+//        return workQueue;
+//    }
+//
+//    public void setWorkQueue(WorkQueue workQueue) {
+//        this.workQueue = workQueue;
+//    }
     
     @Override
     public String toString() {

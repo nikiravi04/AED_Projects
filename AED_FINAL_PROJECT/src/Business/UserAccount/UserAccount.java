@@ -72,14 +72,9 @@ public class UserAccount {
         this.patientAccount = patientAccount;
     }
 
-    
-    
-    
     @Override
     public String toString() {
         return username;
     }
-    
-    
-    
+   
 }

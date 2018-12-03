@@ -20,6 +20,11 @@ public class UserAccountDirectory {
 
     public UserAccountDirectory() {
         userAccountList = new ArrayList();
+        patientAccountList = new ArrayList();
+    }
+
+    public ArrayList<UserAccount> getPatientAccountList() {
+        return patientAccountList;
     }
 
     public ArrayList<UserAccount> getUserAccountList() {
@@ -52,13 +57,14 @@ public class UserAccountDirectory {
         return userAccount;
     }
     
-    public UserAccount createPatientAccount(String username, String password, PatientAccount patientAccount){
+    public UserAccount createPatientAccount(String username, String password, PatientAccount patientAccount, Role role){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setPatientAccount(patientAccount);
+        userAccount.setRole(role);
         //userAccount.setRole(role);
-        patientAccountList.add(userAccount);
+        userAccountList.add(userAccount);
         return userAccount;
     }
     
