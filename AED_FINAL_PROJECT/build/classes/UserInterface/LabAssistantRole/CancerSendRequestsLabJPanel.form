@@ -21,36 +21,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD:AED_FINAL_PROJECT/src/UserInterface/LabAssistantRole/SendRequestsLabJPanel.form
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="backJButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="475" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="viewPatientDetailsBtn" min="-2" pref="171" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="requestTestJButton" min="-2" pref="167" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="356" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="messageJTextField" max="32767" attributes="0"/>
-                                  <Component id="labComboBox" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                  </Group>
-=======
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="222" max="32767" attributes="0"/>
               <Component id="backJButton" min="-2" max="-2" attributes="0"/>
@@ -85,7 +55,6 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="requestTestJButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="149" max="32767" attributes="0"/>
->>>>>>> cbf7bf880fe104b4d80e72704c0bba5f261d7791:AED_FINAL_PROJECT/src/UserInterface/LabAssistantRole/CancerSendRequestsLabJPanel.form
               </Group>
               <EmptySpace min="-2" pref="475" max="-2" attributes="0"/>
           </Group>
@@ -93,18 +62,6 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD:AED_FINAL_PROJECT/src/UserInterface/LabAssistantRole/SendRequestsLabJPanel.form
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="backJButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="97" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="requestTestJButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="viewPatientDetailsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-=======
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -129,7 +86,6 @@
                       <Component id="requestTestJButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="135" max="32767" attributes="0"/>
->>>>>>> cbf7bf880fe104b4d80e72704c0bba5f261d7791:AED_FINAL_PROJECT/src/UserInterface/LabAssistantRole/CancerSendRequestsLabJPanel.form
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
