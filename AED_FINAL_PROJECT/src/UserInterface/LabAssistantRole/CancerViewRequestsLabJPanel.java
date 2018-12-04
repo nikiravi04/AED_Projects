@@ -69,6 +69,8 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
         assignJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -97,6 +99,9 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        refreshJButton.setBackground(new java.awt.Color(255, 255, 255));
+        refreshJButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        refreshJButton.setForeground(new java.awt.Color(204, 0, 0));
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +109,9 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
             }
         });
 
+        processJButton.setBackground(new java.awt.Color(255, 255, 255));
+        processJButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        processJButton.setForeground(new java.awt.Color(51, 204, 0));
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +119,9 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
             }
         });
 
+        assignJButton.setBackground(new java.awt.Color(255, 255, 255));
+        assignJButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        assignJButton.setForeground(new java.awt.Color(51, 204, 0));
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +129,9 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
             }
         });
 
+        backJButton.setBackground(new java.awt.Color(255, 255, 255));
+        backJButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(204, 0, 0));
         backJButton.setText("Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
