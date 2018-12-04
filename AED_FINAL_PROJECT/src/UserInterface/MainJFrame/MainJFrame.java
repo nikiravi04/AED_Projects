@@ -36,11 +36,11 @@ public class MainJFrame extends javax.swing.JFrame {
     Timer timer;
     int x = 0;
     String[] picList = {
-                         "C:\\Users\\vish1\\Downloads\\lab.jpg",
-                         "C:\\Users\\vish1\\Downloads\\report.jpg",
-                         "C:\\Users\\vish1\\Downloads\\medic.jpg",
-                         "C:\\Users\\vish1\\Downloads\\bright-cardiac-cardiology.jpg",
-                         "C:\\Users\\vish1\\Downloads\\virus.jpg"
+                         "C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\lab.jpg",
+                         "C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\report.jpg",
+                         "C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\medic.jpg",
+                         "C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\bright-cardiac-cardiology.jpg",
+                         "C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\virus.jpg"
                        };
             
     private EcoSystem system;
@@ -146,19 +146,20 @@ public class MainJFrame extends javax.swing.JFrame {
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userNameJTextField)
-                    .addComponent(passwordField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(loginJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 201, Short.MAX_VALUE)
+            .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(leftPanelLayout.createSequentialGroup()
+                    .addGap(41, 41, 41)
+                    .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(loginJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(logoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addContainerGap(60, Short.MAX_VALUE)))
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
