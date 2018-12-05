@@ -37,7 +37,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
     
     public void setImage(){
-        imageLabel.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\vish1\\Downloads\\key.jpg").getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT)));
+        imageLabel.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\key.jpg").getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT)));
     }
 
     public void populateTree(){
