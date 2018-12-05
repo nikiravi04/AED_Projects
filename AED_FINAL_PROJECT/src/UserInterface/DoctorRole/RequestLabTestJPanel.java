@@ -117,7 +117,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(574, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(requestTestJButton)
@@ -133,14 +133,14 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                         .addGap(113, 113, 113))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(49, 236, Short.MAX_VALUE)
+                    .addGap(49, 472, Short.MAX_VALUE)
                     .addComponent(backJButton)
-                    .addGap(0, 541, Short.MAX_VALUE)))
+                    .addGap(0, 776, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(236, Short.MAX_VALUE)
+                .addContainerGap(359, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,9 +157,9 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 .addGap(88, 88, 88))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 350, Short.MAX_VALUE)
+                    .addGap(0, 398, Short.MAX_VALUE)
                     .addComponent(backJButton)
-                    .addGap(0, 128, Short.MAX_VALUE)))
+                    .addGap(0, 177, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
