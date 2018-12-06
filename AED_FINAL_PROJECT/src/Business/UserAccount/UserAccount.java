@@ -4,9 +4,11 @@
  */
 package Business.UserAccount;
 
+import Business.Doctor.Doctor;
 import Business.Employee.Employee;
 import Business.PatientAccount.PatientAccount;
 import Business.Role.Role;
+import Business.WorkQueue.CancerLabWorkRequest;
 import Business.WorkQueue.WorkQueue;
 
 /**
@@ -19,6 +21,7 @@ public class UserAccount {
     private String password;
     private Employee employee;
     private PatientAccount patientAccount;
+    private Doctor doctor;
     private Role role;
     private WorkQueue workQueue;
 
@@ -70,6 +73,14 @@ public class UserAccount {
 
     public void setPatientAccount(PatientAccount patientAccount) {
         this.patientAccount = patientAccount;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     @Override

@@ -63,7 +63,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText(enterprise.getName());
         accountText.setText(account.getUsername());
         //populateRequestTable();
-        populateCombo();
+        populateEnterpriseCombo();
         populateDocCombo();
         populateSecOpinion();
     }
@@ -122,7 +122,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         
             if (org instanceof CancerLabOrganization)
             {
-                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+                for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[5];
             row[0] = request.getMessage();
             row[1] = request.getReceiver();

@@ -4,6 +4,7 @@
  */
 package Business.UserAccount;
 
+import Business.Doctor.Doctor;
 import Business.Employee.Employee;
 import Business.PatientAccount.PatientAccount;
 import Business.Role.Role;
@@ -62,6 +63,17 @@ public class UserAccountDirectory {
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setPatientAccount(patientAccount);
+        userAccount.setRole(role);
+        //userAccount.setRole(role);
+        userAccountList.add(userAccount);
+        return userAccount;
+    }
+    
+    public UserAccount createDoctorAccount(String username, String password, Doctor doctor, Role role){
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccount.setDoctor(doctor);
         userAccount.setRole(role);
         //userAccount.setRole(role);
         userAccountList.add(userAccount);

@@ -87,17 +87,16 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="loginJButton" alignment="0" pref="100" max="32767" attributes="0"/>
-                                  <Component id="logoutJButton" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="loginJButton" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="logoutJButton" alignment="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="userNameJTextField" alignment="0" pref="92" max="32767" attributes="0"/>
-                                  <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="userNameJTextField" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="passwordField" alignment="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="60" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -117,6 +116,9 @@
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="logoutJButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="780" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -169,9 +171,6 @@
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\vish1\Downloads\icons8-shutdown-24.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
                 <Property name="enabled" type="boolean" value="false"/>

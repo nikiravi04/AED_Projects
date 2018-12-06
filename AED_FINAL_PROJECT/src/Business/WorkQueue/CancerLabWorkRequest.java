@@ -5,6 +5,8 @@
  */
 package Business.WorkQueue;
 
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author Vishaka
@@ -12,6 +14,16 @@ package Business.WorkQueue;
 public class CancerLabWorkRequest extends WorkRequest{
     
     private String testResult;
+    private String cancerSenderEmail;
+    private String cancerReceiverEmail;
+    private String password;
+    private UserAccount userAccount;
+    
+    public CancerLabWorkRequest(){
+        //userAccount = new UserAccount();
+        cancerSenderEmail = "techietribe@gmail.com";
+        password = "parasites";
+    }
 
     public String getTestResult() {
         return testResult;
@@ -21,5 +33,30 @@ public class CancerLabWorkRequest extends WorkRequest{
         this.testResult = testResult;
     }
     
+    public String getPassword() {
+        return password;
+    }
+
+    public String getCancerSenderEmail() {
+        return cancerSenderEmail;
+    }
+
+    public String getCancerReceiverEmail() {
+        return cancerReceiverEmail;
+    }
+
+    public void setCancerReceiverEmail(String cancerReceiverEmail) {
+        this.cancerReceiverEmail = cancerReceiverEmail;
+    }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
     
+    
+  
 }

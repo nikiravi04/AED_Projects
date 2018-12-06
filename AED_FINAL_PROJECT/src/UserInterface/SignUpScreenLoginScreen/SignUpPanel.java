@@ -12,8 +12,10 @@ import Business.Organization.OrganizationDirectory;
 import Business.Organization.PatientOrganization;
 import Business.PatientAccount.PatientAccount;
 import Business.PatientAccount.PatientAccountDirectory;
+import Business.PatientAccount.SendEmail;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -45,30 +47,33 @@ public class SignUpPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-           for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
-                Object row[] = new Object[3];
-                row[0] = ua;
-                row[1] = ua.getRole();
-                row[2] = ua.getPatientAccount();
-                ((DefaultTableModel) userJTable.getModel()).addRow(row);
+            if (organization instanceof PatientOrganization){
+                for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+                     Object row[] = new Object[4];
+                     row[0] = ua;
+                     row[1] = ua.getRole();
+                     row[2] = ua.getPatientAccount();
+                     row[3] = ua.getPatientAccount().getPatientEmail();
+                     ((DefaultTableModel) userJTable.getModel()).addRow(row);
+                 }
             }
         }
     }
 
     public void populateOrganizationComboBox(){
         organizationEmpJComboBox.removeAllItems();
-        
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+        //Organization org = null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             if (organization instanceof PatientOrganization)
+                //org = organization;
                 organizationEmpJComboBox.addItem(organization);
-                //populateEmployeeComboBox(organization);
                 populateRoleComboBox(organization);
-                
         }
     }
     
     private void populateRoleComboBox(Organization organization){
         roleJComboBox.removeAllItems();
+        //Organization org = (Organization) organizationEmpJComboBox.getSelectedItem();
         for (Role role : organization.getSupportedRole()){
             roleJComboBox.addItem(role);
         }
@@ -102,6 +107,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         userJTable = new javax.swing.JTable();
+        backJButton = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -149,14 +155,14 @@ public class SignUpPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "User Name", "Role", "Patient"
+                "User Name", "Role", "Patient", "Email"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -168,6 +174,13 @@ public class SignUpPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(userJTable);
+
+        backJButton.setText("<< Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,7 +226,10 @@ public class SignUpPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(457, 457, 457)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(backJButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -229,12 +245,12 @@ public class SignUpPanel extends javax.swing.JPanel {
                 .addGap(115, 115, 115)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(120, 120, 120)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(patientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(patientNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -247,7 +263,9 @@ public class SignUpPanel extends javax.swing.JPanel {
                     .addComponent(phoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
                 .addComponent(jButton1)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(backJButton)
+                .addGap(112, 112, 112))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -284,11 +302,20 @@ public class SignUpPanel extends javax.swing.JPanel {
         
         JOptionPane.showMessageDialog(null,"User Account Created!");
         popData();
+      //  SendEmail end  = new SendEmail(email,"hello","how are you");
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backJButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backJButton;
     private javax.swing.JTextField emailIDTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

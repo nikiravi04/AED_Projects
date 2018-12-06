@@ -12,7 +12,16 @@ package Business.WorkQueue;
 public class CardioLabWorkRequest extends WorkRequest{
     
     private String testResult;
+    private String cardioSenderEmail;
+    private String cardioReceiverEmail;
+    private String password;
+    
+    public CardioLabWorkRequest() {
+        cardioSenderEmail = "techietribe007@gmail.com";
+        password = "parasites";
+    }
 
+    
     public String getTestResult() {
         return testResult;
     }
@@ -20,5 +29,22 @@ public class CardioLabWorkRequest extends WorkRequest{
     public void setTestResult(String testResult) {
         this.testResult = testResult;
     }
+
+    public String getCardioReceiverEmail() {
+        return cardioReceiverEmail;
+    }
+
+    public void setCardioReceiverEmail(String cardioReceiverEmail) {
+        this.cardioReceiverEmail = cardioReceiverEmail;
+    }
+
+    public String getCardioSenderEmail() {
+        return cardioSenderEmail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
     
 }
