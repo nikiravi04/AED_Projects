@@ -16,6 +16,7 @@ import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Organization.RadiologyLabOrganization;
 import Business.PatientAccount.PatientAccount;
+import Business.PatientAccount.SendEmail;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
 import Business.WorkQueue.CardioLabWorkRequest;
@@ -66,13 +67,13 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             if (org instanceof CancerLabOrganization)
             {
                 for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[5];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
-                String result = ((CancerLabWorkRequest) request).getTestResult();
-                row[3] = result == null ? "Waiting" : result;
-                model.addRow(row);
+                    Object[] row = new Object[5];
+                    row[0] = request.getMessage();
+                    row[1] = request.getReceiver();
+                    row[2] = request.getStatus();
+                    String result = ((CancerLabWorkRequest) request).getTestResult();
+                    row[3] = result == null ? "Waiting" : result;
+                    model.addRow(row);
             }
                 
             
@@ -80,48 +81,41 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             if(org instanceof NeurologyLabOrganization)
             {
                 for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[5];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
-                String result = ((NeuroLabWorkRequest) request).getTestResult();
-                row[3] = result == null ? "Waiting" : result;
-                model.addRow(row);
+                    Object[] row = new Object[5];
+                    row[0] = request.getMessage();
+                    row[1] = request.getReceiver();
+                    row[2] = request.getStatus();
+                    String result = ((NeuroLabWorkRequest) request).getTestResult();
+                    row[3] = result == null ? "Waiting" : result;
+                    model.addRow(row);
             }
                 
             }
             else if(org instanceof RadiologyLabOrganization)
             {
                 for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[5];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
-                String result = ((RadioLabWorkRequest) request).getTestResult();
-                row[3] = result == null ? "Waiting" : result;
-                model.addRow(row);
+                    Object[] row = new Object[5];
+                    row[0] = request.getMessage();
+                    row[1] = request.getReceiver();
+                    row[2] = request.getStatus();
+                    String result = ((RadioLabWorkRequest) request).getTestResult();
+                    row[3] = result == null ? "Waiting" : result;
+                    model.addRow(row);
             }
             }
             else if(org instanceof CardiologyLabOrganization)
             {
-                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[5];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
-                String result = ((CardioLabWorkRequest) request).getTestResult();
-                row[3] = result == null ? "Waiting" : result;
-                model.addRow(row);
+                for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+                    Object[] row = new Object[5];
+                    row[0] = request.getMessage();
+                    row[1] = request.getReceiver();
+                    row[2] = request.getStatus();
+                    String result = ((CardioLabWorkRequest) request).getTestResult();
+                    row[3] = result == null ? "Waiting" : result;
+                    model.addRow(row);
             }
             }
-//            else if(organization instanceof CardiologyLabOrganization)
-//            {
-//                String result = ((CardioLabWorkRequest) request).getTestResult();
-//                row[3] = result == null ? "Waiting" : result;
-//            }
-            
-            
-            //model.addRow(row);
+
         
     }
     
@@ -345,14 +339,16 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 cancerRequest.setMessage(message);
                 cancerRequest.setSender(userAccount);
                 cancerRequest.setStatus("Sent");
+                cancerRequest.setCancerReceiverEmail(userAccount.getPatientAccount().getPatientEmail());
                 org.getWorkQueue().getWorkRequestList().add(cancerRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(cancerRequest);
                 populateRequestTable(org);
+                SendEmail send  = new SendEmail(cancerRequest.getCancerSenderEmail(),cancerRequest.getPassword(),userAccount.getPatientAccount().getPatientEmail(),"hello "+userAccount.getPatientAccount().getPatientName(),"Your Cancer Lab request has been raised");
                  //break;
             }
             if (org instanceof NeurologyLabOrganization ){
                 
-                //org = organization;
+                //orgSendEmail end  = new SendEmail(email,"hello","how are you"); = organization;
                 neuroRequest.setMessage(message);
                 neuroRequest.setSender(userAccount);
                 neuroRequest.setStatus("Sent");
@@ -366,9 +362,12 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 radioRequest.setMessage(message);
                 radioRequest.setSender(userAccount);
                 radioRequest.setStatus("Sent");
+                radioRequest.setRadioReceiverEmail(userAccount.getPatientAccount().getPatientEmail());
                 org.getWorkQueue().getWorkRequestList().add(radioRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(radioRequest);
                 populateRequestTable(org);
+                SendEmail send  = new SendEmail(radioRequest.getRadioSenderEmail(),radioRequest.getPassword(),userAccount.getPatientAccount().getPatientEmail(),"hello "+userAccount.getPatientAccount().getPatientName(),"Your Radio Lab request has been raised");
+
                 //break;
             }
             if (org instanceof CardiologyLabOrganization ){
@@ -376,9 +375,12 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 cardioRequest.setMessage(message);
                 cardioRequest.setSender(userAccount);
                 cardioRequest.setStatus("Sent");
+                cardioRequest.setCardioReceiverEmail(userAccount.getPatientAccount().getPatientEmail());
                 org.getWorkQueue().getWorkRequestList().add(cardioRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(cardioRequest);
                 populateRequestTable(org);
+                SendEmail send  = new SendEmail(cardioRequest.getCardioSenderEmail(),radioRequest.getPassword(),userAccount.getPatientAccount().getPatientEmail(),"hello "+userAccount.getPatientAccount().getPatientName(),"Your Cardio Lab request has been raised");
+
                 //break;
             }
 

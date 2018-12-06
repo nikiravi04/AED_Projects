@@ -12,6 +12,16 @@ package Business.WorkQueue;
 public class RadioLabWorkRequest extends WorkRequest{
     
     private String testResult;
+    private String radioSenderEmail;
+    private String radioReceiverEmail;
+    private String password;
+
+    public RadioLabWorkRequest() {
+        radioSenderEmail = "techietribe007@gmail.com";
+        password = "parasites";
+    }
+    
+    
 
     public String getTestResult() {
         return testResult;
@@ -20,6 +30,25 @@ public class RadioLabWorkRequest extends WorkRequest{
     public void setTestResult(String testResult) {
         this.testResult = testResult;
     }
+
+    public String getRadioSenderEmail() {
+        return radioSenderEmail;
+    }
+
+    public void setRadioReceiverEmail(String radioReceiverEmail) {
+        this.radioReceiverEmail = radioReceiverEmail;
+    }
+    
+    
+
+    public String getRadioReceiverEmail() {
+        return radioReceiverEmail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
     
     
 }

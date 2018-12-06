@@ -6,8 +6,10 @@
 package UserInterface.LabAssistantRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Organization.CancerLabOrganization;
 import Business.Organization.Organization;
+import Business.Organization.PatientOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -28,30 +30,50 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private CancerLabOrganization cancerLabOrganization;
+    private Enterprise enterprise;
     
-    public CancerViewRequestsLabJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem business) {
+    public CancerViewRequestsLabJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.business = business;
         this.cancerLabOrganization = (CancerLabOrganization) organization;
+        //this.organization = organization;
+        this.enterprise = enterprise;
+        
+        //populateOrganizationComboBox();
         populateTable();
+    }
+    
+    public void populateOrganizationComboBox(){
+        organizationEmpJComboBox.removeAllItems();
+        //Organization org = null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList() ) {
+            if (!(organization instanceof CancerLabOrganization))
+                //org = organization;
+                organizationEmpJComboBox.addItem(organization);
+                //populateTable(organization);
+                //populateRoleComboBox(organization);
+        }
     }
     
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
-        
+        //Organization org = (Organization) organizationEmpJComboBox.getSelectedItem();
         model.setRowCount(0);
         
-        for(WorkRequest request : cancerLabOrganization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = request.getSender().getEmployee().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
-            row[3] = request.getStatus();
-            
-            model.addRow(row);
-        }
+            for(WorkRequest request : cancerLabOrganization.getWorkQueue().getWorkRequestList()){
+                Object[] row = new Object[4];
+                row[0] = request;
+                //row[1] = request.getSender().getPatientAccount().getPatientName();
+                row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+                row[3] = request.getStatus();
+
+                model.addRow(row);
+            }
+        //}
+        
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,8 +90,8 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
         processJButton = new javax.swing.JButton();
         assignJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
-
-        setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7 = new javax.swing.JLabel();
+        organizationEmpJComboBox = new javax.swing.JComboBox();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,6 +161,15 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel7.setText("Organization");
+
+        organizationEmpJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        organizationEmpJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationEmpJComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,34 +181,39 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
                         .addComponent(backJButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(187, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7)
+                        .addGap(45, 45, 45)
+                        .addComponent(organizationEmpJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95)
+                        .addComponent(refreshJButton)))
+                .addContainerGap(140, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(304, 304, 304)
-                            .addComponent(refreshJButton))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(29, 29, 29)
-                            .addComponent(assignJButton)
-                            .addGap(208, 208, 208)
-                            .addComponent(processJButton)))
-                    .addContainerGap(67, Short.MAX_VALUE)))
+                    .addGap(29, 29, 29)
+                    .addComponent(assignJButton)
+                    .addGap(208, 208, 208)
+                    .addComponent(processJButton)
+                    .addGap(183, 183, 183)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(organizationEmpJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshJButton)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(38, 38, 38))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(27, 27, 27)
-                    .addComponent(refreshJButton)
-                    .addGap(164, 164, 164)
+                    .addGap(216, 216, 216)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(assignJButton)
                         .addComponent(processJButton))
@@ -186,7 +222,7 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
-        populateTable();
+        //populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
@@ -228,11 +264,17 @@ public class CancerViewRequestsLabJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox organizationEmpJComboBox;
     private javax.swing.JButton processJButton;
     private javax.swing.JButton refreshJButton;
     private javax.swing.JTable workRequestJTable;

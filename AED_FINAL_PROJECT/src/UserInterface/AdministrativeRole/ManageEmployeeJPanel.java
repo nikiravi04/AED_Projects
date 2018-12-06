@@ -49,7 +49,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         
         for (Organization organization : organizationDir.getOrganizationList()) {
             if (!(organization instanceof PatientOrganization))
-                organizationJComboBox.addItem(organization);
+                organizationEmpJComboBox.addItem(organization);
         }
     }
 
@@ -83,6 +83,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
         addJButton = new javax.swing.JButton();
@@ -94,6 +95,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         organizationEmpJComboBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+
+        jMenu1.setText("jMenu1");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -284,6 +287,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationEmpJComboBox;
