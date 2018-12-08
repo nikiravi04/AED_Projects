@@ -114,16 +114,16 @@ public class RadioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     private void sendRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRequestsActionPerformed
         // TODO add your handling code here:
-        NeuroSendRequestsLabJPanel sendRequestJPanel = new NeuroSendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
-        userProcessContainer.add("neurosendRequestJPanel", sendRequestJPanel);
+        RadioSendRequestsLabJPanel sendRequestJPanel = new RadioSendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
+        userProcessContainer.add("radiosendRequestJPanel", sendRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_sendRequestsActionPerformed
 
     private void viewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestsActionPerformed
         // TODO add your handling code here:
-        NeuroViewRequestsLabJPanel viewRequestJPanel = new NeuroViewRequestsLabJPanel(userProcessContainer, userAccount, organization, business);
-        userProcessContainer.add("neuroviewRequestJPanel", viewRequestJPanel);
+        RadioViewRequestsLabJPanel viewRequestJPanel = new RadioViewRequestsLabJPanel(userProcessContainer, userAccount, organization, business);
+        userProcessContainer.add("radioviewRequestJPanel", viewRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_viewRequestsActionPerformed
