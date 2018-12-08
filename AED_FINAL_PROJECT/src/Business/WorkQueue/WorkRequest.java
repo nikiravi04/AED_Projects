@@ -4,6 +4,7 @@
  */
 package Business.WorkQueue;
 
+import Business.PatientAccount.PatientAccount;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -17,12 +18,22 @@ public abstract class WorkRequest {
     private UserAccount sender;
     private UserAccount receiver;
     private String status;
+    private PatientAccount requestFor;
     private Date requestDate;
     private Date resolveDate;
     
     public WorkRequest(){
         requestDate = new Date();
     }
+    
+    public PatientAccount getRequestFor() {
+        return requestFor;
+    }
+
+    public void setRequestFor(PatientAccount requestFor) {
+        this.requestFor = requestFor;
+    }
+
 
     public String getMessage() {
         return message;
