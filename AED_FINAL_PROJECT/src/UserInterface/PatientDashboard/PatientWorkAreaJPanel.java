@@ -336,7 +336,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
        
             if (org instanceof CancerLabOrganization ){
                  //org = organization;
-                cancerRequest.setMessage(message);
+                cancerRequest.setMessage("For "+userAccount.getPatientAccount().getPatientName()+" "+message);
                 cancerRequest.setSender(userAccount);
                 cancerRequest.setStatus("Sent");
                 cancerRequest.setCancerReceiverEmail(userAccount.getPatientAccount().getPatientEmail());
@@ -349,7 +349,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             if (org instanceof NeurologyLabOrganization ){
                 
                 //orgSendEmail end  = new SendEmail(email,"hello","how are you"); = organization;
-                neuroRequest.setMessage(message);
+                neuroRequest.setMessage("For "+userAccount.getPatientAccount().getPatientName()+" "+message);
                 neuroRequest.setSender(userAccount);
                 neuroRequest.setStatus("Sent");
                 neuroRequest.setNeuroReceiverEmail(userAccount.getPatientAccount().getPatientEmail());
@@ -362,7 +362,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             }
             if (org instanceof RadiologyLabOrganization ){
                 //org = organization;
-                radioRequest.setMessage(message);
+                radioRequest.setMessage("For "+userAccount.getPatientAccount().getPatientName()+" "+message);
                 radioRequest.setSender(userAccount);
                 radioRequest.setStatus("Sent");
                 radioRequest.setRadioReceiverEmail(userAccount.getPatientAccount().getPatientEmail());
@@ -375,7 +375,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             }
             if (org instanceof CardiologyLabOrganization ){
                 //org = organization;
-                cardioRequest.setMessage(message);
+                cardioRequest.setMessage("For "+userAccount.getPatientAccount().getPatientName()+" "+message);
                 cardioRequest.setSender(userAccount);
                 cardioRequest.setStatus("Sent");
                 cardioRequest.setCardioReceiverEmail(userAccount.getPatientAccount().getPatientEmail());
