@@ -5,6 +5,7 @@
  */
 package UserInterface.LabAssistantRole;
 
+import Business.PatientAccount.SendEmail;
 import Business.WorkQueue.NeuroLabWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -97,6 +98,8 @@ public class NeuroLabProcessWorkRequestJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setTestResult(resultJTextField.getText());
         request.setStatus("Completed");
+        SendEmail send  = new SendEmail(request.getNeuroReceiverEmail(),request.getPassword(),request.getNeuroSenderEmail(),"hello ","Your Radio Lab request has been completed");
+
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

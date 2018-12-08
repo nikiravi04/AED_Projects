@@ -6,6 +6,7 @@
 package UserInterface.LabAssistantRole;
 
 import Business.PatientAccount.SendEmail;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -22,11 +23,13 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     CancerLabWorkRequest request;
+    UserAccount userAccount;
 
-    public CancerLabProcessWorkRequestJPanel(JPanel userProcessContainer, CancerLabWorkRequest request) {
+    public CancerLabProcessWorkRequestJPanel(JPanel userProcessContainer, CancerLabWorkRequest request, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
+        this.userAccount = userAccount;
     }
 
     /**
