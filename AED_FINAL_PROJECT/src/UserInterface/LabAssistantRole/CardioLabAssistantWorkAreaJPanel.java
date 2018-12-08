@@ -124,7 +124,7 @@ public class CardioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     private void sendRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRequestsActionPerformed
         // TODO add your handling code here:
-        CardioSendRequestsLabJPanel sendRequestJPanel = new CardioSendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
+        CancerSendRequestsLabJPanel_1 sendRequestJPanel = new CancerSendRequestsLabJPanel_1(userProcessContainer, userAccount, organization,enterprise);
         userProcessContainer.add("cardiosendRequestJPanel", sendRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

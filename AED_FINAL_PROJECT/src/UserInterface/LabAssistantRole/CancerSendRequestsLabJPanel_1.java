@@ -27,21 +27,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author nikitaravindran
  */
-public class CardioSendRequestsLabJPanel extends javax.swing.JPanel {
+public class CancerSendRequestsLabJPanel_1 extends javax.swing.JPanel {
 
     /**
-     * Creates new form CardioSendRequestsLabJPanel
+     * Creates new form CancerSendRequestsLabJPanel_1
      */
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private CardiologyLabOrganization cardioLabOrganization;
+    private CancerLabOrganization cancerLabOrganization;
     private Enterprise enterprise;
     
-    public CardioSendRequestsLabJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise) {
+    public CancerSendRequestsLabJPanel_1(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.cardioLabOrganization = (CardiologyLabOrganization)organization;
+        this.cancerLabOrganization = (CancerLabOrganization)organization;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         
@@ -54,7 +54,7 @@ public class CardioSendRequestsLabJPanel extends javax.swing.JPanel {
       labComboBox.removeAllItems();
       Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization 
+            if (organization instanceof CardiologyLabOrganization || organization instanceof NeurologyLabOrganization 
                      || organization instanceof RadiologyLabOrganization){
                 org = organization;
                 labComboBox.addItem(org);
@@ -267,7 +267,7 @@ public class CardioSendRequestsLabJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Organization organization = (Organization)labComboBox.getSelectedItem();
         if (organization instanceof NeurologyLabOrganization
-            || organization instanceof CancerLabOrganization || organization instanceof RadiologyLabOrganization){
+            || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
             populateRequestTable(organization);
         }
     }//GEN-LAST:event_labComboBoxActionPerformed

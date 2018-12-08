@@ -9,6 +9,7 @@ import Business.Employee.EmployeeDirectory;
 import Business.PatientAccount.PatientAccount;
 import Business.PatientAccount.PatientAccountDirectory;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public abstract class Organization {
     private PatientAccountDirectory patientAccountDirectory;
     private DoctorDirectory doctorDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private UserAccount userAccount;
     private int organizationID;
     private static int counter=0;
     
@@ -49,6 +51,7 @@ public abstract class Organization {
         userAccountDirectory = new UserAccountDirectory();
         patientAccountDirectory = new PatientAccountDirectory();
         doctorDirectory = new DoctorDirectory();
+        userAccount = new UserAccount();
         organizationID = counter;
         ++counter;
     }
@@ -58,6 +61,12 @@ public abstract class Organization {
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
     }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+    
+    
 
     public int getOrganizationID() {
         return organizationID;

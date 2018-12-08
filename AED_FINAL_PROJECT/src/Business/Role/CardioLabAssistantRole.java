@@ -11,7 +11,7 @@ import Business.Organization.CardiologyLabOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import UserInterface.LabAssistantRole.CardioLabAssistantWorkAreaJPanel;
-import UserInterface.LabAssistantRole.CardioSendRequestsLabJPanel;
+import UserInterface.LabAssistantRole.CancerSendRequestsLabJPanel_1;
 import UserInterface.LabAssistantRole.LabAssistantWorkAreaJPanel;
 import javax.swing.JPanel;
 
