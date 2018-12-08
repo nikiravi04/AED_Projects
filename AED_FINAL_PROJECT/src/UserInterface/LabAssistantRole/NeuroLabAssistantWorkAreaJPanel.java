@@ -14,6 +14,8 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.NeuroLabWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,7 +43,11 @@ public class NeuroLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         this.neuroLabOrganization = (NeurologyLabOrganization) organization;
         this.organization = organization;
         this.enterprise = enterprise;
-        
+       setImage();
+    }
+    
+    public void setImage(){
+        jLabel1.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\analysis.png").getImage().getScaledInstance(600, 500, Image.SCALE_DEFAULT)));
     }
     
     
@@ -56,7 +62,12 @@ public class NeuroLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
         sendRequests = new javax.swing.JButton();
         viewRequests = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        sendRequests.setBackground(new java.awt.Color(255, 255, 255));
+        sendRequests.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         sendRequests.setText("Send Requests");
         sendRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +75,8 @@ public class NeuroLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        viewRequests.setBackground(new java.awt.Color(255, 255, 255));
+        viewRequests.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         viewRequests.setText("View Requests");
         viewRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,20 +89,27 @@ public class NeuroLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(viewRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(sendRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(viewRequests, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(sendRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(395, 395, 395)
+                .addComponent(jLabel1)
+                .addContainerGap(717, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewRequests)
-                    .addComponent(sendRequests))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(viewRequests)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sendRequests))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel1)))
+                .addContainerGap(556, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -111,6 +131,7 @@ public class NeuroLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton sendRequests;
     private javax.swing.JButton viewRequests;
     // End of variables declaration//GEN-END:variables

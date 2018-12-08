@@ -13,6 +13,8 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.RadioLabWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,7 +43,11 @@ public class RadioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         this.radioLabOrganization = (RadiologyLabOrganization) organization;
         this.organization = organization;
         this.enterprise = enterprise;
-        
+        setImage();
+    }
+    
+    public void setImage(){
+        jLabel1.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\analysis.png").getImage().getScaledInstance(600, 500, Image.SCALE_DEFAULT)));
     }
 
     /**
@@ -53,17 +59,14 @@ public class RadioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        viewRequests = new javax.swing.JButton();
         sendRequests = new javax.swing.JButton();
+        viewRequests = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        viewRequests.setText("View Requests");
-        viewRequests.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewRequestsActionPerformed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        sendRequests.setBackground(new java.awt.Color(255, 255, 255));
+        sendRequests.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         sendRequests.setText("Send Requests");
         sendRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,68 +74,63 @@ public class RadioLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(viewRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(sendRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewRequests)
-                    .addComponent(sendRequests))
-                .addContainerGap(359, Short.MAX_VALUE))
-        );
+        viewRequests.setBackground(new java.awt.Color(255, 255, 255));
+        viewRequests.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        viewRequests.setText("View Requests");
+        viewRequests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewRequestsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(79, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(viewRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sendRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(406, 406, 406)
+                .addComponent(jLabel1)
+                .addContainerGap(721, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 474, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(35, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(viewRequests)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sendRequests))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1)))
+                .addContainerGap(652, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void viewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestsActionPerformed
-        // TODO add your handling code here:
-        RadioViewRequestsLabJPanel viewRequestJPanel = new RadioViewRequestsLabJPanel(userProcessContainer, userAccount, organization, business);
-        userProcessContainer.add("RadioViewRequestsLabJPanel", viewRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_viewRequestsActionPerformed
-
     private void sendRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRequestsActionPerformed
         // TODO add your handling code here:
-        RadioSendRequestsLabJPanel sendRequestJPanel = new RadioSendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
-        userProcessContainer.add("RadioSendRequestsLabJPanel", sendRequestJPanel);
+        NeuroSendRequestsLabJPanel sendRequestJPanel = new NeuroSendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
+        userProcessContainer.add("neurosendRequestJPanel", sendRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_sendRequestsActionPerformed
 
+    private void viewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestsActionPerformed
+        // TODO add your handling code here:
+        NeuroViewRequestsLabJPanel viewRequestJPanel = new NeuroViewRequestsLabJPanel(userProcessContainer, userAccount, organization, business);
+        userProcessContainer.add("neuroviewRequestJPanel", viewRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_viewRequestsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton sendRequests;
     private javax.swing.JButton viewRequests;
     // End of variables declaration//GEN-END:variables

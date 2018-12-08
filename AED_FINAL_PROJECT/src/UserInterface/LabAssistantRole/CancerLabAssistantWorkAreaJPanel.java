@@ -47,7 +47,7 @@ public class CancerLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     }
     
     public void setImage(){
-        jLabel2.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\vish1\\Downloads\\analysis.png").getImage().getScaledInstance(600, 500, Image.SCALE_DEFAULT)));
+        jLabel2.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\analysis.png").getImage().getScaledInstance(600, 500, Image.SCALE_DEFAULT)));
     }
     
   
