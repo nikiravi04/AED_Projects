@@ -94,6 +94,7 @@ public class CancerSendRequestsLabJPanel extends javax.swing.JPanel {
             }
             
             
+            
             model.addRow(row);
         }
     }
