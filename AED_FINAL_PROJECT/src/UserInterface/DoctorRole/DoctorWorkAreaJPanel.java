@@ -66,6 +66,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         populateEnterpriseCombo();
         populateDocCombo();
         populateSecOpinion();
+        populatePatientCombo();
     }
     
     private void populatePatientCombo(){
