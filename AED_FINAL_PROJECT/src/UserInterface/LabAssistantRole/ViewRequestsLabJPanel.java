@@ -192,7 +192,7 @@ public class ViewRequestsLabJPanel extends javax.swing.JPanel {
 
         request.setStatus("Processing");
 
-        CancerLabProcessWorkRequestJPanel processWorkRequestJPanel = new CancerLabProcessWorkRequestJPanel(userProcessContainer, request);
+        CancerLabProcessWorkRequestJPanel processWorkRequestJPanel = new CancerLabProcessWorkRequestJPanel(userProcessContainer, request, userAccount);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

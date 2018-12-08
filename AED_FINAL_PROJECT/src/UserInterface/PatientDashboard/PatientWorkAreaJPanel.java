@@ -105,7 +105,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             }
             else if(org instanceof CardiologyLabOrganization)
             {
-                for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+                for (WorkRequest request : org.getWorkQueue().getWorkRequestList()){
                     Object[] row = new Object[5];
                     row[0] = request.getMessage();
                     row[1] = request.getReceiver();
@@ -352,9 +352,12 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 neuroRequest.setMessage(message);
                 neuroRequest.setSender(userAccount);
                 neuroRequest.setStatus("Sent");
+                neuroRequest.setNeuroReceiverEmail(userAccount.getPatientAccount().getPatientEmail());
                 org.getWorkQueue().getWorkRequestList().add(neuroRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(neuroRequest);
                 populateRequestTable(org);
+                SendEmail send  = new SendEmail(neuroRequest.getNeuroSenderEmail(),neuroRequest.getPassword(),userAccount.getPatientAccount().getPatientEmail(),"hello "+userAccount.getPatientAccount().getPatientName(),"Your Neurology Lab request has been raised");
+
                 //break;
             }
             if (org instanceof RadiologyLabOrganization ){
@@ -366,7 +369,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 org.getWorkQueue().getWorkRequestList().add(radioRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(radioRequest);
                 populateRequestTable(org);
-                SendEmail send  = new SendEmail(radioRequest.getRadioSenderEmail(),radioRequest.getPassword(),userAccount.getPatientAccount().getPatientEmail(),"hello "+userAccount.getPatientAccount().getPatientName(),"Your Radio Lab request has been raised");
+                SendEmail send  = new SendEmail(radioRequest.getRadioSenderEmail(),radioRequest.getPassword(),userAccount.getPatientAccount().getPatientEmail(),"hello "+userAccount.getPatientAccount().getPatientName(),"Your Radiology Lab request has been raised");
 
                 //break;
             }
@@ -379,7 +382,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 org.getWorkQueue().getWorkRequestList().add(cardioRequest);
                 userAccount.getWorkQueue().getWorkRequestList().add(cardioRequest);
                 populateRequestTable(org);
-                SendEmail send  = new SendEmail(cardioRequest.getCardioSenderEmail(),radioRequest.getPassword(),userAccount.getPatientAccount().getPatientEmail(),"hello "+userAccount.getPatientAccount().getPatientName(),"Your Cardio Lab request has been raised");
+                SendEmail send  = new SendEmail(cardioRequest.getCardioSenderEmail(),radioRequest.getPassword(),userAccount.getPatientAccount().getPatientEmail(),"hello "+userAccount.getPatientAccount().getPatientName(),"Your Cardiology Lab request has been raised");
 
                 //break;
             }

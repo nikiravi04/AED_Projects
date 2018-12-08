@@ -45,7 +45,7 @@ public class CardioViewRequestsLabJPanel extends javax.swing.JPanel {
         for(WorkRequest request : cardioLabOrganization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             row[0] = request;
-            row[1] = request.getSender().getEmployee().getName();
+            //row[1] = request.getSender().getEmployee().getName();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
             row[3] = request.getStatus();
             

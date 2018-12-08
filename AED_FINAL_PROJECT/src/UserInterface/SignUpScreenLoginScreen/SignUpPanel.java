@@ -300,9 +300,10 @@ public class SignUpPanel extends javax.swing.JPanel {
         Role role = (Role) roleJComboBox.getSelectedItem();
         organization.getUserAccountDirectory().createPatientAccount(userName, password, patient, role);
         
+        SendEmail send  = new SendEmail("techietribe007@gmail.com","parasites",patient.getPatientEmail(),"Hi","User account created");
+
         JOptionPane.showMessageDialog(null,"User Account Created!");
         popData();
-      //  SendEmail end  = new SendEmail(email,"hello","how are you");
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
