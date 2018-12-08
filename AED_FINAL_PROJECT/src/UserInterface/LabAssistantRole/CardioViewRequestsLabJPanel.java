@@ -35,6 +35,7 @@ public class CardioViewRequestsLabJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.business = business;
         this.cardioLabOrganization = (CardiologyLabOrganization) organization;
+        populateTable();
     }
     
     public void populateTable(){

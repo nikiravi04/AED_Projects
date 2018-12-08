@@ -98,7 +98,7 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setTestResult(resultJTextField.getText());
         request.setStatus("Completed");
-        SendEmail send  = new SendEmail(request.getCardioSenderEmail(),request.getPassword(),request.getCardioReceiverEmail(),"hello ","Your Radio Lab request has been completed");
+        SendEmail send  = new SendEmail(request.getCardioSenderEmail(),request.getPassword(),request.getCardioReceiverEmail(),"hello ","Your Cardiology Lab request has been completed");
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
