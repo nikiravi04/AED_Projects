@@ -14,6 +14,8 @@ import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -44,6 +46,41 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         this.userName.setForeground(Color.RED);
         this.password.setForeground(Color.RED);
         
+    }
+    private void updateNotify() {
+        this.userName.setForeground(Color.BLACK);
+        this.password.setForeground(Color.BLACK);
+        
+    }
+    private boolean passwordPatternCorrect()
+    {
+        Pattern p = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
+        Matcher m = p.matcher(passwordJTextField.getText());
+        boolean b = m.matches();
+        //boolean b = m.find();
+        if(b==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    private boolean usernamePatternCorrect()
+    {
+        Pattern p = Pattern.compile("^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$");
+        Matcher m = p.matcher(nameJTextField.getText());
+        boolean b = m.matches();
+        //boolean b = m.find();
+        if(b==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void popOrganizationComboBox() {
         organizationJComboBox.removeAllItems();
@@ -92,14 +129,14 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 ((DefaultTableModel) userJTable.getModel()).addRow(row);
             }
         }
-           for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
-                Object row[] = new Object[3];
-                row[0] = ua;
-                row[1] = ua.getRole();
-                row[2] = ua.getPatientAccount();
-                ((DefaultTableModel) userJTable.getModel()).addRow(row);
-            }
-        }
+//           for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+//                Object row[] = new Object[3];
+//                row[0] = ua;
+//                row[1] = ua.getRole();
+//                row[2] = ua.getPatientAccount();
+//                ((DefaultTableModel) userJTable.getModel()).addRow(row);
+//            }
+       }
     }
 
     /**
@@ -125,8 +162,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         roleJComboBox = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        passwordJTextField = new javax.swing.JTextField();
         password = new javax.swing.JLabel();
+        passwordJTextField = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -211,6 +249,16 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         password.setText("Password :");
 
+        passwordJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordJTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel1.setText("**Minimum 8 characters|Atleast one Uppercase|Atleast one Lowercase|Atleast one Number|Atleast one special character.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,12 +288,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                     .addComponent(userName)
                                     .addComponent(password))
                                 .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(employeeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(organizationJComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 216, Short.MAX_VALUE)
+                                    .addComponent(employeeJComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 216, Short.MAX_VALUE)
+                                    .addComponent(roleJComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 216, Short.MAX_VALUE)
+                                    .addComponent(nameJTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                                    .addComponent(passwordJTextField, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel1)))))
                 .addContainerGap(320, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -282,7 +333,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password)
                     .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(createUserJButton)
                 .addContainerGap())
         );
@@ -290,7 +343,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
         
-        if(nameJTextField.getText().isEmpty() && passwordJTextField.getText().isEmpty()){
+        
+        String userName = nameJTextField.getText();
+        String password = passwordJTextField.getText();
+        if(nameJTextField.getText().isEmpty() || passwordJTextField.getText().isEmpty())
+        {
             
                 errorNotify();
                 JOptionPane.showMessageDialog(null, "Enter inputs for the fields");
@@ -299,24 +356,49 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         }
         else
         {
-            String userName = nameJTextField.getText();
-            String password = passwordJTextField.getText();
-            Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-            if (!(organization instanceof PatientOrganization)){
-                Employee employee = (Employee) employeeJComboBox.getSelectedItem();
-                Role role = (Role) roleJComboBox.getSelectedItem();
-                organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-            }
-            else {
+            if(passwordPatternCorrect() && usernamePatternCorrect())
+            {
+                
+                if(!enterprise.getUserAccountDirectory().checkIfUsernameIsUnique(userName))
+                    {
+                            this.userName.setForeground(Color.RED);
+                            JOptionPane.showMessageDialog(null, "Username unavailable. Already in use.", "UserAccount username unavailable", JOptionPane.ERROR_MESSAGE);
 
-                PatientAccount patient = (PatientAccount) employeeJComboBox.getSelectedItem();
-                Role role = (Role) roleJComboBox.getSelectedItem();
-                organization.getUserAccountDirectory().createPatientAccount(userName, password, patient, role);
-            }
-            JOptionPane.showMessageDialog(null,"User Account Created!");
-            popData();
-        
+                    }
+
+                else{
+                          
+                            
+                            Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+                            if (!(organization instanceof PatientOrganization)){
+                                Employee employee = (Employee) employeeJComboBox.getSelectedItem();
+                                Role role = (Role) roleJComboBox.getSelectedItem();
+                                organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+                            }
+                            else {
+
+                                PatientAccount patient = (PatientAccount) employeeJComboBox.getSelectedItem();
+                                Role role = (Role) roleJComboBox.getSelectedItem();
+                                organization.getUserAccountDirectory().createPatientAccount(userName, password, patient, role);
+                            }
+                            JOptionPane.showMessageDialog(null,"User Account Created!");
+                            popData();
+                   }
+                
+                } 
+            else
+                {
+                    this.userName.setForeground(Color.RED);
+                    this.password.setForeground(Color.RED);
+                    JOptionPane.showMessageDialog(null, "Username or Password does not comply with the requirements!");
+                    return;
+                }
+                
+                
         }
+                updateNotify();
+                nameJTextField.setText("");
+                passwordJTextField.setText("");
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
@@ -337,10 +419,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_employeeJComboBoxActionPerformed
 
+    private void passwordJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordJTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordJTextFieldActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JButton createUserJButton;
     private javax.swing.JComboBox employeeJComboBox;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -350,7 +437,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JLabel password;
-    private javax.swing.JTextField passwordJTextField;
+    private javax.swing.JPasswordField passwordJTextField;
     private javax.swing.JComboBox roleJComboBox;
     private javax.swing.JTable userJTable;
     private javax.swing.JLabel userName;

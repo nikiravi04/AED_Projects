@@ -31,6 +31,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.directory = directory;
+        this.enterprise = enterprise;
         valueLabel.setText(enterprise.getName());
         populateTable();
         populateCombo();
@@ -230,12 +231,22 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 return;
         }
         else{
+            if(!enterprise.searchOrgname(nameOfOrgTextField.getText())) 
+                {
+                        this.nameOfOrgLabel.setForeground(Color.RED);
+                        JOptionPane.showMessageDialog(null, "Organization name unavailable. Already in use.", "Org username unavailable", JOptionPane.ERROR_MESSAGE);
+                    
+                }
             
-            Type type = (Type) organizationJComboBox.getSelectedItem();
-            Organization o =directory.createOrganization(type);
-            o.setName(nameOfOrgTextField.getText());
-            populateTable();
-            JOptionPane.showMessageDialog(null,"Organization Created!");
+            else{
+            
+                Type type = (Type) organizationJComboBox.getSelectedItem();
+                Organization o =directory.createOrganization(type);
+                o.setName(nameOfOrgTextField.getText());
+                populateTable();
+                JOptionPane.showMessageDialog(null,"Organization Created!");
+            
+                }
         }
         
     }//GEN-LAST:event_addJButtonActionPerformed

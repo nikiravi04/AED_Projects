@@ -4,6 +4,8 @@
  */
 package Business.Organization;
 
+import Business.Employee.Employee;
+import Business.Employee.EmployeeDirectory;
 import Business.Organization.Organization.Type;
 import java.util.ArrayList;
 
@@ -14,9 +16,11 @@ import java.util.ArrayList;
 public class OrganizationDirectory {
     
     private ArrayList<Organization> organizationList;
+    
 
     public OrganizationDirectory() {
         organizationList = new ArrayList();
+        
     }
 
     public ArrayList<Organization> getOrganizationList() {
@@ -55,6 +59,7 @@ public class OrganizationDirectory {
         }
         return organization;
     }
+    
     
     
 }

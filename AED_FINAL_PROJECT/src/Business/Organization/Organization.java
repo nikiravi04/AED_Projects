@@ -100,6 +100,14 @@ public abstract class Organization {
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
     }
+    public boolean searchEmployeeName(String name){
+        for(Employee emp : this.employeeDirectory.getEmployeeList()){
+            if(emp.getName().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     public String toString() {
