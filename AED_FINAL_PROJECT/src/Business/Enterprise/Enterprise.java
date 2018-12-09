@@ -7,6 +7,8 @@ package Business.Enterprise;
 
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 
 /**
  *
@@ -16,10 +18,16 @@ public abstract class Enterprise extends Organization{
     
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
-
+    private UserAccountDirectory userAccDir;
+            
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
+
+    public UserAccountDirectory getUserAccDir() {
+        return userAccDir;
+    }
+    
     
     public enum EnterpriseType{
         Hospital("Hospital"),
@@ -50,5 +58,25 @@ public abstract class Enterprise extends Organization{
         super(name);
         this.enterpriseType=type;
         organizationDirectory=new OrganizationDirectory();
+        userAccDir = new UserAccountDirectory();
     }
+    
+    public boolean searchOrgname(String name){
+        for(Organization org : this.organizationDirectory.getOrganizationList()){
+            if(org.getName().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean searchUserAccname(String name){
+        for(UserAccount acc : this.userAccDir.getUserAccountList()){
+            if(acc.getUsername().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
 }

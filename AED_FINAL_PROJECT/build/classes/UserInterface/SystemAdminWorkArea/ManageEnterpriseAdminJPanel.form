@@ -21,16 +21,43 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+=======
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="404" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="523" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="398" max="-2" attributes="0"/>
           </Group>
+>>>>>>> origin/master
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="435" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="networkJComboBox" pref="247" max="32767" attributes="0"/>
+                                      <Component id="enterpriseJComboBox" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="nameJTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="usernameJTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="passwordJPasswordField" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              </Group>
+=======
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -45,6 +72,7 @@
                               <Component id="nameJTextField" alignment="0" max="32767" attributes="0"/>
                               <Component id="usernameJTextField" alignment="0" max="32767" attributes="0"/>
                               <Component id="passwordJPasswordField" alignment="0" max="32767" attributes="0"/>
+>>>>>>> origin/master
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -61,6 +89,14 @@
               </Group>
               <EmptySpace min="-2" pref="418" max="-2" attributes="0"/>
           </Group>
+<<<<<<< HEAD
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="523" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="398" max="-2" attributes="0"/>
+          </Group>
+=======
+>>>>>>> origin/master
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -98,7 +134,13 @@
                   <Component id="passwordJPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+<<<<<<< HEAD
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+=======
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+>>>>>>> origin/master
               <Component id="submitJButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -251,5 +293,19 @@
         <Property name="text" type="java.lang.String" value="Manage Enterprise Administrator"/>
       </Properties>
     </Component>
+<<<<<<< HEAD
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="8" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="**Minimum 8 characters|Atleast one Uppercase|Atleast one Lowercase|Atleast one Number|Atleast one special character."/>
+      </Properties>
+    </Component>
+=======
+>>>>>>> origin/master
   </SubComponents>
 </Form>

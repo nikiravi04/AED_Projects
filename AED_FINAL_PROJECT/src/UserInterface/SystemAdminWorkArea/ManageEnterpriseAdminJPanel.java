@@ -11,7 +11,11 @@ import Business.Network.Network;
 import Business.Role.AdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,6 +58,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         }
     }
+    
 
     private void populateNetworkComboBox(){
         networkJComboBox.removeAllItems();
@@ -71,7 +76,43 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
         
     }
+    private void errorNotify() {
+        this.jLabel5.setForeground(Color.RED);
+        this.jLabel2.setForeground(Color.RED);
+        this.jLabel4.setForeground(Color.RED);
+        
+    }
+    private boolean passwordPatternCorrect()
+    {
+        Pattern p = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
+        Matcher m = p.matcher(passwordJPasswordField.getText());
+        boolean b = m.matches();
+        //boolean b = m.find();
+        if(b==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
+    private boolean usernamePatternCorrect()
+    {
+        Pattern p = Pattern.compile("^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$");
+        Matcher m = p.matcher(usernameJTextField.getText());
+        boolean b = m.matches();
+        //boolean b = m.find();
+        if(b==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,6 +137,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         passwordJPasswordField = new javax.swing.JPasswordField();
         backJButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -163,32 +205,37 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         jLabel6.setText("Manage Enterprise Administrator");
 
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel7.setText("**Minimum 8 characters|Atleast one Uppercase|Atleast one Lowercase|Atleast one Number|Atleast one special character.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(404, 404, 404)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(398, 398, 398))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(435, 435, 435)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4))
-                            .addGap(121, 121, 121)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(networkJComboBox, 0, 247, Short.MAX_VALUE)
-                                .addComponent(enterpriseJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nameJTextField)
-                                .addComponent(usernameJTextField)
-                                .addComponent(passwordJPasswordField)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel4))
+                                    .addGap(121, 121, 121)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(networkJComboBox, 0, 247, Short.MAX_VALUE)
+                                        .addComponent(enterpriseJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(nameJTextField)
+                                        .addComponent(usernameJTextField)
+                                        .addComponent(passwordJPasswordField)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addComponent(jLabel7))))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(backJButton)
@@ -198,6 +245,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                         .addGap(596, 596, 596)
                         .addComponent(submitJButton)))
                 .addGap(418, 418, 418))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(398, 398, 398))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +279,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
                 .addComponent(submitJButton)
                 .addContainerGap())
         );
@@ -245,18 +298,34 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        
-        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-        
-        String username = usernameJTextField.getText();
-        String password = String.valueOf(passwordJPasswordField.getPassword());
-        String name = nameJTextField.getText();
-        
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-        
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
-        populateTable();
-        
+        if(usernameJTextField.getText().isEmpty() || passwordJPasswordField.getText().isEmpty() || nameJTextField.getText().isEmpty()){
+                errorNotify();
+                JOptionPane.showMessageDialog(null, "Enter input for the field");
+                return;
+        }
+        else{
+            if(passwordPatternCorrect() && usernamePatternCorrect())
+                {
+                    Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+
+                    String username = usernameJTextField.getText();
+                    String password = String.valueOf(passwordJPasswordField.getPassword());
+                    String name = nameJTextField.getText();
+
+                    Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+
+                    UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
+                    populateTable();
+                    JOptionPane.showMessageDialog(null, "Admin Created!");
+                }
+            else
+                {
+                            this.jLabel2.setForeground(Color.RED);
+                            this.jLabel4.setForeground(Color.RED);
+                            JOptionPane.showMessageDialog(null, "Username or Password does not comply with the requirements!");
+                            return;
+                }
+        } 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -279,6 +348,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox networkJComboBox;

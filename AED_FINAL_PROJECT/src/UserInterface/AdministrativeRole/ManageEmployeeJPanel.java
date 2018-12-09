@@ -260,7 +260,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 return;
         }
         else
-        {    
+        {  
+                
             Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
             String name = nameJTextField.getText();
             if (organization instanceof PatientOrganization){
@@ -271,8 +272,9 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 organization.getEmployeeDirectory().createEmployee(name);
                 populateTable(organization);
             }
-        
+            
         }
+        
 //        organization.getEmployeeDirectory().createEmployee(name);
 //        populateTable(organization);
       
