@@ -17,6 +17,9 @@ public class CancerLabWorkRequest extends WorkRequest{
     private String cancerSenderEmail;
     private String cancerReceiverEmail;
     private String password;
+    private String rbc;
+    private String wbc;
+    private String plateletCount;
     private UserAccount userAccount;
     
     public CancerLabWorkRequest(){
@@ -52,6 +55,31 @@ public class CancerLabWorkRequest extends WorkRequest{
     public UserAccount getUserAccount() {
         return userAccount;
     }
+
+    public String getRbc() {
+        return rbc;
+    }
+
+    public void setRbc(String rbc) {
+        this.rbc = rbc;
+    }
+
+    public String getWbc() {
+        return wbc;
+    }
+
+    public void setWbc(String wbc) {
+        this.wbc = wbc;
+    }
+
+    public String getPlateletCount() {
+        return plateletCount;
+    }
+
+    public void setPlateletCount(String plateletCount) {
+        this.plateletCount = plateletCount;
+    }
+    
 
     public void setUserAccount(UserAccount userAccount) {
         this.userAccount = userAccount;
