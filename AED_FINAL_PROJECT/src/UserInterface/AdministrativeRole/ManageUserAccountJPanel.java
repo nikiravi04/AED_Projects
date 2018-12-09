@@ -13,6 +13,7 @@ import Business.PatientAccount.PatientAccount;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -39,6 +40,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         popData();
     }
 
+    private void errorNotify() {
+        this.userName.setForeground(Color.RED);
+        this.password.setForeground(Color.RED);
+        
+    }
     public void popOrganizationComboBox() {
         organizationJComboBox.removeAllItems();
         
@@ -110,7 +116,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         organizationJComboBox = new javax.swing.JComboBox();
         nameJTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        userName = new javax.swing.JLabel();
         employeeJComboBox = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         userJTable = new javax.swing.JTable();
@@ -120,7 +126,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         roleJComboBox = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         passwordJTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        password = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -143,7 +149,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Employee :");
 
-        jLabel1.setText("User Name :");
+        userName.setText("User Name :");
 
         employeeJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +209,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(0, 0, 204));
         jLabel7.setText("Create User Account");
 
-        jLabel2.setText("Password :");
+        password.setText("Password :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -231,8 +237,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                    .addComponent(userName)
+                                    .addComponent(password))
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,11 +276,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(userName)
                     .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(password)
                     .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(createUserJButton)
@@ -283,22 +289,34 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-        String userName = nameJTextField.getText();
-        String password = passwordJTextField.getText();
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-        if (!(organization instanceof PatientOrganization)){
-            Employee employee = (Employee) employeeJComboBox.getSelectedItem();
-            Role role = (Role) roleJComboBox.getSelectedItem();
-            organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-        }
-        else {
+        
+        if(nameJTextField.getText().isEmpty() && passwordJTextField.getText().isEmpty()){
             
-            PatientAccount patient = (PatientAccount) employeeJComboBox.getSelectedItem();
-            Role role = (Role) roleJComboBox.getSelectedItem();
-            organization.getUserAccountDirectory().createPatientAccount(userName, password, patient, role);
+                errorNotify();
+                JOptionPane.showMessageDialog(null, "Enter inputs for the fields");
+                return;
+            
         }
-        JOptionPane.showMessageDialog(null,"User Account Created!");
-        popData();
+        else
+        {
+            String userName = nameJTextField.getText();
+            String password = passwordJTextField.getText();
+            Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+            if (!(organization instanceof PatientOrganization)){
+                Employee employee = (Employee) employeeJComboBox.getSelectedItem();
+                Role role = (Role) roleJComboBox.getSelectedItem();
+                organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+            }
+            else {
+
+                PatientAccount patient = (PatientAccount) employeeJComboBox.getSelectedItem();
+                Role role = (Role) roleJComboBox.getSelectedItem();
+                organization.getUserAccountDirectory().createPatientAccount(userName, password, patient, role);
+            }
+            JOptionPane.showMessageDialog(null,"User Account Created!");
+            popData();
+        
+        }
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
@@ -323,8 +341,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backJButton;
     private javax.swing.JButton createUserJButton;
     private javax.swing.JComboBox employeeJComboBox;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -333,8 +349,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationJComboBox;
+    private javax.swing.JLabel password;
     private javax.swing.JTextField passwordJTextField;
     private javax.swing.JComboBox roleJComboBox;
     private javax.swing.JTable userJTable;
+    private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
 }

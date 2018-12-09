@@ -291,19 +291,35 @@ public class SignUpPanel extends javax.swing.JPanel {
         String userName = userNameTextField.getText();
         String password = passwordTextField.getText();
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();  
-            
-        PatientAccount patient = organization.getPatientAccountDirectory().createPatientAccount(patientName);
-        patient.setPatientName(patientName);
-        patient.setPatientEmail(email);
-        patient.setPatientPhone(phoneNumber);
-        
-        Role role = (Role) roleJComboBox.getSelectedItem();
-        organization.getUserAccountDirectory().createPatientAccount(userName, password, patient, role);
-        
-        SendEmail send  = new SendEmail("techietribe007@gmail.com","parasites",patient.getPatientEmail(),"Hi","User account created");
+        try{
+            if(patientNameTextField.getText().isEmpty() && emailIDTextField.getText().isEmpty() && 
+                    phoneNumberTextField.getText().isEmpty() && userNameTextField.getText().isEmpty()
+                    && passwordTextField.getText().isEmpty()){
 
-        JOptionPane.showMessageDialog(null,"User Account Created!");
-        popData();
+                throw new RuntimeException();
+            }
+            else{
+            PatientAccount patient = organization.getPatientAccountDirectory().createPatientAccount(patientName);
+            patient.setPatientName(patientName);
+            patient.setPatientEmail(email);
+            patient.setPatientPhone(phoneNumber);
+
+            Role role = (Role) roleJComboBox.getSelectedItem();
+
+            organization.getUserAccountDirectory().createPatientAccount(userName, password, patient, role);
+
+            SendEmail send  = new SendEmail("techietribe007@gmail.com","parasites",patient.getPatientEmail(),"Hi","User account created");
+
+            JOptionPane.showMessageDialog(null,"User Account Created!");
+            popData();
+            }
+        }
+        catch(RuntimeException exc)
+       {
+           JOptionPane.showMessageDialog(null, "Enter inputs for all fields");
+           return;
+       }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

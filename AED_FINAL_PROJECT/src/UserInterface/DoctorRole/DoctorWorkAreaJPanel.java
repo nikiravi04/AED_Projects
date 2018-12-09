@@ -55,7 +55,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organization = (Organization)organization;
-        this.enterprise = (Enterprise)enterprise;
+        this.enterprise = enterprise;
         this.userAccount = account;
         this.business= business;
         //this.directory = directory;
@@ -80,34 +80,36 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
        
     }
     
-    private void populateLabCombo(){
+    private void populateLabCombo(Enterprise enterprise){
+       
         
-        
+        //Enterprise enterprise = (Enterprise) enterpriseComboBox.getSelectedItem();
+                //if(enterprise.getEnterpriseType().toString().equals("Lab")){
+                   
+                //}
+                //else if(enterprise.getEnterpriseType().toString().equals("Hospital")){
+                   
+                //}  
                 
     }
   
      private void populateEnterpriseCombo(){
-         labComboBox.removeAllItems();
-          //Organization org = null;
+         
+        Organization org = null;
+        labComboBox.removeAllItems();
           enterpriseComboBox.removeAllItems();
           for (Network network : business.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                enterpriseComboBox.addItem(enterprise);
-                //enterprise = (Enterprise) enterpriseComboBox.getSelectedItem();
-                if(enterprise.getEnterpriseType().toString().equals("Lab")){
-                   for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                            //org = organization;
+                enterpriseComboBox.addItem(enterprise); 
+                //populateLabCombo(enterprise);
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            org = organization;
                             labComboBox.addItem(organization);
                         } 
-                }
-                if(enterprise.getEnterpriseType().toString().equals("Hospital")){
-                   for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                            //org = organization;
-                            labComboBox.addItem(organization);
-                        } 
-                }
-            }
+            } 
         }
+          
+          
         
     }
     
@@ -791,13 +793,23 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void labComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labComboBoxActionPerformed
 
         // TODO add your handling code here:
-        Organization organization = (Organization)labComboBox.getSelectedItem();
-        if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization    
-                || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
+       
+        Organization org = (Organization)labComboBox.getSelectedItem();
+       for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+        if (org instanceof CancerLabOrganization || org instanceof NeurologyLabOrganization    
+              || org instanceof CardiologyLabOrganization || org instanceof RadiologyLabOrganization ||org instanceof DoctorOrganization){
+          
             populateRequestTable(organization);
-        }
+            }
+        
+       }
 //        else if(organization instanceof NeurologyLabOrganization    || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
 //            populateRequestTable(organization);
+//        }
+//           Enterprise enterprise = (Enterprise) enterpriseComboBox.getSelectedItem();
+//        if (enterprise != null){
+//            
+//            populateLabCombo(enterprise);
 //        }
 
     }//GEN-LAST:event_labComboBoxActionPerformed
