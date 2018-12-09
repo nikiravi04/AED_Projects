@@ -1,2 +1,3 @@
 *.class
 *.db4o
+/AED_FINAL_PROJECT/dist/
