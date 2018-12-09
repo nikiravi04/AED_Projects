@@ -11,11 +11,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-<<<<<<< HEAD
     <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,4,124,0,0,5,-104"/>
-=======
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-28,0,0,5,-104"/>
->>>>>>> origin/master
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -36,47 +32,11 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-<<<<<<< HEAD
-=======
-                  <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="emailIDTextField" alignment="0" pref="231" max="32767" attributes="0"/>
-                      <Component id="patientNameTextField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="phoneNumberTextField" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel5" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                          <Component id="passwordTextField" min="-2" pref="229" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel6" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="userNameTextField" min="-2" pref="228" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="329" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
->>>>>>> origin/master
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                   <Component id="organizationEmpJComboBox" min="-2" pref="81" max="-2" attributes="0"/>
-<<<<<<< HEAD
                   <EmptySpace pref="81" max="32767" attributes="0"/>
-=======
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
->>>>>>> origin/master
                   <Component id="jLabel9" min="-2" pref="123" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="roleJComboBox" min="-2" pref="184" max="-2" attributes="0"/>
@@ -89,25 +49,16 @@
                           <Component id="jScrollPane1" min="-2" pref="741" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-<<<<<<< HEAD
                           <EmptySpace min="-2" pref="464" max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" pref="353" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-=======
-                          <EmptySpace min="-2" pref="457" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="353" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
->>>>>>> origin/master
                           <Component id="backJButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
-<<<<<<< HEAD
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -142,8 +93,6 @@
                       </Group>
                   </Group>
               </Group>
-=======
->>>>>>> origin/master
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -160,7 +109,6 @@
                   </Group>
                   <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="179" max="-2" attributes="0"/>
-<<<<<<< HEAD
                   <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -200,71 +148,27 @@
                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                   <Component id="backJButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="363" max="32767" attributes="0"/>
-=======
-                  <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="userNameTextField" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="patientNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="emailIDTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="passwordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="phoneNumberTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
-                  <Component id="backJButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
->>>>>>> origin/master
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="patientName">
-=======
-        <Component class="javax.swing.JLabel" name="jLabel1">
->>>>>>> origin/master
           <Properties>
             <Property name="text" type="java.lang.String" value="Patient Name:"/>
           </Properties>
         </Component>
-<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="emailName">
-=======
-        <Component class="javax.swing.JLabel" name="jLabel3">
->>>>>>> origin/master
           <Properties>
             <Property name="text" type="java.lang.String" value="Email ID :"/>
           </Properties>
         </Component>
-<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="phoneNumber">
-=======
-        <Component class="javax.swing.JLabel" name="jLabel4">
->>>>>>> origin/master
           <Properties>
             <Property name="text" type="java.lang.String" value="Phone Number :"/>
           </Properties>
         </Component>
-<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="password">
-=======
-        <Component class="javax.swing.JLabel" name="jLabel5">
->>>>>>> origin/master
           <Properties>
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
@@ -279,12 +183,9 @@
         <Component class="javax.swing.JTextField" name="phoneNumberTextField">
         </Component>
         <Component class="javax.swing.JTextField" name="userNameTextField">
-<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userNameTextFieldActionPerformed"/>
           </Events>
-=======
->>>>>>> origin/master
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
@@ -303,11 +204,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
-<<<<<<< HEAD
-=======
-        <Component class="javax.swing.JTextField" name="passwordTextField">
-        </Component>
->>>>>>> origin/master
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Organization"/>
@@ -340,11 +236,7 @@
             <Property name="text" type="java.lang.String" value="Role"/>
           </Properties>
         </Component>
-<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="userName">
-=======
-        <Component class="javax.swing.JLabel" name="jLabel6">
->>>>>>> origin/master
           <Properties>
             <Property name="text" type="java.lang.String" value="Username"/>
           </Properties>
@@ -405,7 +297,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backJButtonActionPerformed"/>
           </Events>
         </Component>
-<<<<<<< HEAD
         <Component class="javax.swing.JPasswordField" name="passwordJTextfield">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordJTextfieldActionPerformed"/>
@@ -422,8 +313,6 @@
             <Property name="text" type="java.lang.String" value="**Minimum 8 characters|Atleast one Uppercase|Atleast one Lowercase|Atleast one Number|Atleast one special character."/>
           </Properties>
         </Component>
-=======
->>>>>>> origin/master
       </SubComponents>
     </Container>
   </SubComponents>

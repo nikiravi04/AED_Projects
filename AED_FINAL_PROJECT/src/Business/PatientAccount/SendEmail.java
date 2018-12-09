@@ -8,6 +8,9 @@ package Business.PatientAccount;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 
 /**
  *
@@ -45,22 +48,25 @@ public class SendEmail {
         props.put("mail.smtp.socketFactory.fallback", "false");
         SecurityManager security = System.getSecurityManager();
         try{  
-        Authenticator auth = new SMTPAuthenticator();
-        Session session = Session.getInstance(props, auth);
-        MimeMessage msg = new MimeMessage(session);
-        msg.setText(emailBody);
-        msg.setSubject(emailSubject);
-        msg.setFrom(new InternetAddress(senderEmailID));
-        msg.addRecipient(Message.RecipientType.TO,
-        new InternetAddress(receiverEmailID));
-        Transport.send(msg);
-        System.out.println("Message send Successfully:)"); }
+            Authenticator auth = new SMTPAuthenticator();
+            Session session = Session.getInstance(props, auth);
+            MimeMessage msg = new MimeMessage(session);
+            msg.setText(emailBody);
+            msg.setSubject(emailSubject);
+            msg.setFrom(new InternetAddress(senderEmailID));
+            msg.addRecipient(Message.RecipientType.TO,
+            new InternetAddress(receiverEmailID));
+            Transport.send(msg);
+            System.out.println("Message send Successfully:)"); 
+        }
 
         catch (Exception mex){
-        mex.printStackTrace();}
+            mex.printStackTrace();
+            return;
+        }
 
-}
-    
+    }
+
     public class SMTPAuthenticator extends javax.mail.Authenticator{
         public PasswordAuthentication getPasswordAuthentication(){
             return new PasswordAuthentication(senderEmailID, senderPassword);

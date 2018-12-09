@@ -11,11 +11,15 @@ import Business.WorkQueue.CancerLabWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartRenderingInfo;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.entity.StandardEntityCollection;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
@@ -300,12 +304,15 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setTestResult(resultJTextField.getText());
-        request.setRbc(rbcText.getText());
-        request.setWbc(wbcText.getText());
-        request.setPlateletCount(plateletText.getText());
+//        request.setRbc(rbcText.getText());
+//        request.setWbc(wbcText.getText());
+//        request.setPlateletCount(plateletText.getText());
         request.setStatus("Completed");
         SendEmail send  = new SendEmail(request.getCancerSenderEmail(),request.getPassword(),request.getCancerReceiverEmail(),"hello ",
-                "Your cancer request has been completed "+request.getRbc());
+                "Your cancer request has been completed\n"+
+                "Your RBC level: "+rbcText.getText()+"\n"+
+                "Your RBC level: "+wbcText.getText()+"\n"+
+                "Your RBC level: "+plateletText.getText()+"\n");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void rbcTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbcTextActionPerformed
@@ -337,6 +344,15 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         ChartFrame frame = new ChartFrame("Bar chart", chart);
         frame.setVisible(true);
         frame.setSize(500,500);
+        try{
+            final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
+            final File file = new File("BarGraph.png");
+            ChartUtilities.saveChartAsPNG(file, chart, 600, 400);
+            
+        }
+        catch(Exception e){
+            
+        }
         
     }//GEN-LAST:event_graphActionPerformed
 
