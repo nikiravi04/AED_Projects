@@ -179,12 +179,15 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setTestResult(resultJTextField.getText());
-        request.setHemoglobin(rbcText.getText());
-        request.setHematocrit(wbcText.getText());
-        request.setPulse(plateletText.getText());
+//        request.setHemoglobin(rbcText2.getText());
+//        request.setHematocrit(wbcText.getText());
+//        request.setPulse(plateletText.getText());
         request.setStatus("Completed");
         SendEmail send  = new SendEmail(request.getCardioSenderEmail(),request.getPassword(),request.getCardioReceiverEmail(),"hello ",
-                "Your Cardiology Lab request has been completed" + request.getHemoglobin());
+                "Your Cardiology Lab request has been completed\n"+
+                "Your Hemoglobin level: "+rbcText2.getText()+"\n"+
+                "Your Hematocrit level: "+wbcText.getText()+"\n"+
+                "Your Pulse level: "+plateletText.getText()+"\n");
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 

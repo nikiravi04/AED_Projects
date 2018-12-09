@@ -180,12 +180,15 @@ public class NeuroLabProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setTestResult(resultJTextField.getText());
-        request.setCarpelTunnel(rbcText.getText());
-        request.setNerveMotor(wbcText.getText());
-        request.setNerveSensory(plateletText.getText());
+//        request.setCarpelTunnel(rbcText.getText());
+//        request.setNerveMotor(wbcText.getText());
+//        request.setNerveSensory(plateletText.getText());
         request.setStatus("Completed");
         SendEmail send  = new SendEmail(request.getNeuroReceiverEmail(),request.getPassword(),request.getNeuroSenderEmail(),
-                "hello ","Your Neurology Lab request has been completed" +request.getCarpelTunnel());
+                "hello ","Your Neurology Lab request has been completed\n"+
+                "Your CarpelTunnel level: "+rbcText.getText()+"\n"+
+                "Your NerveMotor level: "+wbcText.getText()+"\n"+
+                "Your NerveSensory level: "+plateletText.getText()+"\n");
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
