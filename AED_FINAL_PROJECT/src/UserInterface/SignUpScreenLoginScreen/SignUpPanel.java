@@ -88,6 +88,39 @@ public class SignUpPanel extends javax.swing.JPanel {
             return false;
         }
     }
+    private boolean emailPatternCorrect()
+    {
+        Pattern p = Pattern.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
+        Matcher m = p.matcher(emailIDTextField.getText());
+        boolean b = m.matches();
+        //boolean b = m.find();
+        if(b==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    private boolean phonePatternCorrect()
+    {
+        Pattern p = Pattern.compile("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$");
+        Matcher m = p.matcher(emailIDTextField.getText());
+        boolean b = m.matches();
+        //boolean b = m.find();
+        if(b==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    
     
     public void popData() {
 
@@ -380,7 +413,7 @@ public class SignUpPanel extends javax.swing.JPanel {
             else
             {
                 
-                 if(passwordPatternCorrect() && usernamePatternCorrect())
+                 if(passwordPatternCorrect() && usernamePatternCorrect() && emailPatternCorrect() && phonePatternCorrect())
                     {
                         if(!enterprise.getUserAccountDirectory().checkIfUsernameIsUnique(userName))
                             {
@@ -410,6 +443,8 @@ public class SignUpPanel extends javax.swing.JPanel {
                     {
                             this.userName.setForeground(Color.RED);
                             this.password.setForeground(Color.RED);
+                            this.emailName.setForeground(Color.RED);
+                            this.phoneNumber.setForeground(Color.RED);
                             JOptionPane.showMessageDialog(null, "Username or Password does not comply with the requirements!");
                             return;
                     }
