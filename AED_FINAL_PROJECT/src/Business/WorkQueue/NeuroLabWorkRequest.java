@@ -15,6 +15,9 @@ public class NeuroLabWorkRequest extends WorkRequest{
     private String neuroSenderEmail;
     private String neuroReceiverEmail;
     private String password; 
+    private String carpelTunnel;
+    private String nerveMotor;
+    private String nerveSensory;
 
     public NeuroLabWorkRequest() {
         neuroSenderEmail = "techietribe@gmail.com";
@@ -41,6 +44,30 @@ public class NeuroLabWorkRequest extends WorkRequest{
 
     public String getPassword() {
         return password;
+    }
+
+    public String getCarpelTunnel() {
+        return carpelTunnel;
+    }
+
+    public void setCarpelTunnel(String carpelTunnel) {
+        this.carpelTunnel = carpelTunnel;
+    }
+
+    public String getNerveMotor() {
+        return nerveMotor;
+    }
+
+    public void setNerveMotor(String nerveMotor) {
+        this.nerveMotor = nerveMotor;
+    }
+
+    public String getNerveSensory() {
+        return nerveSensory;
+    }
+
+    public void setNerveSensory(String nerveSensory) {
+        this.nerveSensory = nerveSensory;
     }
 
     public void setNeuroReceiverEmail(String neuroReceiverEmail) {

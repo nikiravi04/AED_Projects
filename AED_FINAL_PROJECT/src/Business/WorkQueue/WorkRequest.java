@@ -21,6 +21,16 @@ public abstract class WorkRequest {
     private PatientAccount requestFor;
     private Date requestDate;
     private Date resolveDate;
+    private String rbc;
+    private String wbc;
+    private String plateletCount;
+    private String hemoglobin;
+    private String hematocrit;
+    private String pulse;
+    private String carpelTunnel;
+    private String nerveMotor;
+    private String nerveSensory;
+    
     
     public WorkRequest(){
         requestDate = new Date();
@@ -82,6 +92,80 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+
+    public String getRbc() {
+        return rbc;
+    }
+
+    public void setRbc(String rbc) {
+        this.rbc = rbc;
+    }
+
+    public String getWbc() {
+        return wbc;
+    }
+
+    public void setWbc(String wbc) {
+        this.wbc = wbc;
+    }
+
+    public String getPlateletCount() {
+        return plateletCount;
+    }
+
+    public void setPlateletCount(String plateletCount) {
+        this.plateletCount = plateletCount;
+    }
+
+    public String getHemoglobin() {
+        return hemoglobin;
+    }
+
+    public void setHemoglobin(String hemoglobin) {
+        this.hemoglobin = hemoglobin;
+    }
+
+    public String getHematocrit() {
+        return hematocrit;
+    }
+
+    public void setHematocrit(String hematocrit) {
+        this.hematocrit = hematocrit;
+    }
+
+    public String getPulse() {
+        return pulse;
+    }
+
+    public void setPulse(String pulse) {
+        this.pulse = pulse;
+    }
+
+    public String getCarpelTunnel() {
+        return carpelTunnel;
+    }
+
+    public void setCarpelTunnel(String carpelTunnel) {
+        this.carpelTunnel = carpelTunnel;
+    }
+
+    public String getNerveMotor() {
+        return nerveMotor;
+    }
+
+    public void setNerveMotor(String nerveMotor) {
+        this.nerveMotor = nerveMotor;
+    }
+
+    public String getNerveSensory() {
+        return nerveSensory;
+    }
+
+    public void setNerveSensory(String nerveSensory) {
+        this.nerveSensory = nerveSensory;
+    }
+    
+    
 
     @Override
     public String toString(){
