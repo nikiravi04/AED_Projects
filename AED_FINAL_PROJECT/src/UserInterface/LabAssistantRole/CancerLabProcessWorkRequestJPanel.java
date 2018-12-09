@@ -190,6 +190,9 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setTestResult(resultJTextField.getText());
+        request.setRbc(rbcText.getText());
+        request.setWbc(wbcText.getText());
+        request.setPlateletCount(plateletText.getText());
         request.setStatus("Completed");
         SendEmail send  = new SendEmail(request.getCancerSenderEmail(),request.getPassword(),request.getCancerReceiverEmail(),"hello ",
                 "Your cancer request has been completed "+request.getRbc());

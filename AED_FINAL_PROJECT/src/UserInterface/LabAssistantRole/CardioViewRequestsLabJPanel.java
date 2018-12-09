@@ -211,7 +211,7 @@ public class CardioViewRequestsLabJPanel extends javax.swing.JPanel {
 
         request.setStatus("Processing");
 
-        CardioLabProcessWorkRequestJPanel processWorkRequestJPanel = new CardioLabProcessWorkRequestJPanel(userProcessContainer, request);
+        CardioLabProcessWorkRequestJPanel processWorkRequestJPanel = new CardioLabProcessWorkRequestJPanel(userProcessContainer, request, userAccount);
         userProcessContainer.add("cardioprocessWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
