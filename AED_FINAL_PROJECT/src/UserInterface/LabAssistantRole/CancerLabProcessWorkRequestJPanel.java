@@ -9,8 +9,18 @@ import Business.PatientAccount.SendEmail;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -54,6 +64,7 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         plateletText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        graph = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -107,6 +118,13 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel7.setText("billion/L");
 
+        graph.setText("Graph");
+        graph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,7 +139,9 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
                         .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(400, 400, 400)
-                        .addComponent(submitJButton))
+                        .addComponent(submitJButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(graph))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(376, 376, 376)
                         .addComponent(jLabel1))
@@ -172,7 +192,9 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
-                .addComponent(submitJButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitJButton)
+                    .addComponent(graph))
                 .addGap(120, 120, 120))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -202,9 +224,32 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbcTextActionPerformed
 
+    private void graphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphActionPerformed
+        // TODO add your handling code here:
+        String rbc = rbcText.getText();
+        String wbc = wbcText.getText();
+        String platelet = plateletText.getText();
+        
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(new Double(rbc) , "Cancer Test" , "Red Blood Cell Count trillion/L" );
+        dataset.setValue( new Double(wbc) , "Cancer Test" , "White Blood Cell Count billion/L" );
+        dataset.setValue(new Double(platelet), "Cancer Test", "Platelet Count billion/L");
+        
+        JFreeChart chart = ChartFactory.createBarChart3D("Graph Depiction\nNormal RBC - 4.32-5.72 trillion cells/L\nNormal WBC - 3.5-10.5 billion cells/L\nNormal Platelet - 150-450 billion/L", "Parameters", "Values", dataset);
+        chart.setBackgroundPaint(Color.WHITE);
+        chart.getTitle().setPaint(Color.BLACK);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.DARK_GRAY);
+        ChartFrame frame = new ChartFrame("Bar chart", chart);
+        frame.setVisible(true);
+        frame.setSize(500,500);
+        
+    }//GEN-LAST:event_graphActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton graph;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
