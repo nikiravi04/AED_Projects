@@ -14,6 +14,9 @@ public class CardioLabWorkRequest extends WorkRequest{
     private String testResult;
     private String cardioSenderEmail;
     private String cardioReceiverEmail;
+    private String hemoglobin;
+    private String hematocrit;
+    private String pulse;
     private String password;
     
     public CardioLabWorkRequest() {
@@ -41,6 +44,31 @@ public class CardioLabWorkRequest extends WorkRequest{
     public String getCardioSenderEmail() {
         return cardioSenderEmail;
     }
+
+    public String getHemoglobin() {
+        return hemoglobin;
+    }
+
+    public void setHemoglobin(String hemoglobin) {
+        this.hemoglobin = hemoglobin;
+    }
+
+    public String getHematocrit() {
+        return hematocrit;
+    }
+
+    public void setHematocrit(String hematocrit) {
+        this.hematocrit = hematocrit;
+    }
+
+    public String getPulse() {
+        return pulse;
+    }
+
+    public void setPulse(String pulse) {
+        this.pulse = pulse;
+    }
+    
 
     public String getPassword() {
         return password;

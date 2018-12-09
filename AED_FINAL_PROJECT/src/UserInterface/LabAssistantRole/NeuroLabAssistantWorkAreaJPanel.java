@@ -35,7 +35,7 @@ public class NeuroLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private Organization organization;
     private Enterprise enterprise;
     
-    public NeuroLabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise, EcoSystem business) {
+    public NeuroLabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
          initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
@@ -115,8 +115,8 @@ public class NeuroLabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     private void sendRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRequestsActionPerformed
         // TODO add your handling code here:
-        RadioSendRequestsLabJPanel sendRequestJPanel = new RadioSendRequestsLabJPanel(userProcessContainer, userAccount, organization,enterprise);
-        userProcessContainer.add("radiosendRequestJPanel", sendRequestJPanel);
+        NeuroLabAssistantWorkAreaJPanel sendRequestJPanel = new NeuroLabAssistantWorkAreaJPanel(userProcessContainer, userAccount, organization,enterprise);
+        userProcessContainer.add("NeuroLabAssistantWorkAreaJPanel", sendRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_sendRequestsActionPerformed
