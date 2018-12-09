@@ -55,7 +55,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organization = (Organization)organization;
-        this.enterprise = enterprise;
+        this.enterprise = (Enterprise)enterprise;
         this.userAccount = account;
         this.business= business;
         //this.directory = directory;
@@ -79,49 +79,36 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
        }
        
     }
-    private void populateCombo(){
-     //labComboBox.removeAllItems();
-//       Organization org = null;
-//////        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-//////            if (organization instanceof CancerLabOrganization || organization instanceof NeurologyLabOrganization 
-//////                    || organization instanceof CardiologyLabOrganization || organization instanceof RadiologyLabOrganization){
-//////                org = organization;
-//////                labComboBox.addItem(org);
-//////                //populateRequestTable(org);
-//////            //}
-//////      }
-////        
-//        for (Network network : business.getNetworkList()) {  
-//            ent = (Enterprise)enterpriseComboBox.getSelectedItem();
-//                for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()){
-//                            org = organization;
-//                            labComboBox.addItem(organization);
-//                        }
-//            //}
-//        } }
-       // }
+    
+    private void populateLabCombo(){
+        
+        
+                
     }
+  
      private void populateEnterpriseCombo(){
          labComboBox.removeAllItems();
-          Organization org = null;
+          //Organization org = null;
           enterpriseComboBox.removeAllItems();
           for (Network network : business.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 enterpriseComboBox.addItem(enterprise);
-                //populateCombo(enterprise);
-                //enterprise = (Enterprise)enterpriseComboBox.getSelectedItem();
-//                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-//                            org = organization;
-//                            labComboBox.addItem(organization);
-//                        }
-                //enterprise = (Enterprise)enterpriseComboBox.getSelectedItem();
-                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                            org = organization;
-                            labComboBox.addItem(org);
-                        }
-//                }
+                //enterprise = (Enterprise) enterpriseComboBox.getSelectedItem();
+                if(enterprise.getEnterpriseType().toString().equals("Lab")){
+                   for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            //org = organization;
+                            labComboBox.addItem(organization);
+                        } 
+                }
+                if(enterprise.getEnterpriseType().toString().equals("Hospital")){
+                   for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            //org = organization;
+                            labComboBox.addItem(organization);
+                        } 
+                }
             }
         }
+        
     }
     
     
