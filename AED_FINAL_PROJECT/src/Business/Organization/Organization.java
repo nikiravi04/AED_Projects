@@ -5,6 +5,7 @@
 package Business.Organization;
 
 import Business.Doctor.DoctorDirectory;
+import Business.Employee.Employee;
 import Business.Employee.EmployeeDirectory;
 import Business.PatientAccount.PatientAccount;
 import Business.PatientAccount.PatientAccountDirectory;

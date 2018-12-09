@@ -9,6 +9,7 @@ import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +34,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         valueLabel.setText(enterprise.getName());
         populateTable();
         populateCombo();
+    }
+    
+    private void errorNotify() {
+        this.nameOfOrgLabel.setForeground(Color.RED);
+        
     }
     
     private void populateCombo(){
@@ -70,7 +76,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         organizationJTable = new javax.swing.JTable();
         addJButton = new javax.swing.JButton();
         organizationJComboBox = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
+        nameOfOrg = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
@@ -122,7 +128,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel1.setText("Organization Type : ");
+        nameOfOrg.setText("Organization Type : ");
 
         backJButton.setBackground(new java.awt.Color(255, 255, 255));
         backJButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -173,7 +179,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                                 .addGap(510, 510, 510)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(nameOfOrgLabel)
-                                    .addComponent(jLabel1))
+                                    .addComponent(nameOfOrg))
                                 .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,7 +209,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(nameOfOrg)
                     .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -217,13 +223,20 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
-        
-        Type type = (Type) organizationJComboBox.getSelectedItem();
-        Organization o =directory.createOrganization(type);
-        o.setName(nameOfOrgTextField.getText());
-        populateTable();
-        JOptionPane.showMessageDialog(null,"Organization Created!!");
-        
+        if(nameOfOrgTextField.getText().isEmpty()){
+             
+                errorNotify();
+                JOptionPane.showMessageDialog(null, "Enter input for the field");
+                return;
+        }
+        else{
+            
+            Type type = (Type) organizationJComboBox.getSelectedItem();
+            Organization o =directory.createOrganization(type);
+            o.setName(nameOfOrgTextField.getText());
+            populateTable();
+            JOptionPane.showMessageDialog(null,"Organization Created!");
+        }
         
     }//GEN-LAST:event_addJButtonActionPerformed
 
@@ -243,9 +256,9 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton addJButton;
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nameOfOrg;
     private javax.swing.JLabel nameOfOrgLabel;
     private javax.swing.JTextField nameOfOrgTextField;
     private javax.swing.JComboBox organizationJComboBox;

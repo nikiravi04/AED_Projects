@@ -60,7 +60,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
     
     public void populateRequestTable(Organization organization){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        
+        //PatientAccount patientAccount = new PatientAccount();
         model.setRowCount(0);
         Organization org = (Organization) labComboBox.getSelectedItem();
         
@@ -119,49 +119,6 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         
     }
     
-    /*
-    Combo Box and Table for Second Opinion
-    */
-    
-    
-//     private void populateDocCombo(){
-//      doctorComboBox.removeAllItems();
-//      Organization org = null;
-//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-//            if (organization instanceof DoctorOrganization){
-//                org = organization;
-//                doctorComboBox.addItem(org);
-//                populateEmp(org);
-//            }
-//        }
-//        
-//     }
-        
-//        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-//        
-//        model.setRowCount(0);
-//        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
-//            Object[] row = new Object[5];
-//            row[0] = request.getMessage();
-//            row[1] = request.getReceiver();
-//            row[2] = request.getStatus();
-//            if (organization instanceof CancerLabOrganization)
-//            {
-//                String result = ((CancerLabWorkRequest) request).getTestResult();
-//                row[3] = result == null ? "Waiting" : result;
-//            
-//            }
-//            else if(organization instanceof NeurologyLabOrganization)
-//            {
-//                String result = ((NeuroLabWorkRequest) request).getTestResult();
-//                row[3] = result == null ? "Waiting" : result;
-//            }
-//            
-//            
-//            
-//            model.addRow(row);
-//        }
- 
     
     private void populateCombo(){
       labComboBox.removeAllItems();
