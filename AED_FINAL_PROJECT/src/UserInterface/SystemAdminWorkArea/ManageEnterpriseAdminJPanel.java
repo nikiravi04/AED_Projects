@@ -205,7 +205,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         jLabel6.setText("Manage Enterprise Administrator");
 
-        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(204, 0, 0));
         jLabel7.setText("**Minimum 8 characters|Atleast one Uppercase|Atleast one Lowercase|Atleast one Number|Atleast one special character.");
 
