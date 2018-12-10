@@ -859,11 +859,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             if(request.getReceiver().getEmployee().getName() == userAccount.getEmployee().getName()){
             //if(!request.getStatus().equalsIgnoreCase("Sent")){
-            Object[] row = new Object[4];
+            
             if (organization instanceof DoctorOrganization){
-                
+             Object[] row = new Object[4];   
             row[0] = request.getMessage();
-            row[1] = request.getSender().getEmployee().getName();
+            //row[1] = request.getSender().getEmployee().getName();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
             row[3] = request.getStatus();
             
