@@ -102,8 +102,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         sysAdminLabel = new javax.swing.JLabel();
         imageLabel = new javax.swing.JLabel();
 
-        setLayout(new java.awt.BorderLayout());
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
@@ -186,7 +184,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane.setRightComponent(jPanel2);
 
-        add(jSplitPane, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1055, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed

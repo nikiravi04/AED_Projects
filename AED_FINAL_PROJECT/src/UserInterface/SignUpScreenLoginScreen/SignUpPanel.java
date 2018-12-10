@@ -433,7 +433,7 @@ public class SignUpPanel extends javax.swing.JPanel {
 
                                     organization.getUserAccountDirectory().createPatientAccount(userName, password, patient, role);
 
-                                    SendEmail send  = new SendEmail("techietribe007@gmail.com","parasites",patient.getPatientEmail(),"Hi","User account created");
+                                    SendEmail send  = new SendEmail("techietribe007@gmail.com","parasites",patient.getPatientEmail(),"Hi "+patient.getPatientName(),"Your user account has been created");
 
                                     JOptionPane.showMessageDialog(null,"User Account Created!");
                                     popData();
