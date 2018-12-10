@@ -141,17 +141,20 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         Organization org = (Organization) doctorComboBox.getSelectedItem();
-        if (org instanceof DoctorOrganization ){
-        for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        if (org instanceof DoctorOrganization )
+        {
+        for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList())
+        {
             Object[] row = new Object[4];
-            if (organization instanceof DoctorOrganization){
+           // if (organization instanceof DoctorOrganization)
+           // {
             row[0] = request.getMessage();
             row[1] = request.getSender().getPatientAccount().getPatientName();
             row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
             row[3] = request.getStatus();
             
             model.addRow(row);
-            }
+            //}
         }
         }
      }
@@ -373,9 +376,9 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(612, 612, 612)
                 .addComponent(requestTestJButton))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
@@ -396,9 +399,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(docNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(237, 237, 237))
+                                .addComponent(docNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
