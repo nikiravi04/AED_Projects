@@ -11,6 +11,7 @@ import Business.WorkQueue.CancerLabWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Paint;
 import java.io.File;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
@@ -24,6 +25,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -78,6 +80,12 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        normalRBC2 = new javax.swing.JTextField();
+        normalWBC2 = new javax.swing.JTextField();
+        normalPlatelet2 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -170,10 +178,16 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setText("Normal WBC");
 
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel9.setText("Normal RBC");
 
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel10.setText("Normal Platelet");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -185,6 +199,48 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel13.setText("billion/L");
 
+        normalRBC2.setEditable(false);
+        normalRBC2.setBackground(new java.awt.Color(255, 255, 255));
+        normalRBC2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        normalRBC2.setText("5.72");
+        normalRBC2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                normalRBC2ActionPerformed(evt);
+            }
+        });
+
+        normalWBC2.setEditable(false);
+        normalWBC2.setBackground(new java.awt.Color(255, 255, 255));
+        normalWBC2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        normalWBC2.setText("10.5");
+        normalWBC2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                normalWBC2ActionPerformed(evt);
+            }
+        });
+
+        normalPlatelet2.setEditable(false);
+        normalPlatelet2.setBackground(new java.awt.Color(255, 255, 255));
+        normalPlatelet2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        normalPlatelet2.setText("450");
+        normalPlatelet2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                normalPlatelet2ActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel14.setText("-");
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel15.setText("-");
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel16.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,60 +251,73 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(backJButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(462, 462, 462)
-                        .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(400, 400, 400)
-                        .addComponent(submitJButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(graph))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(376, 376, 376)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbcText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5))
+                                .addGap(96, 96, 96)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rbcText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(plateletText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel7))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(wbcText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(plateletText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(wbcText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel12)))
-                        .addGap(115, 115, 115)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel8))
-                        .addGap(37, 37, 37)
+                                .addGap(400, 400, 400)
+                                .addComponent(submitJButton)))
+                        .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(normalWBC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(normalRBC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(graph)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(normalPlatelet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel13))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11)))))
-                .addGap(171, 171, 171))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel8))
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(normalWBC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(normalRBC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel14))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(normalRBC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel11))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(normalWBC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel6))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(normalPlatelet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(normalPlatelet2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel13))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(504, 504, 504)
+                        .addComponent(jLabel1)
+                        .addGap(31, 31, 31)
+                        .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(145, 145, 145))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,15 +331,19 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(normalRBC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel11))
+                    .addComponent(normalRBC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel14))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(wbcText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
                     .addComponent(normalWBC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(normalWBC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel15))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -278,7 +351,9 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(normalPlatelet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel13))
+                    .addComponent(normalPlatelet2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel16))
                 .addGap(109, 109, 109)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -287,7 +362,7 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitJButton)
                     .addComponent(graph))
-                .addGap(120, 120, 120))
+                .addGap(177, 177, 177))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -324,19 +399,30 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         String rbc = rbcText.getText();
         String wbc = wbcText.getText();
         String platelet = plateletText.getText();
-        String normalrbc = normalRBC.getText();
-        String normalwbc = normalWBC.getText();
-        String normalplatelet = normalPlatelet.getText();
+        String normalLowerrbc = normalRBC.getText();
+        String normalLowerwbc = normalWBC.getText();
+        String normalLowerplatelet = normalPlatelet.getText();
+        String normalUpperrbc = normalRBC.getText();
+        String normalUpperwbc = normalWBC.getText();
+        String normalUpperplatelet = normalPlatelet.getText();
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(new Double(normalrbc), "Cancer Test", "Normal RBC trillion/L");
+        dataset.setValue(new Double(normalLowerrbc), "Cancer Test", "Lower RBC trillion/L");
         dataset.setValue(new Double(rbc) , "Cancer Test" , "RBC Count trillion/L" );
-         dataset.setValue(new Double(normalwbc), "Cancer Test", "Normal WBC billion/L");
+        dataset.setValue(new Double(normalUpperrbc) , "Cancer Test" , "Upper RBC Count trillion/L" );
+        dataset.setValue(new Double(normalLowerwbc), "Cancer Test", "Lower WBC billion/L");
         dataset.setValue(new Double(wbc) , "Cancer Test" , "WBC Count billion/L" );
-        dataset.setValue(new Double(normalplatelet), "Cancer Test", "Normal Platelet Count billion/L");
+        dataset.setValue(new Double(normalUpperwbc) , "Cancer Test" , "Upper WBC Count billion/L" );
+        dataset.setValue(new Double(normalLowerplatelet), "Cancer Test", "Lower Platelet Count billion/L");
         dataset.setValue(new Double(platelet), "Cancer Test", "Platelet Count billion/L");
+        dataset.setValue(new Double(normalUpperplatelet), "Cancer Test", "Upper Platelet Count billion/L");
         
-        JFreeChart chart = ChartFactory.createBarChart3D("Graph Depiction\nNormal RBC - 4.32-5.72 trillion cells/L\nNormal WBC - 3.5-10.5 billion cells/L\nNormal Platelet - 150-450 billion/L", "Parameters", "Values", dataset);
+        JFreeChart chart = ChartFactory.createBarChart3D("Graph Depiction\nNormal RBC - 4.32-5.72 trillion cells/L\n"
+                + "Normal WBC - 3.5-10.5 billion cells/L\n"
+                + "Normal Platelet - 150-450 billion/L", "Parameters", "Values", dataset);
+        CategoryPlot plot = chart.getCategoryPlot();
+        CategoryItemRenderer barColor = new CustomRenderer(new Paint[]{});
+        plot.setRenderer(barColor);
         chart.setBackgroundPaint(Color.WHITE);
         chart.getTitle().setPaint(Color.BLACK);
         CategoryPlot p = chart.getCategoryPlot();
@@ -368,6 +454,18 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_normalRBCActionPerformed
 
+    private void normalRBC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalRBC2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_normalRBC2ActionPerformed
+
+    private void normalWBC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalWBC2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_normalWBC2ActionPerformed
+
+    private void normalPlatelet2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalPlatelet2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_normalPlatelet2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
@@ -377,6 +475,9 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -386,8 +487,11 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField normalPlatelet;
+    private javax.swing.JTextField normalPlatelet2;
     private javax.swing.JTextField normalRBC;
+    private javax.swing.JTextField normalRBC2;
     private javax.swing.JTextField normalWBC;
+    private javax.swing.JTextField normalWBC2;
     private javax.swing.JTextField plateletText;
     private javax.swing.JTextField rbcText;
     private javax.swing.JTextField resultJTextField;
