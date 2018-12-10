@@ -496,6 +496,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         accountText.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         accountText.setForeground(new java.awt.Color(0, 0, 204));
 
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\doctor-1010903_640.jpg")); // NOI18N
+
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel11.setText("Choose type:");
 
@@ -567,7 +569,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                                                 .addComponent(secOpinionMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(viewSecondOpinionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE))))
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
