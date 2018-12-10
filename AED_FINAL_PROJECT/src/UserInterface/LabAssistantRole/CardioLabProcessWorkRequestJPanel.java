@@ -9,8 +9,20 @@ import Business.PatientAccount.SendEmail;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CardioLabWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Paint;
+import java.io.File;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartRenderingInfo;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.entity.StandardEntityCollection;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -42,19 +54,45 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        graph = new javax.swing.JButton();
         resultJTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         submitJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        rbcText2 = new javax.swing.JTextField();
+        hemoglobin = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        wbcText = new javax.swing.JTextField();
+        hematocrit = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        plateletText = new javax.swing.JTextField();
+        pulseRate = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        normalHemo = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        upperHemo = new javax.swing.JTextField();
+        normalHema = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        upperHema = new javax.swing.JTextField();
+        normalPulse = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        upperPulse = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        graph1 = new javax.swing.JButton();
+
+        graph.setBackground(new java.awt.Color(51, 204, 0));
+        graph.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        graph.setText("Compare Results on Graph");
+        graph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphActionPerformed(evt);
+            }
+        });
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -82,10 +120,10 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Hemoglobin :");
 
-        rbcText2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        rbcText2.addActionListener(new java.awt.event.ActionListener() {
+        hemoglobin.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        hemoglobin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbcText2ActionPerformed(evt);
+                hemoglobinActionPerformed(evt);
             }
         });
 
@@ -95,7 +133,7 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Hematocrit :");
 
-        wbcText.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        hematocrit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel6.setText("percent");
@@ -103,10 +141,109 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel4.setText("Pulse Rate :");
 
-        plateletText.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        pulseRate.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel7.setText("per minute");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel8.setText("Normal Hemoglobin :");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel9.setText("Normal Hematocrit :");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel10.setText("Normal Pulse Rate :");
+
+        normalHemo.setEditable(false);
+        normalHemo.setBackground(new java.awt.Color(255, 255, 255));
+        normalHemo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        normalHemo.setText("13.5");
+        normalHemo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                normalHemoActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel14.setText("-");
+
+        upperHemo.setEditable(false);
+        upperHemo.setBackground(new java.awt.Color(255, 255, 255));
+        upperHemo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        upperHemo.setText("17.5");
+        upperHemo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upperHemoActionPerformed(evt);
+            }
+        });
+
+        normalHema.setEditable(false);
+        normalHema.setBackground(new java.awt.Color(255, 255, 255));
+        normalHema.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        normalHema.setText("38.8");
+        normalHema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                normalHemaActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel15.setText("-");
+
+        upperHema.setEditable(false);
+        upperHema.setBackground(new java.awt.Color(255, 255, 255));
+        upperHema.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        upperHema.setText("50");
+        upperHema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upperHemaActionPerformed(evt);
+            }
+        });
+
+        normalPulse.setEditable(false);
+        normalPulse.setBackground(new java.awt.Color(255, 255, 255));
+        normalPulse.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        normalPulse.setText("60");
+        normalPulse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                normalPulseActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel16.setText("-");
+
+        upperPulse.setEditable(false);
+        upperPulse.setBackground(new java.awt.Color(255, 255, 255));
+        upperPulse.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        upperPulse.setText("100");
+        upperPulse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upperPulseActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel11.setText("grams/DL");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel12.setText("percent");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel13.setText("per minute");
+
+        graph1.setBackground(new java.awt.Color(51, 204, 0));
+        graph1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        graph1.setText("Compare Results on Graph");
+        graph1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graph1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,34 +255,75 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(backJButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(367, 367, 367)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(308, 308, 308)
+                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
+                            .addComponent(jLabel2)
                             .addComponent(jLabel4))
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(wbcText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(hemoglobin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(hematocrit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6)))
+                                .addGap(178, 178, 178))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbcText2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pulseRate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5))
+                                .addComponent(jLabel7)
+                                .addGap(95, 95, 95)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(3, 3, 3))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(plateletText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(normalHema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(normalHemo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(upperHema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(upperHemo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(normalPulse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(upperPulse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel13))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(390, 390, 390)
-                        .addComponent(submitJButton)))
-                .addContainerGap(416, Short.MAX_VALUE))
+                        .addGap(343, 343, 343)
+                        .addComponent(submitJButton)
+                        .addGap(59, 59, 59)
+                        .addComponent(graph1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(229, 229, 229)))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,27 +331,52 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(backJButton)
                 .addGap(199, 199, 199)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(hemoglobin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(hematocrit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(pulseRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(normalHemo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(upperHemo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel11))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(normalHema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(upperHema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel12))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(normalPulse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(upperPulse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel13))))
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(rbcText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(wbcText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(plateletText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submitJButton)
-                .addContainerGap(184, Short.MAX_VALUE))
+                    .addComponent(submitJButton)
+                    .addComponent(graph1))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -185,9 +388,9 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         request.setStatus("Completed");
         SendEmail send  = new SendEmail(request.getCardioSenderEmail(),request.getPassword(),request.getCardioReceiverEmail(),"hello ",
                 "Your Cardiology Lab request has been completed\n"+
-                "Your Hemoglobin level: "+rbcText2.getText()+"\n"+
-                "Your Hematocrit level: "+wbcText.getText()+"\n"+
-                "Your Pulse level: "+plateletText.getText()+"\n");
+                "Your Hemoglobin level: "+hemoglobin.getText()+"\n"+
+                "Your Hematocrit level: "+hematocrit.getText()+"\n"+
+                "Your Pulse level: "+pulseRate.getText()+"\n");
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
@@ -202,26 +405,115 @@ public class CardioLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void rbcText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbcText2ActionPerformed
+    private void hemoglobinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hemoglobinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbcText2ActionPerformed
+    }//GEN-LAST:event_hemoglobinActionPerformed
+
+    private void normalHemoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalHemoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_normalHemoActionPerformed
+
+    private void upperHemoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperHemoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upperHemoActionPerformed
+
+    private void normalHemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalHemaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_normalHemaActionPerformed
+
+    private void upperHemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperHemaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upperHemaActionPerformed
+
+    private void normalPulseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalPulseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_normalPulseActionPerformed
+
+    private void upperPulseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperPulseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upperPulseActionPerformed
+
+    private void graphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphActionPerformed
+    }//GEN-LAST:event_graphActionPerformed
+
+    private void graph1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graph1ActionPerformed
+        // TODO add your handling code here:
+        String hemo = hemoglobin.getText();
+        String hematocrit = this.hematocrit.getText();
+        String pulse = pulseRate.getText();
+        String lowerHemo = normalHemo.getText();
+        String lowerHematocrit = normalHema.getText();
+        String lowerPulse = normalPulse.getText();
+        String upperHemo = this.upperHemo.getText();
+        String upperHematocrit = upperHema.getText();
+        String upperPulse = this.upperPulse.getText();
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(new Double(lowerHemo), "Cardiology Test", "Lower hemoglobin trillion/L");
+        dataset.setValue(new Double(hemo) , "Cardiology Test" , "Hemoglobin Count trillion/L" );
+        dataset.setValue(new Double(upperHemo) , "Cardiology Test" , "Upper hemoglobin Count trillion/L" );
+        dataset.setValue(new Double(lowerHematocrit), "Cardiology Test", "Lower hematocrit billion/L");
+        dataset.setValue(new Double(hematocrit) , "Cardiology Test" , "Hematocrit Count billion/L" );
+        dataset.setValue(new Double(upperHematocrit) , "Cardiology Test" , "Upper hematocrit Count billion/L" );
+        dataset.setValue(new Double(lowerPulse), "Cardiology Test", "Lower pulserate Count billion/L");
+        dataset.setValue(new Double(pulse), "Cardiology Test", "Pulse Rate Count billion/L");
+        dataset.setValue(new Double(upperPulse), "Cardiology Test", "Upper pulserate Count billion/L");
+
+        JFreeChart chart = ChartFactory.createBarChart3D("Graph Depiction\nNormal Hemoglobin - 13.5-17.5 grams/DL/L\n"
+            + "Normal Hematocrit - 38.8-50 percent/L\n"
+            + "Normal Platelet - 60-100 per minute", "Parameters", "Values", dataset);
+        CategoryPlot plot = chart.getCategoryPlot();
+        CategoryItemRenderer barColor = new CustomRenderer(new Paint[]{});
+        plot.setRenderer(barColor);
+        chart.setBackgroundPaint(Color.WHITE);
+        chart.getTitle().setPaint(Color.BLACK);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.DARK_GRAY);
+        ChartFrame frame = new ChartFrame("Bar chart", chart);
+        frame.setVisible(true);
+        frame.setSize(500,500);
+        try{
+            final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
+            final File file = new File("BarGraph.png");
+            ChartUtilities.saveChartAsPNG(file, chart, 600, 400);
+
+        }
+        catch(Exception e){
+
+        }
+    }//GEN-LAST:event_graph1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton graph;
+    private javax.swing.JButton graph1;
+    private javax.swing.JTextField hematocrit;
+    private javax.swing.JTextField hemoglobin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField plateletText;
-    private javax.swing.JTextField rbcText;
-    private javax.swing.JTextField rbcText1;
-    private javax.swing.JTextField rbcText2;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField normalHema;
+    private javax.swing.JTextField normalHemo;
+    private javax.swing.JTextField normalPulse;
+    private javax.swing.JTextField pulseRate;
     private javax.swing.JTextField resultJTextField;
     private javax.swing.JButton submitJButton;
-    private javax.swing.JTextField wbcText;
+    private javax.swing.JTextField upperHema;
+    private javax.swing.JTextField upperHemo;
+    private javax.swing.JTextField upperPulse;
     // End of variables declaration//GEN-END:variables
 }

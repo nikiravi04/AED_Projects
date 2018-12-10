@@ -266,7 +266,7 @@ public class MainJFrame extends javax.swing.JFrame {
         text = new JLabel();
 //        text.setFont(new Font("Tahoma", Font.BOLD, 14));
 //        text.setForeground(Color.red);
-        text.setIcon(new ImageIcon ("C:\\Users\\vish1\\Downloads\\electrocardiogram.png"));
+        text.setIcon(new ImageIcon ("C:\\Users\\vish1\\OneDrive\\Documents\\AED_Final_Project\\AED pictures\\electrocardiogram.png"));
         userProcessContainer.add("blank", blankJP);
         userProcessContainer.add("text",text);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
