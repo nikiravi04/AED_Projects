@@ -20,6 +20,7 @@ import Business.PatientAccount.SendEmail;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CancerLabWorkRequest;
 import Business.WorkQueue.CardioLabWorkRequest;
+import Business.WorkQueue.DoctorWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.NeuroLabWorkRequest;
 import Business.WorkQueue.RadioLabWorkRequest;
@@ -56,6 +57,22 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText(account.getUsername());
         //populateRequestTable();
         populateCombo();
+        populateDocCombo();
+        populateSecOpinion();
+        
+    }
+    
+    private void populateDocCombo(){
+      doctorComboBox.removeAllItems();
+      Organization org = null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()
+                ){
+            if (organization instanceof DoctorOrganization){
+                org = organization;
+                doctorComboBox.addItem(org);
+                populateEmp(org);
+            }
+        }
     }
     
     public void populateRequestTable(Organization organization){
@@ -119,6 +136,34 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         
     }
     
+    public void populateSecOpinion(){
+         DefaultTableModel model = (DefaultTableModel)workRequestJTable1.getModel();
+        
+        model.setRowCount(0);
+        Organization org = (Organization) doctorComboBox.getSelectedItem();
+        if (org instanceof DoctorOrganization ){
+        for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            if (organization instanceof DoctorOrganization){
+            row[0] = request.getMessage();
+            row[1] = request.getSender().getPatientAccount().getPatientName();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[3] = request.getStatus();
+            
+            model.addRow(row);
+            }
+        }
+        }
+     }
+    
+    public void populateEmp(Organization organization){
+     docNameCombo.removeAllItems();
+        
+       // for (UserAccount employee : organization.getEmployeeDirectory().getEmployeeList()){
+       for (UserAccount employee : organization.getUserAccountDirectory().getUserAccountList()){
+            docNameCombo.addItem(employee);
+        }
+     }
     
     private void populateCombo(){
       labComboBox.removeAllItems();
@@ -151,6 +196,16 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         messageJTextField = new javax.swing.JTextField();
+        secondOpinionBtn = new javax.swing.JButton();
+        doctorComboBox = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        secOpinionMessage = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        docNameCombo = new javax.swing.JComboBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        workRequestJTable1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -223,6 +278,74 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Message");
 
+        secondOpinionBtn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        secondOpinionBtn.setForeground(new java.awt.Color(153, 0, 0));
+        secondOpinionBtn.setText("Request Second Opinion");
+        secondOpinionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                secondOpinionBtnActionPerformed(evt);
+            }
+        });
+
+        doctorComboBox.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        doctorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        doctorComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel3.setText("Doctor Organization :");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel4.setText("Message :");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel5.setText("Doctor Name :");
+
+        docNameCombo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        docNameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        docNameCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                docNameComboActionPerformed(evt);
+            }
+        });
+
+        workRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Message", "Sender", "Receiver", "Result"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(workRequestJTable1);
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Request for a Second Opinion :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -250,6 +373,32 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(612, 612, 612)
                 .addComponent(requestTestJButton))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(secondOpinionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(secOpinionMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(doctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(docNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(237, 237, 237))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +425,27 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2))
                     .addComponent(messageJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(requestTestJButton))
+                .addComponent(requestTestJButton)
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(secOpinionMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(secondOpinionBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(doctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(docNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -376,17 +545,70 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_labComboBoxActionPerformed
 
+    private void secondOpinionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondOpinionBtnActionPerformed
+        // TODO add your handling code here:
+        //        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        //        userProcessContainer.add("SecondOpinionMainJPanel", new SecondOpinionMainJPanel(userProcessContainer,directory,enterprise));
+        //        layout.next(userProcessContainer);
+
+        String message = secOpinionMessage.getText();
+
+        DoctorWorkRequest docWork = new DoctorWorkRequest();
+        //WorkRequest request : userAccount.getWorkQueue().getWorkRequestList();
+        Organization org = (Organization) doctorComboBox.getSelectedItem();
+        //UserAccount user = (UserAccount) doctorComboBox.getSelectedItem();
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (org instanceof DoctorOrganization ){
+                docWork.setMessage(message);
+                //UserAccount userAccount = (userAccount) organizationJTable.getValueAt(selectRow, 0);
+                docWork.setSender(userAccount) ;
+                docWork.setReceiver((UserAccount) docNameCombo.getSelectedItem());
+                docWork.setStatus("Sent");
+                org.getWorkQueue().getWorkRequestList().add(docWork);
+                userAccount.getWorkQueue().getWorkRequestList().add(docWork);
+                //                ViewSecondOpinionRequestsJPanel viewSecPanel = new ViewSecondOpinionRequestsJPanel(userProcessContainer, userAccount, organization, enterprise);
+                //                viewSecPanel.populateTable();
+                populateSecOpinion();
+                //                populateTable(org);
+                break;
+            }
+        }
+    }//GEN-LAST:event_secondOpinionBtnActionPerformed
+
+    private void doctorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorComboBoxActionPerformed
+        // TODO add your handling code here:
+        Organization organization = (Organization)doctorComboBox.getSelectedItem();
+        if (organization instanceof DoctorOrganization){
+            //populateRequestTable(organization);
+            populateEmp(organization);
+        }
+    }//GEN-LAST:event_doctorComboBoxActionPerformed
+
+    private void docNameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docNameComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_docNameComboActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox docNameCombo;
+    private javax.swing.JComboBox doctorComboBox;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox labComboBox;
     private javax.swing.JTextField messageJTextField;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
+    private javax.swing.JTextField secOpinionMessage;
+    private javax.swing.JButton secondOpinionBtn;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
+    private javax.swing.JTable workRequestJTable1;
     // End of variables declaration//GEN-END:variables
 }

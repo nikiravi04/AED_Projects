@@ -346,7 +346,7 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
         frame.setSize(500,500);
         try{
             final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
-            final File file = new File("BarGraph.png");
+            final File file = new File(request.getCancerReceiverEmail()+"cancer.png");
             ChartUtilities.saveChartAsPNG(file, chart, 600, 400);
             
         }
@@ -354,6 +354,9 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
             
         }
         
+//        SendEmail send  = new SendEmail(request.getCancerSenderEmail(),request.getPassword(),request.getCancerReceiverEmail(),"hello ",
+//                "Your cancer request has been completed and the graph for the test","C:\\Users\\Srikanth Reddy\\group_assignment_techietribe\\AED_FINAL_PROJECT\\"+request.getCancerReceiverEmail()+"cancer.png");
+//        
     }//GEN-LAST:event_graphActionPerformed
 
     private void normalWBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalWBCActionPerformed
