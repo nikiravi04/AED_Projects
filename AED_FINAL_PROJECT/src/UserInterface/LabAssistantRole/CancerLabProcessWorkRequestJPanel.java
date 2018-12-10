@@ -440,9 +440,9 @@ public class CancerLabProcessWorkRequestJPanel extends javax.swing.JPanel {
             
         }
         
-//        SendEmail send  = new SendEmail(request.getCancerSenderEmail(),request.getPassword(),request.getCancerReceiverEmail(),"hello ",
-//                "Your cancer request has been completed and the graph for the test","C:\\Users\\Srikanth Reddy\\group_assignment_techietribe\\AED_FINAL_PROJECT\\"+request.getCancerReceiverEmail()+"cancer.png");
-//        
+        SendEmail send  = new SendEmail(request.getCancerSenderEmail(),request.getPassword(),request.getCancerReceiverEmail(),"hello ",
+                "Your cancer request has been completed and the graph for the test","C:\\Users\\Srikanth Reddy\\group_assignment_techietribe\\AED_FINAL_PROJECT\\"+request.getCancerReceiverEmail()+"cancer.png");
+        
     }//GEN-LAST:event_graphActionPerformed
 
     private void normalWBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalWBCActionPerformed
