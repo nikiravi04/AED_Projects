@@ -107,7 +107,7 @@ public class SignUpPanel extends javax.swing.JPanel {
     private boolean phonePatternCorrect()
     {
         Pattern p = Pattern.compile("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$");
-        Matcher m = p.matcher(emailIDTextField.getText());
+        Matcher m = p.matcher(phoneNumberTextField.getText());
         boolean b = m.matches();
         //boolean b = m.find();
         if(b==true)
@@ -413,7 +413,7 @@ public class SignUpPanel extends javax.swing.JPanel {
             else
             {
                 
-                 if(passwordPatternCorrect() && usernamePatternCorrect() && emailPatternCorrect() && phonePatternCorrect())
+                 if(passwordPatternCorrect() && usernamePatternCorrect() && emailPatternCorrect())// && phonePatternCorrect())
                     {
                         if(!enterprise.getUserAccountDirectory().checkIfUsernameIsUnique(userName))
                             {
